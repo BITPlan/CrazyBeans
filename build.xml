@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- jUMLMDA, UMLModel-API
+// 
+//   $Header: /cvsroot-fuse/crazybeans/CrazyBeans/build.xml,v 1.1 2005/06/09 09:46:34 moroff Exp $
+//   $Source: /cvsroot-fuse/crazybeans/CrazyBeans/build.xml,v $
+// $Revision: 1.1 $
+//    $State: Exp $
+//     $Name:  $
+//     $Date: 2005/06/09 09:46:34 $
+//   $Locker:  $
+//
+//  This library is free software; you can redistribute it and/or
+//  modify it under the terms of the GNU Library General Public
+//  License as published by the Free Software Foundation; either
+//  version 2 of the License, or (at your option) any later version.
+//  This library is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//  Library General Public License for more details.
+//
+//  You should have received a copy of the GNU Library General Public
+//  License along with this library; if not, write to the
+//  Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+//  Boston, MA  02111-1307, USA. The text of license can be also found
+//  at http://www.gnu.org/copyleft/lgpl.html
+//  -->
+<project name="CrazyBeans" default="build" basedir=".">
+
+	<property file="../UMLMDA/umlmda.global.properties"/>
+	<property name="version.suffix" value="_${umlmda.generator.version}"/>
+	<property name="full.name" value="UMLMDA_${ant.project.name}${version.suffix}"/>
+	<property name="temp.folder" value="${basedir}/temp.bin"/>
+	<property name="lib.folder" value="${basedir}/lib"/>
+	<property name="build.result.folder" value="${basedir}/lib"/>
+	<property name="bin.jar" value="${build.result.folder}/${full.name}.jar"/>
+	<property name="bin.jar.pattern" value="UMLMDA_${ant.project.name}*.jar"/>
+
+	<target name="properties" if="eclipse.running">
+		<property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+	</target>
+
+	<target name="build" depends="properties">
+		<property name="destdir" value="${temp.folder}"/>
+		<delete dir="${temp.folder}"/>
+		<mkdir dir="${temp.folder}"/>
+		<!-- compile the source code -->
+		<javac destdir="${temp.folder}" debug="on" nowarn="yes" includeAntRuntime="no" >
+			<src path=".">
+			
+			</src>
+			<classpath>
+			  <fileset dir="${lib.folder}">
+			  	<include name="*.jar"/>
+			  	<exclude name="${bin.jar.pattern}"/>
+			  </fileset>
+			  <fileset dir="../UMLMDALibs">
+			  	<include name="*.jar"/>
+			  </fileset>	
+		    </classpath>
+		</javac>
+		<!-- copy necessary resources -->
+		<copy todir="${temp.folder}">
+			<fileset dir="." includes="cb/**,images" excludes="**/*.java,**/Makefile,**/*.jj"/>
+		</copy>
+		<mkdir dir="${build.result.folder}"/>
+		<delete>
+			<fileset dir="${build.result.folder}" includes="${bin.jar.pattern}"/>
+		</delete>
+		<jar jarfile="${bin.jar}" basedir="${temp.folder}">
+			<exclude name="test/**"/>
+		</jar>
+		<delete dir="${temp.folder}"/>
+		<antcall target="refresh"/>
+	</target>
+
+	<target name="clean" >
+		<delete file="${bin.jar}"/>
+		<delete dir="${temp.folder}"/>
+	</target>
+
+	<target name="refresh" if="eclipse.running">
+		<eclipse.refreshLocal resource="${ant.project.name}" depth="infinite"/>
+	</target>
+
+</project>
