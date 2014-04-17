@@ -69,11 +69,6 @@ public class ObjectFactory {
       return new SimpleObject(parent, id, params2);
   }
 
-  static void assert(boolean assertion, String mesg) {
-    if(!assertion)
-      throw new RuntimeException("Assertion failed: " + mesg);
-  }
-
   /** @return list like (list RoleViews ...) with given name
    */
   public List createList(String name) {
