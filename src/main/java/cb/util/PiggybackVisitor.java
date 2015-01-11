@@ -4,7 +4,7 @@ import cb.petal.DescendingVisitor;
 import cb.petal.EmptyVisitor;
 import cb.petal.PetalObject;
 import cb.petal.Visitor;
-import cb.test.*;
+
 
 /**
  * Just take a visitor "piggy-backed" and apply it to all petal

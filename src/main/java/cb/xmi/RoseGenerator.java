@@ -1,7 +1,7 @@
 package cb.xmi;
 
 import cb.parser.*;
-import cb.test.*;
+
 import cb.util.*;
 
 import java.io.*;

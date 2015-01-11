@@ -2,7 +2,7 @@ package cb.generator;
 import cb.petal.Documented;
 import cb.petal.PetalObject;
 import cb.petal.StringLiteral;
-import cb.test.*;
+
 
 import java.util.*;
 /**

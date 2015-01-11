@@ -1,5 +1,74 @@
+/**
+ * Copyright (c) 2001 Markus Dahm
+ * Copyright (C) 2015 BITPlan GmbH
+ *
+ * Pater-Delp-Str. 1
+ * D-47877 Willich-Schiefbahn
+ *
+ * http://www.bitplan.com
+ * 
+ * This source is part of
+ * https://github.com/BITPlan/CrazyBeans
+ * and the license as outlined there applies
+ * 
+ */
 package cb.xmi;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import ru.novosoft.uml.behavior.common_behavior.MSignal;
+import ru.novosoft.uml.behavior.common_behavior.MSignalImpl;
+import ru.novosoft.uml.behavior.use_cases.MActorImpl;
+import ru.novosoft.uml.behavior.use_cases.MUseCaseImpl;
+import ru.novosoft.uml.foundation.core.MAbstraction;
+import ru.novosoft.uml.foundation.core.MAbstractionImpl;
+import ru.novosoft.uml.foundation.core.MAssociation;
+import ru.novosoft.uml.foundation.core.MAssociationClassImpl;
+import ru.novosoft.uml.foundation.core.MAssociationEnd;
+import ru.novosoft.uml.foundation.core.MAssociationEndImpl;
+import ru.novosoft.uml.foundation.core.MAssociationImpl;
+import ru.novosoft.uml.foundation.core.MAttribute;
+import ru.novosoft.uml.foundation.core.MAttributeImpl;
+import ru.novosoft.uml.foundation.core.MClassImpl;
+import ru.novosoft.uml.foundation.core.MClassifier;
+import ru.novosoft.uml.foundation.core.MComponentImpl;
+import ru.novosoft.uml.foundation.core.MConstraint;
+import ru.novosoft.uml.foundation.core.MConstraintImpl;
+import ru.novosoft.uml.foundation.core.MDataTypeImpl;
+import ru.novosoft.uml.foundation.core.MDependency;
+import ru.novosoft.uml.foundation.core.MDependencyImpl;
+import ru.novosoft.uml.foundation.core.MGeneralization;
+import ru.novosoft.uml.foundation.core.MGeneralizationImpl;
+import ru.novosoft.uml.foundation.core.MInterfaceImpl;
+import ru.novosoft.uml.foundation.core.MModelElement;
+import ru.novosoft.uml.foundation.core.MOperation;
+import ru.novosoft.uml.foundation.core.MOperationImpl;
+import ru.novosoft.uml.foundation.core.MParameter;
+import ru.novosoft.uml.foundation.core.MParameterImpl;
+import ru.novosoft.uml.foundation.core.MUsage;
+import ru.novosoft.uml.foundation.core.MUsageImpl;
+import ru.novosoft.uml.foundation.data_types.MAggregationKind;
+import ru.novosoft.uml.foundation.data_types.MBooleanExpression;
+import ru.novosoft.uml.foundation.data_types.MCallConcurrencyKind;
+import ru.novosoft.uml.foundation.data_types.MExpression;
+import ru.novosoft.uml.foundation.data_types.MMultiplicity;
+import ru.novosoft.uml.foundation.data_types.MParameterDirectionKind;
+import ru.novosoft.uml.foundation.data_types.MScopeKind;
+import ru.novosoft.uml.foundation.data_types.MVisibilityKind;
+import ru.novosoft.uml.foundation.extension_mechanisms.MStereotype;
+import ru.novosoft.uml.foundation.extension_mechanisms.MStereotypeImpl;
+import ru.novosoft.uml.foundation.extension_mechanisms.MTaggedValue;
+import ru.novosoft.uml.foundation.extension_mechanisms.MTaggedValueImpl;
+import ru.novosoft.uml.model_management.MModel;
+import ru.novosoft.uml.model_management.MModelImpl;
+import ru.novosoft.uml.model_management.MPackage;
+import ru.novosoft.uml.model_management.MPackageImpl;
+import ru.novosoft.uml.model_management.MSubsystemImpl;
 import cb.petal.AccessQualified;
 import cb.petal.Association;
 import cb.petal.ClassAttribute;
@@ -21,26 +90,6 @@ import cb.petal.StringLiteral;
 import cb.petal.SubSystem;
 import cb.petal.UseCase;
 import cb.petal.UsesRelationship;
-import cb.parser.*;
-
-import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import cb.test.*;
-import cb.util.Constants;
-
-import java.awt.Dimension;
-
-import ru.novosoft.uml.foundation.core.*;
-import ru.novosoft.uml.model_management.*;
-import ru.novosoft.uml.xmi.XMIWriter;
-import ru.novosoft.uml.behavior.use_cases.*;
-import ru.novosoft.uml.foundation.extension_mechanisms.*;
-import ru.novosoft.uml.foundation.data_types.*;
-import ru.novosoft.uml.behavior.collaborations.*;
-import ru.novosoft.uml.behavior.common_behavior.MSignal;
-import ru.novosoft.uml.behavior.common_behavior.MSignalImpl;
 
 /**
  * Factory for classes, methods, etc., it also contains methods to add
@@ -72,7 +121,7 @@ public class XMIFactory {
     return model;
   }
 
-  private HashMap stereo_types = new HashMap(); // Map <String, stereotype>
+  private HashMap<String, MStereotype> stereo_types = new HashMap<String,MStereotype>(); // Map <String, stereotype>
 
   protected final MStereotype getStereotype(String stereo) {
     MStereotype s = (MStereotype)stereo_types.get(stereo);
@@ -436,7 +485,7 @@ public class XMIFactory {
 
    /**
     * @param role
-    * @return
+    * @return the association end which was just created
     */
    public MAssociationEnd createAssociationEnd(Role role) {
       MAssociationEnd ae = new MAssociationEndImpl();

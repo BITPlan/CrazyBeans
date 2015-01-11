@@ -383,7 +383,7 @@ public class XMIGenerator extends DescendingVisitor {
 	}
 
 	/**
-	 * @return
+	 * @return the parser result tree
 	 */
 	public PetalFile getTree() {
 		return tree;

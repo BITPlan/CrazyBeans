@@ -1,3 +1,17 @@
+/**
+ * Copyright (c) 2001 Markus Dahm
+ * Copyright (C) 2015 BITPlan GmbH
+ *
+ * Pater-Delp-Str. 1
+ * D-47877 Willich-Schiefbahn
+ *
+ * http://www.bitplan.com
+ * 
+ * This source is part of
+ * https://github.com/BITPlan/CrazyBeans
+ * and the license as outlined there applies
+ * 
+ */
 package cb.util;
 
 import cb.petal.AssocAttachView;
@@ -33,7 +47,7 @@ import cb.petal.UseCaseDiagram;
 import cb.petal.UseCaseView;
 import cb.petal.UsesRelationship;
 import cb.petal.UsesView;
-import cb.test.*;
+
 
 import java.io.*;
 import java.util.*;
@@ -80,8 +94,8 @@ public class PetalObjectFactory {
 	 * Read the object of the given type (name) from templates directory looking
 	 * for a file with suffix ".ser"
 	 * 
-	 * @param name
-	 * @return
+	 * @param name - template file name path
+	 * @return - the petalNode that was initialized from the given serialized java object template 
 	 */
 	public PetalNode getTemplate(String name) {
 		PetalNode obj = null;
@@ -416,6 +430,7 @@ public class PetalObjectFactory {
 	}
 
 	/**
+	 * create a note view
 	 * @return new note view with given text
 	 */
 	public NoteView createNoteView(String text) {
