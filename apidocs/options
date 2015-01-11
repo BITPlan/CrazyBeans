@@ -1,0 +1,24 @@
+-classpath
+'/Users/wf/Documents/workspace/CrazyBeans/target/classes:/Users/wf/.m2/repository/nsuml/nsuml/0.4.20/nsuml-0.4.20.jar:/Users/wf/.m2/repository/args4j/args4j/2.0.29/args4j-2.0.29.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'/Users/wf/Documents/workspace/CrazyBeans/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2015. All Rights Reserved.'
+-charset
+'UTF-8'
+-d
+'/Users/wf/Documents/workspace/CrazyBeans/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'BITPlan crazybeans fork 0.0.1 API'
+-link
+'http://java.sun.com/javase/6/docs/api'
+-use
+-version
+-windowtitle
+'BITPlan crazybeans fork 0.0.1 API'

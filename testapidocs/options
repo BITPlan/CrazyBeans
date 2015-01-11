@@ -1,0 +1,26 @@
+-classpath
+'/Users/wf/Documents/workspace/CrazyBeans/target/classes:/Users/wf/Documents/workspace/CrazyBeans/target/test-classes:/Users/wf/.m2/repository/nsuml/nsuml/0.4.20/nsuml-0.4.20.jar:/Users/wf/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/wf/.m2/repository/junit/junit/4.11/junit-4.11.jar:/Users/wf/.m2/repository/args4j/args4j/2.0.29/args4j-2.0.29.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'/Users/wf/Documents/workspace/CrazyBeans/src/test/java'
+-author
+-bottom
+'Copyright &#169; 2015. All Rights Reserved.'
+-charset
+'UTF-8'
+-d
+'/Users/wf/Documents/workspace/CrazyBeans/target/site/testapidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'BITPlan crazybeans fork 0.0.1 Test API'
+-link
+'../apidocs'
+-link
+'http://java.sun.com/javase/6/docs/api'
+-use
+-version
+-windowtitle
+'BITPlan crazybeans fork 0.0.1 Test API'
