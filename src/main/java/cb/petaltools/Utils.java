@@ -36,8 +36,10 @@ public class Utils {
 	}
 	
 	/**
-	 * @param args
-	 * @return
+	 * create a path map from the given arguments
+	 * @param args e.g. $A=APath $B=BPath
+	 * @param startingArg - where to start e.g. 0
+	 * @return - a map $A->APath, $B->BPath
 	 */
 	public static Map<String,String> createPathMap(String[] args, int startingArg) {
 		Map<String,String> pathMap = new HashMap<String,String>();
