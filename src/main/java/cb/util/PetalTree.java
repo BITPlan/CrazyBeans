@@ -1,8 +1,27 @@
+/**
+ * Copyright (c) 2001 Markus Dahm
+ * Copyright (C) 2015 BITPlan GmbH
+ *
+ * Pater-Delp-Str. 1
+ * D-47877 Willich-Schiefbahn
+ *
+ * http://www.bitplan.com
+ * 
+ * This source is part of
+ * https://github.com/BITPlan/CrazyBeans
+ * and the license as outlined there applies
+ * 
+ */
 package cb.util;
 
-import javax.swing.*;
-import javax.swing.tree.*;
-import javax.swing.event.*;
+import java.util.Iterator;
+
+import javax.swing.ImageIcon;
+import javax.swing.JTree;
+import javax.swing.ToolTipManager;
+import javax.swing.tree.DefaultTreeCellRenderer;
+import javax.swing.tree.TreePath;
+import javax.swing.tree.TreeSelectionModel;
 
 import cb.petal.List;
 import cb.petal.PetalFile;
@@ -11,10 +30,6 @@ import cb.petal.PetalObject;
 import cb.petal.StringLiteral;
 import cb.petal.Tagged;
 import cb.petal.Value;
-import cb.parser.PetalParser;
-
-
-import java.util.Iterator;
 
 /** Display petal file in JTree. The tooltip text displays the property name, if
  * the currently selected node is a child of a PetalObject.

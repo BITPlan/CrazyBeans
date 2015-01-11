@@ -92,7 +92,7 @@
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<mainClass>cb.petalview.PetalTreeView</mainClass>
+							<mainClass>cb.petaltools.XmiExport</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
@@ -109,7 +109,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>cb.petalview.PetalTreeView</mainClass>
+							<mainClass>cb.petaltools.XmiExport</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>

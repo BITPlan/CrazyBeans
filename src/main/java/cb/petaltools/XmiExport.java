@@ -93,27 +93,32 @@ public class XmiExport {
 
 	@Option(name = "-v", aliases = { "--version" }, usage = "showVersion\nshow current version if this switch is used")
 	boolean showVersion = false;
-	
-	@Option(name = "-i", aliases = { "--input" }, usage = "input\nthe path to the rational rose input .mdl file - will use stdin if omitted")
+
+	@Option(name = "-i", aliases = { "--input" }, usage = "input\nthe path to the rational rose input .mdl file - will use stdin if '-' is specified as input parameter")
 	protected String input = null;
-	
-	@Option(name = "-o", aliases = { "--output" }, usage = "output\nthe path to the xmi output .xmi file - will use stdout if omitted")
+
+	@Option(name = "-o", aliases = { "--output" }, usage = "output\nthe path to the xmi output .xmi file - will use stdout if omitted or '-' is specified as output parameter")
 	protected String output = null;
-	
+
 	@Option(name = "-ne", aliases = { "--noexport" }, usage = "no export\nthe xmi export is supressed")
-	protected boolean noExport=false;
-	
+	protected boolean noExport = false;
+
 	@Option(name = "-tv", aliases = { "--treeview" }, usage = "treeView\na Java Swing based GUI to show the petal tree is started")
-	protected boolean showTree=false;
+	protected boolean showTree = false;
 
 	/**
-	 * export the given input Rational Rose mdl file to the given output Rational Rose mdl file
-	 * @param input - the path to the .mdl file if null then use System.in 
-	 * @param output - the path to the .xmi output file if null use System.out
+	 * export the given input Rational Rose mdl file to the given output Rational
+	 * Rose mdl file
+	 * 
+	 * @param input
+	 *          - the path to the .mdl file if null then use System.in
+	 * @param output
+	 *          - the path to the .xmi output file if null use System.out
 	 * @throws IOException
 	 * @throws IncompleteXMIException
 	 */
-	public void xmiexport(String input, String output) throws IOException, IncompleteXMIException {
+	public void xmiexport(String input, String output) throws IOException,
+			IncompleteXMIException {
 		try {
 			Class.forName("ru.novosoft.uml.MBase");
 		} catch (ClassNotFoundException e) {
@@ -162,14 +167,18 @@ public class XmiExport {
 			} else if (this.showHelp) {
 				showHelp();
 			} else {
-				if (this.showTree) {
-					PetalTreeView petalTreeView=new PetalTreeView();
-					petalTreeView.showTree(this.input);
+				if (this.input == null) {
+					usage("no parameters specified");
+				} else {
+					if (this.showTree) {
+						PetalTreeView petalTreeView = new PetalTreeView();
+						petalTreeView.showTree(this.input);
+					}
+					if (!this.noExport) {
+						this.xmiexport(input, output);
+					}
+					exitCode = 0;
 				}
-				if (!this.noExport) {
-					this.xmiexport(input, output);
-				}
-				exitCode = 0;
 			}
 		} catch (CmdLineException e) {
 			// handling of wrong arguments

@@ -74,6 +74,15 @@ public class TestXMIExport extends BaseTest {
 		assertEquals(expectedExit, XmiExport.exitCode);
 	}
 
+	@Test 
+	public void testUsage() throws Exception {
+		String[] args = {};
+		debug=true;
+		testXmiExport(args, 1, 0);
+		assertTrue(errText.contains("github: https://github.com/BITPlan/CrazyBeans"));
+		assertTrue(errText.contains("usage:"));		
+	}
+	
 	@Test
 	public void testHelp() throws Exception {
 		String[] args = { "-h" };
