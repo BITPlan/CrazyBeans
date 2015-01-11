@@ -153,8 +153,19 @@ public class PetalParser {
 		}
 	}
 
+	/**
+	 * create a parser from the given file name
+	 * @param file_name or "-" to denote stdin
+	 * @return - the parser for the given file name
+	 */
 	public static PetalParser createParser(String file_name) {
-		return createParser(file_name, null);
+		PetalParser parser=null;
+		if ("-".equals(file_name)) {
+			parser = PetalParser.createParser(System.in);
+		} else {
+			parser = PetalParser.createParser(file_name,null);
+		}
+		return parser;
 	}
 
 	public static PetalParser createParser(String file_name, Map pathMap) {
@@ -266,8 +277,13 @@ public class PetalParser {
 		return new PetalParser(stream, pathMap);
 	}
 
+	/**
+	 * create a parser form the given input stream
+	 * @param stream
+	 * @return - return the parser
+	 */
 	public static PetalParser createParser(InputStream stream) {
-		return createParser(stream);
+		return createParser(stream,null);
 	}
 
 	public static PetalParser createParser(InputStream stream, Map pathMap) {

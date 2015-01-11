@@ -47,9 +47,14 @@ usage: java cb.petaltools.XmiExport
                       show current version if this switch is used
 ```                      
 
-### Example - xmiExport
+### Example - xmiExport to stdout
 ```
 java -jar target/crazybeans-0.0.1-jar-with-dependencies.jar -i examples/uni.mdl 
+```
+
+### Example - xmiExport to file
+```
+cat examples/uni.mdl | java -jar target/crazybeans-0.0.1-jar-with-dependencies.jar  -i - -o examples/uni.xmi
 ```
 
 ### Example - treeView

@@ -128,11 +128,7 @@ public class XmiExport {
 		}
 
 		PetalParser parser;
-		if (input != null) {
-			parser = PetalParser.createParser(input);
-		} else {
-			parser = PetalParser.createParser(System.in);
-		}
+		parser = PetalParser.createParser(input);
 
 		// Abandon all diagrams since they're not used by the generator anyway
 		// This saves us a lot of memory

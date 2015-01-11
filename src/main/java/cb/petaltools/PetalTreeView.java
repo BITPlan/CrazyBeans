@@ -37,11 +37,7 @@ public class PetalTreeView {
 	 * @param modelFileName
 	 */
 	public void showTree(String modelFileName) {
-		if (modelFileName == null) {
-			parser = PetalParser.createParser(System.in);
-		} else {
-			parser = PetalParser.createParser(modelFileName);
-		}
+		parser=PetalParser.createParser(modelFileName);
 		
 		PetalFile tree = parser.parse();
 
