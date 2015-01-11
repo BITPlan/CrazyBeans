@@ -96,7 +96,7 @@ public class TestXMIExport extends BaseTest {
 	public void testXMIExportExamples() throws Exception {
 		for (String exampleModelFileName : exampleModelFileNames) {
 			String exampleModelFilePath = super
-					.getExampleFileName(exampleModelFileName);
+					.getExampleFilePath(exampleModelFileName);
 			String[] args = { "-i", exampleModelFilePath };
 			// debug=true;
 			if (debug)

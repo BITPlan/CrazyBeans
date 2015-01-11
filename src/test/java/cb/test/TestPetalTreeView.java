@@ -38,7 +38,7 @@ public class TestPetalTreeView extends BaseTest {
 
 			for (String exampleModelFileName : exampleModelFileNames) {
 				String exampleModelFilePath = super
-						.getExampleFileName(exampleModelFileName);
+						.getExampleFilePath(exampleModelFileName);
 				try {
 					PetalTreeView petalTreeView=new PetalTreeView();
 					petalTreeView.showTree(exampleModelFilePath);

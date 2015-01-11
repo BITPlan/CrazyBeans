@@ -55,7 +55,7 @@ public class BaseTest {
 	/**
 	 * check debugging state
 	 * 
-	 * @return
+	 * @return the debug state
 	 */
 	public boolean isDebug() {
 		return this.debug;
@@ -65,9 +65,9 @@ public class BaseTest {
 	 * get the file name for the given exampleModelFileName
 	 * 
 	 * @param exampleModelFileName
-	 * @return
+	 * @return the exampleModelFilePath derived from the exampleModelFileName
 	 */
-	public String getExampleFileName(String exampleModelFileName) {
+	public String getExampleFilePath(String exampleModelFileName) {
 		String result = "examples" + File.separatorChar + exampleModelFileName;
 		return result;
 	}

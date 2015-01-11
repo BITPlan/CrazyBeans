@@ -10,6 +10,7 @@ CrazyBeans
 
 ## INSTALLATION
 ```
+git clone https://github.com/BITPlan/CrazyBeans
 mvn install
 ```
 to use as a library 

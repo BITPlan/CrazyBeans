@@ -216,7 +216,7 @@
 				<configuration>
 					<message>Creating site for ${project.version}</message>
 					<repositoryName>CrazyBeans</repositoryName>      <!-- github repo name -->
-					<repositoryOwner>CrazyBeans</repositoryOwner>    <!-- github username -->
+					<repositoryOwner>BITPlan</repositoryOwner>    <!-- github username -->
 				</configuration>
 				<executions>
 					<execution>

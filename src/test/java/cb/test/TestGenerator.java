@@ -40,7 +40,7 @@ public class TestGenerator extends BaseTest {
 		/*
 		 * For the university classes we just use the predefined behaviour
 		 */
-		PetalFile tree = PetalParser.createParser(getExampleFileName("uni.mdl"))
+		PetalFile tree = PetalParser.createParser(getExampleFilePath("uni.mdl"))
 				.parse();
 		String dump = cb.util.Constants.isDOS() ? "C:\\TEMP\\TestGenerator" : "/tmp/TestGenerator";
 
@@ -53,7 +53,7 @@ public class TestGenerator extends BaseTest {
 		 * generation of associations, and take the all classes in barat.reflect are
 		 * marked as interfaces.
 		 */
-		tree = PetalParser.createParser(getExampleFileName("Barat.mdl")).parse();
+		tree = PetalParser.createParser(getExampleFilePath("Barat.mdl")).parse();
 		Factory f = new Factory() {
 			public void addAssociation(cb.generator.Class class1, Role role1,
 					cb.generator.Class class2, Role role2, cb.generator.Class assoc_class) {
