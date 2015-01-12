@@ -20,7 +20,6 @@ import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
 
-import ru.novosoft.uml.xmi.IncompleteXMIException;
 import cb.generator.java.JavaGenerator;
 import cb.parser.PetalParser;
 import cb.parser.PrintVisitor;
