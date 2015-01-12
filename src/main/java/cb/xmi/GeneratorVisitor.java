@@ -21,9 +21,28 @@ import cb.petal.PetalFile;
  */
 public class GeneratorVisitor extends DescendingVisitor implements Generator {
 	/**
+	 * Where to dump the result of this generator
+   */
+  private String     dump;
+  
+	/**
 	 * The Rose Petal file to convert
 	 */
 	private PetalFile tree;
+
+	/**
+	 * @return the dump
+	 */
+	public String getDump() {
+		return dump;
+	}
+
+	/**
+	 * @param dump the dump to set
+	 */
+	public void setDump(String dump) {
+		this.dump = dump;
+	}
 
 	/**
 	 * @return the tree

@@ -40,17 +40,11 @@ import ru.novosoft.uml.foundation.extension_mechanisms.*;
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public class RoseGenerator extends GeneratorVisitor implements Generator {
-  /** Where to dump the XMI file
-   */
-  protected String     dump;
+  
 
   /** Which factory to use
    */
   protected static PetalObjectFactory factory = PetalObjectFactory.getInstance();
-
-  /** The Rose Petal file to convert
-   */
-  protected PetalFile  tree;
 
   /** The XMI model being set up
    */
@@ -79,10 +73,10 @@ public class RoseGenerator extends GeneratorVisitor implements Generator {
    * @param dump where to dump the generated petal file
    */
   public RoseGenerator(MModel model, String dump) {
-    this.dump  = dump;
+    this.setDump(dump);
     this.model = model;
 
-    tree = factory.createModel();
+    setTree(factory.createModel());
   }
 
   /** Start generation of Petal file.
@@ -92,15 +86,17 @@ public class RoseGenerator extends GeneratorVisitor implements Generator {
   }
 
   public void dump() throws IOException {
-    PrintStream os = new PrintStream(new FileOutputStream(dump));
-    tree.accept(new PrintVisitor(os));
+    PrintStream os = new PrintStream(new FileOutputStream(getDump()));
+    getTree().accept(new PrintVisitor(os));
     os.close();
   }
 
-  /** @return generated model
+  /** 
+   * alias for getTree - just delegates this call
+   * @return generated model
    */
   public PetalFile getModel() {
-    return tree;
+    return getTree();
   }
 
   public void visit(MExtension obj) {}
@@ -192,7 +188,7 @@ public class RoseGenerator extends GeneratorVisitor implements Generator {
   public void visit(MElementImport obj) {}
 
   public void visit(MModel obj) {
-    tree.setModelName(obj.getName());
+    getTree().setModelName(obj.getName());
 
     for(Iterator i = obj.getOwnedElements().iterator(); i.hasNext(); )
       d.accept((MModelElement)i.next());

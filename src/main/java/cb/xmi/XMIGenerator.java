@@ -58,10 +58,6 @@ import cb.petal.UsesRelationship;
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public class XMIGenerator extends GeneratorVisitor implements Generator {
-	/**
-	 * Where to dump the XMI file
-	 */
-	protected String dump;
 
 	/**
 	 * Which factory to use
@@ -133,8 +129,8 @@ public class XMIGenerator extends GeneratorVisitor implements Generator {
 	 *          where to dump the generated XMI file
 	 */
 	public XMIGenerator(PetalFile tree, String dump) {
-		this.dump = dump;
-		super.setTree(tree);
+		setDump(dump);
+		setTree(tree);
 
 		factory = getFactory();
 		model = factory.createModel();
@@ -352,11 +348,11 @@ public class XMIGenerator extends GeneratorVisitor implements Generator {
 			ru.novosoft.uml.xmi.IncompleteXMIException {
 		XMIWriter writer;
 		PrintWriter outwriter = null;
-		if (dump == null || "-".equals(dump)) {
+		if (getDump() == null || "-".equals(getDump())) {
 			outwriter = new PrintWriter(System.out);
 			writer = new XMIWriter(model, outwriter);
 		} else {
-			writer = new XMIWriter(model, dump);
+			writer = new XMIWriter(model, getDump());
 		}
 		writer.gen();
 		writer.close();
