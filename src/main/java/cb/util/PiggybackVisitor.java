@@ -1,3 +1,14 @@
+/**
+ * Copyright (c) 2001 Markus Dahm
+ * Copyright (C) 2015 BITPlan GmbH
+ *
+ * http://www.bitplan.com
+ * 
+ * This source is part of
+ * https://github.com/BITPlan/CrazyBeans
+ * and the license as outlined there applies
+ * 
+ */
 package cb.util;
 
 import cb.petal.DescendingVisitor;
@@ -21,10 +32,18 @@ import cb.petal.Visitor;
 public class PiggybackVisitor extends DescendingVisitor {
   private Visitor v;
 
+  /**
+   * initialize me with another visitor
+   * @param v
+   */
   public PiggybackVisitor(Visitor v) {
     this.v = v;
   }
 
+  /**
+   * apply both visitors for the given obj
+   * @param obj - the object to visit
+   */
   public void visitObject(PetalObject obj) {
     obj.accept(v);
     super.visitObject(obj);

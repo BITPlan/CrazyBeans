@@ -2,8 +2,6 @@
  * Copyright (c) 2001 Markus Dahm
  * Copyright (C) 2015 BITPlan GmbH
  *
-
- *
  * http://www.bitplan.com
  * 
  * This source is part of
@@ -14,10 +12,10 @@
 package cb.xmi;
 
 import java.io.IOException;
-import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Stack;
 
 import ru.novosoft.uml.foundation.core.MAbstraction;
@@ -59,7 +57,7 @@ import cb.petal.UsesRelationship;
  * @version $Id: XMIGenerator.java,v 1.8 2005/05/09 20:34:55 moroff Exp $
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class XMIGenerator extends DescendingVisitor {
+public class XMIGenerator extends GeneratorVisitor implements Generator {
 	/**
 	 * Where to dump the XMI file
 	 */
@@ -71,11 +69,6 @@ public class XMIGenerator extends DescendingVisitor {
 	protected XMIFactory factory;
 
 	/**
-	 * The Rose Petal file to convert
-	 */
-	protected PetalFile tree;
-
-	/**
 	 * The XMI model being set up
 	 */
 	protected MModel model;
@@ -83,7 +76,7 @@ public class XMIGenerator extends DescendingVisitor {
 	/**
 	 * Stack<MPackage>
 	 */
-	private Stack packages = new Stack();
+	private Stack<MPackage> packages = new Stack<MPackage>();
 
 	/**
 	 * The current package level (may be nested)
@@ -93,14 +86,23 @@ public class XMIGenerator extends DescendingVisitor {
 	/**
 	 * Register created objects by the quid of the petal object.
 	 */
-	protected HashMap quid_map = new HashMap(); // Map<quid, MClassifier>
+	protected Map<String,MClassifier> quid_map = new HashMap<String,MClassifier>(); // Map<quid, MClassifier>
 
 	protected HashMap package_map = new HashMap(); // Map<ClassCategory, MPackage>
 
+	/**
+	 * add an object
+	 * @param quid
+	 * @param obj
+	 */
 	protected final void addObject(String quid, MClassifier obj) {
 		quid_map.put(quid, obj);
 	}
 
+	/**
+	 * remove an Object
+	 * @param quid
+	 */
 	protected void removeObject(String quid) {
 		quid_map.remove(quid);
 	}
@@ -132,13 +134,12 @@ public class XMIGenerator extends DescendingVisitor {
 	 */
 	public XMIGenerator(PetalFile tree, String dump) {
 		this.dump = dump;
-		this.tree = tree;
+		super.setTree(tree);
 
 		factory = getFactory();
 		model = factory.createModel();
 		pack = model;
 	}
-
 
 	/**
 	 * Start generation of XMI code.
@@ -149,7 +150,7 @@ public class XMIGenerator extends DescendingVisitor {
 		 * that may be referenced from different places, or even be referenced in a
 		 * forward declaration.
 		 */
-		tree.accept(new DescendingVisitor() {
+		getTree().accept(new DescendingVisitor() {
 			private void addPackage(QuidObject obj, MPackage p) {
 				package_map.put(obj, p);
 
@@ -202,14 +203,14 @@ public class XMIGenerator extends DescendingVisitor {
 			}
 		});
 
-		tree.accept(this);
+		getTree().accept(this);
 	}
 
 	/**
 	 * Override this if you don't like the default factory
 	 */
 	protected XMIFactory getFactory() {
-		return new XMIFactory(tree, this);
+		return new XMIFactory(getTree(), this);
 	}
 
 	private void setPackage(QuidObject obj) {
@@ -379,19 +380,10 @@ public class XMIGenerator extends DescendingVisitor {
 	}
 
 	/**
-	 * @return the parser result tree
+	 * get a qualifiedName for the given model element
+	 * @param modelElement 
+	 * @return - the qualified name for a model element
 	 */
-	public PetalFile getTree() {
-		return tree;
-	}
-
-	/**
-	 * @param file
-	 */
-	public void setTree(PetalFile file) {
-		tree = file;
-	}
-
 	private static String getQualifiedName(MModelElement modelElement) {
 		StringBuffer buffer = new StringBuffer();
 

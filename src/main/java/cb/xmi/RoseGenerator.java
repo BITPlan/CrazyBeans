@@ -1,3 +1,14 @@
+/**
+ * Copyright (c) 2001 Markus Dahm
+ * Copyright (C) 2015 BITPlan GmbH
+ *
+ * http://www.bitplan.com
+ * 
+ * This source is part of
+ * https://github.com/BITPlan/CrazyBeans
+ * and the license as outlined there applies
+ * 
+ */
 package cb.xmi;
 
 import cb.parser.*;
@@ -28,7 +39,7 @@ import ru.novosoft.uml.foundation.extension_mechanisms.*;
  * @version $Id: RoseGenerator.java,v 1.1 2001/11/30 12:19:29 dahm Exp $
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class RoseGenerator /*extends DescendingVisitor*/ {
+public class RoseGenerator extends GeneratorVisitor implements Generator {
   /** Where to dump the XMI file
    */
   protected String     dump;

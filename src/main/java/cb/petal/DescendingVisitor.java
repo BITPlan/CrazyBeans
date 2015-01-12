@@ -1,3 +1,14 @@
+/**
+ * Copyright (c) 2001 Markus Dahm
+ * Copyright (C) 2015 BITPlan GmbH
+ *
+ * http://www.bitplan.com
+ * 
+ * This source is part of
+ * https://github.com/BITPlan/CrazyBeans
+ * and the license as outlined there applies
+ * 
+ */
 package cb.petal;
 import java.util.Iterator;
 
@@ -10,6 +21,10 @@ import java.util.Iterator;
 public class DescendingVisitor implements Visitor {
   public DescendingVisitor() {}
 
+  /**
+   * visit the given PetalFile
+   * @obj the PetalFile
+   */
   public void visit(PetalFile obj) {
     obj.getPetal().accept(this);
     obj.getDesign().accept(this);
