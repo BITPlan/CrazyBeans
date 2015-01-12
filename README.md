@@ -76,7 +76,7 @@ cat examples/uni.mdl | java -jar target/crazybeans-0.0.1-jar-with-dependencies.j
 
 ### Example - java code generation
 ```
-java -jar target/crazybeans-0.0.1-jar-with-dependencies.jar  -i examples/uni.mdl -src /tmp/uni
+java -jar target/crazybeans-0.0.1-jar-with-dependencies.jar  -i examples/uni.mdl --format none -src /tmp/uni
 ```
 
 ### Example - treeView
@@ -86,8 +86,12 @@ java -jar target/crazybeans-0.0.1-jar-with-dependencies.jar -i examples/uni.mdl 
 
 ## AUTHORS
 The original CrazyBeans framework is copyright (2001) M. Dahm. 
-This fork is Copyright(c) 2015 BITPlan GmbH based on the githubytized version of https://github.com/matthewmeyer
+
+This fork is Copyright(c) 2015 BITPlan GmbH
+
+based on the githubytized version of https://github.com/matthewmeyer
 
 ## Version history
 * 2001-2013: Original by Markus Dahm on SourceForge https://sourceforge.net/projects/crazybeans/
-* 0.0.1 - 2015-01-11: first version of this fork
+* 0.0.0 - 2015-01-10: start of fork
+* 0.0.1 - 2015-01-12: first version of this fork

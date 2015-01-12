@@ -139,9 +139,6 @@ public class XMIGenerator extends DescendingVisitor {
 		pack = model;
 	}
 
-	public XMIGenerator(PetalFile tree2, PrintStream out) {
-		// TODO Auto-generated constructor stub
-	}
 
 	/**
 	 * Start generation of XMI code.
@@ -354,7 +351,7 @@ public class XMIGenerator extends DescendingVisitor {
 			ru.novosoft.uml.xmi.IncompleteXMIException {
 		XMIWriter writer;
 		PrintWriter outwriter = null;
-		if (dump == null) {
+		if (dump == null || "-".equals(dump)) {
 			outwriter = new PrintWriter(System.out);
 			writer = new XMIWriter(model, outwriter);
 		} else {

@@ -51,11 +51,18 @@ public abstract class Constants {
     tmp, TEMP, env, TempFile
   }
 
+  /**
+   * mode how to find temporary directory may be
+   * tmp: just use /tmp
+   * TEMP: original version checking for isDOS and using C:\\TEMP\\ if in that environment
+   * env: get the tmp file from the environment variable
+   * TempFile: use javas tempfile facility to find an internal temporary directory to use
+   */
   public static TmpMode tempMode = TmpMode.TEMP;
   
   /**
    * get a temporary directory
-   * @return
+   * @return the temporary directory
    */
   public static String getTmp() {
     return getTmp(TmpMode.TEMP);
