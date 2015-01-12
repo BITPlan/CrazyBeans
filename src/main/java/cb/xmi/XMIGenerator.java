@@ -129,7 +129,7 @@ public class XMIGenerator extends GeneratorVisitor implements Generator {
 	 *          where to dump the generated XMI file
 	 */
 	public XMIGenerator(PetalFile tree, String dump) {
-		setDump(dump);
+		setDumpFileName(dump);
 		setTree(tree);
 
 		factory = getFactory();
@@ -348,11 +348,11 @@ public class XMIGenerator extends GeneratorVisitor implements Generator {
 			ru.novosoft.uml.xmi.IncompleteXMIException {
 		XMIWriter writer;
 		PrintWriter outwriter = null;
-		if (getDump() == null || "-".equals(getDump())) {
+		if (getDumpFileName() == null || "-".equals(getDumpFileName())) {
 			outwriter = new PrintWriter(System.out);
 			writer = new XMIWriter(model, outwriter);
 		} else {
-			writer = new XMIWriter(model, getDump());
+			writer = new XMIWriter(model, getDumpFileName());
 		}
 		writer.gen();
 		writer.close();

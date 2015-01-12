@@ -28,4 +28,14 @@ public interface Generator {
 	 * @param file
 	 */
 	public void setTree(PetalFile file);
+	
+	/**
+	 * @return the dump
+	 */
+	public String getDumpFileName();
+
+	/**
+	 * @param dump the dump to set
+	 */
+	public void setDumpFileName(String dump);
 }

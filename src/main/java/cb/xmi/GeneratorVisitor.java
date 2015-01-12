@@ -33,20 +33,23 @@ public class GeneratorVisitor extends DescendingVisitor implements Generator {
 	/**
 	 * @return the dump
 	 */
-	public String getDump() {
+	@Override
+	public String getDumpFileName() {
 		return dump;
 	}
 
 	/**
 	 * @param dump the dump to set
 	 */
-	public void setDump(String dump) {
+	@Override
+	public void setDumpFileName(String dump) {
 		this.dump = dump;
 	}
 
 	/**
 	 * @return the tree
 	 */
+	@Override
 	public PetalFile getTree() {
 		return tree;
 	}
@@ -54,6 +57,7 @@ public class GeneratorVisitor extends DescendingVisitor implements Generator {
 	/**
 	 * @param tree the tree to set
 	 */
+	@Override
 	public void setTree(PetalFile tree) {
 		this.tree = tree;
 	}

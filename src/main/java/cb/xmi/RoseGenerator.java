@@ -11,26 +11,107 @@
  */
 package cb.xmi;
 
-import cb.parser.*;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.util.Iterator;
 
-import cb.util.*;
-
-import java.io.*;
-
-import cb.petal.ClassCategory;
+import ru.novosoft.uml.MExtension;
+import ru.novosoft.uml.MFactory;
+import ru.novosoft.uml.behavior.activity_graphs.MActionState;
+import ru.novosoft.uml.behavior.activity_graphs.MActivityGraph;
+import ru.novosoft.uml.behavior.activity_graphs.MCallState;
+import ru.novosoft.uml.behavior.activity_graphs.MClassifierInState;
+import ru.novosoft.uml.behavior.activity_graphs.MObjectFlowState;
+import ru.novosoft.uml.behavior.activity_graphs.MPartition;
+import ru.novosoft.uml.behavior.activity_graphs.MSubactivityState;
+import ru.novosoft.uml.behavior.collaborations.MAssociationEndRole;
+import ru.novosoft.uml.behavior.collaborations.MAssociationRole;
+import ru.novosoft.uml.behavior.collaborations.MClassifierRole;
+import ru.novosoft.uml.behavior.collaborations.MCollaboration;
+import ru.novosoft.uml.behavior.collaborations.MInteraction;
+import ru.novosoft.uml.behavior.collaborations.MMessage;
+import ru.novosoft.uml.behavior.common_behavior.MAction;
+import ru.novosoft.uml.behavior.common_behavior.MActionSequence;
+import ru.novosoft.uml.behavior.common_behavior.MArgument;
+import ru.novosoft.uml.behavior.common_behavior.MAttributeLink;
+import ru.novosoft.uml.behavior.common_behavior.MCallAction;
+import ru.novosoft.uml.behavior.common_behavior.MComponentInstance;
+import ru.novosoft.uml.behavior.common_behavior.MCreateAction;
+import ru.novosoft.uml.behavior.common_behavior.MDataValue;
+import ru.novosoft.uml.behavior.common_behavior.MDestroyAction;
+import ru.novosoft.uml.behavior.common_behavior.MException;
+import ru.novosoft.uml.behavior.common_behavior.MInstance;
+import ru.novosoft.uml.behavior.common_behavior.MLink;
+import ru.novosoft.uml.behavior.common_behavior.MLinkEnd;
+import ru.novosoft.uml.behavior.common_behavior.MLinkObject;
+import ru.novosoft.uml.behavior.common_behavior.MNodeInstance;
+import ru.novosoft.uml.behavior.common_behavior.MObject;
+import ru.novosoft.uml.behavior.common_behavior.MReception;
+import ru.novosoft.uml.behavior.common_behavior.MReturnAction;
+import ru.novosoft.uml.behavior.common_behavior.MSendAction;
+import ru.novosoft.uml.behavior.common_behavior.MSignal;
+import ru.novosoft.uml.behavior.common_behavior.MStimulus;
+import ru.novosoft.uml.behavior.common_behavior.MTerminateAction;
+import ru.novosoft.uml.behavior.common_behavior.MUninterpretedAction;
+import ru.novosoft.uml.behavior.state_machines.MCallEvent;
+import ru.novosoft.uml.behavior.state_machines.MChangeEvent;
+import ru.novosoft.uml.behavior.state_machines.MCompositeState;
+import ru.novosoft.uml.behavior.state_machines.MFinalState;
+import ru.novosoft.uml.behavior.state_machines.MGuard;
+import ru.novosoft.uml.behavior.state_machines.MPseudostate;
+import ru.novosoft.uml.behavior.state_machines.MSignalEvent;
+import ru.novosoft.uml.behavior.state_machines.MSimpleState;
+import ru.novosoft.uml.behavior.state_machines.MState;
+import ru.novosoft.uml.behavior.state_machines.MStateMachine;
+import ru.novosoft.uml.behavior.state_machines.MStubState;
+import ru.novosoft.uml.behavior.state_machines.MSubmachineState;
+import ru.novosoft.uml.behavior.state_machines.MSynchState;
+import ru.novosoft.uml.behavior.state_machines.MTimeEvent;
+import ru.novosoft.uml.behavior.state_machines.MTransition;
+import ru.novosoft.uml.behavior.use_cases.MActor;
+import ru.novosoft.uml.behavior.use_cases.MExtend;
+import ru.novosoft.uml.behavior.use_cases.MExtensionPoint;
+import ru.novosoft.uml.behavior.use_cases.MInclude;
+import ru.novosoft.uml.behavior.use_cases.MUseCase;
+import ru.novosoft.uml.behavior.use_cases.MUseCaseInstance;
+import ru.novosoft.uml.foundation.core.MAbstraction;
+import ru.novosoft.uml.foundation.core.MAssociation;
+import ru.novosoft.uml.foundation.core.MAssociationClass;
+import ru.novosoft.uml.foundation.core.MAssociationEnd;
+import ru.novosoft.uml.foundation.core.MAttribute;
+import ru.novosoft.uml.foundation.core.MBinding;
+import ru.novosoft.uml.foundation.core.MClass;
+import ru.novosoft.uml.foundation.core.MClassifier;
+import ru.novosoft.uml.foundation.core.MComment;
+import ru.novosoft.uml.foundation.core.MComponent;
+import ru.novosoft.uml.foundation.core.MConstraint;
+import ru.novosoft.uml.foundation.core.MDataType;
+import ru.novosoft.uml.foundation.core.MDependency;
+import ru.novosoft.uml.foundation.core.MElementResidence;
+import ru.novosoft.uml.foundation.core.MFlow;
+import ru.novosoft.uml.foundation.core.MGeneralization;
+import ru.novosoft.uml.foundation.core.MInterface;
+import ru.novosoft.uml.foundation.core.MMethod;
+import ru.novosoft.uml.foundation.core.MModelElement;
+import ru.novosoft.uml.foundation.core.MNamespace;
+import ru.novosoft.uml.foundation.core.MNode;
+import ru.novosoft.uml.foundation.core.MOperation;
+import ru.novosoft.uml.foundation.core.MParameter;
+import ru.novosoft.uml.foundation.core.MPermission;
+import ru.novosoft.uml.foundation.core.MPresentationElement;
+import ru.novosoft.uml.foundation.core.MRelationship;
+import ru.novosoft.uml.foundation.core.MTemplateParameter;
+import ru.novosoft.uml.foundation.core.MUsage;
+import ru.novosoft.uml.foundation.extension_mechanisms.MStereotype;
+import ru.novosoft.uml.foundation.extension_mechanisms.MTaggedValue;
+import ru.novosoft.uml.model_management.MElementImport;
+import ru.novosoft.uml.model_management.MModel;
+import ru.novosoft.uml.model_management.MPackage;
+import ru.novosoft.uml.model_management.MSubsystem;
+import cb.parser.PrintVisitor;
 import cb.petal.PetalFile;
-
-import java.util.*;
-
-import ru.novosoft.uml.*;
-import ru.novosoft.uml.foundation.core.*;
-import ru.novosoft.uml.model_management.*;
-import ru.novosoft.uml.behavior.state_machines.*;
-import ru.novosoft.uml.behavior.activity_graphs.*;
-import ru.novosoft.uml.behavior.collaborations.*;
-import ru.novosoft.uml.behavior.common_behavior.*;
-import ru.novosoft.uml.behavior.use_cases.*;
-import ru.novosoft.uml.foundation.extension_mechanisms.*;
+import cb.util.PetalObjectFactory;
 
 /**
  * Convert an  <a href="http://xml.coverpages.org/xmi.html">XMI</a>
@@ -50,30 +131,16 @@ public class RoseGenerator extends GeneratorVisitor implements Generator {
    */
   protected MModel     model;
 
-  /**  Stack<ClassCategory>
-   */
-  private Stack packages = new Stack();
-
-  /** The current package level (may be nested)
-   */
-  private ClassCategory pack;
-
   /** Use that until NSUML has visitors.
    */
   private Dispatcher d = new Dispatcher(this);
-
-  /** Register created objects by the quid of the petal object.
-   */
-  protected HashMap quid_map = new HashMap(); // Map<quid, MClassifier>
-
-  protected HashMap package_map = new HashMap(); // Map<ClassCategory, MPackage>
 
   /**
    * @param model the XMI model to convert
    * @param dump where to dump the generated petal file
    */
   public RoseGenerator(MModel model, String dump) {
-    this.setDump(dump);
+    this.setDumpFileName(dump);
     this.model = model;
 
     setTree(factory.createModel());
@@ -86,7 +153,7 @@ public class RoseGenerator extends GeneratorVisitor implements Generator {
   }
 
   public void dump() throws IOException {
-    PrintStream os = new PrintStream(new FileOutputStream(getDump()));
+    PrintStream os = new PrintStream(new FileOutputStream(getDumpFileName()));
     getTree().accept(new PrintVisitor(os));
     os.close();
   }
@@ -187,10 +254,15 @@ public class RoseGenerator extends GeneratorVisitor implements Generator {
   public void visit(MUsage obj) {}
   public void visit(MElementImport obj) {}
 
+  /**
+   * visit the given Model
+   * @param obj - the model to visit
+   */
   public void visit(MModel obj) {
     getTree().setModelName(obj.getName());
 
-    for(Iterator i = obj.getOwnedElements().iterator(); i.hasNext(); )
+    for(@SuppressWarnings("rawtypes")
+		Iterator i = obj.getOwnedElements().iterator(); i.hasNext(); )
       d.accept((MModelElement)i.next());
   }
 
