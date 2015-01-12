@@ -1,4 +1,4 @@
-package cb.generator;
+package cb.generator.java;
 
 import java.util.List;
 

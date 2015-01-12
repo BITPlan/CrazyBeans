@@ -1,4 +1,4 @@
-package cb.generator;
+package cb.generator.java;
 
 /**
  * Represents a field of a class.

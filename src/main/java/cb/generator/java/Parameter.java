@@ -1,4 +1,4 @@
-package cb.generator;
+package cb.generator.java;
 
 /**
  * Represents a formal parameter of a method,

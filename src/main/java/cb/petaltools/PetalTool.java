@@ -21,7 +21,7 @@ import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
 
 import ru.novosoft.uml.xmi.IncompleteXMIException;
-import cb.generator.Generator;
+import cb.generator.java.JavaGenerator;
 import cb.parser.PetalParser;
 import cb.parser.PrintVisitor;
 import cb.petal.PetalFile;
@@ -189,7 +189,7 @@ public class PetalTool {
 	 */
 	private void exportJava(String input, String output, String srcRoot) throws IOException {
 	  PetalFile tree=getTree(input);
-	  Generator gen = new Generator(tree, srcRoot);
+	  JavaGenerator gen = new JavaGenerator(tree, srcRoot);
     tree.accept(new PiggybackVisitor(gen));
     gen.dump();
   }

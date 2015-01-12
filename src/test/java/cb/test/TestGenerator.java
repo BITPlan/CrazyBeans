@@ -18,8 +18,8 @@ import java.util.logging.Level;
 
 import org.junit.Test;
 
-import cb.generator.Factory;
-import cb.generator.Generator;
+import cb.generator.java.Factory;
+import cb.generator.java.JavaGenerator;
 import cb.parser.PetalParser;
 import cb.petal.PetalFile;
 import cb.petal.Role;
@@ -49,7 +49,7 @@ public class TestGenerator extends BaseTest {
 		if (debug)
 		  LOGGER.log(Level.INFO,dump);
 
-		Generator gen = new Generator(tree, dump);
+		JavaGenerator gen = new JavaGenerator(tree, dump);
 		tree.accept(new PiggybackVisitor(gen));
 		gen.dump();
 
@@ -61,15 +61,15 @@ public class TestGenerator extends BaseTest {
 		Example barat=Example.get("Barat");
 		tree = PetalParser.createParser(barat.getFilePath()).parse();
 		Factory f = new Factory() {
-			public void addAssociation(cb.generator.Class class1, Role role1,
-					cb.generator.Class class2, Role role2, cb.generator.Class assoc_class) {
+			public void addAssociation(cb.generator.java.Class class1, Role role1,
+					cb.generator.java.Class class2, Role role2, cb.generator.java.Class assoc_class) {
 				return; // Just do nothing here
 			}
 		};
 
 		Factory.setInstance(f);
 
-		gen = new Generator(tree, dump) {
+		gen = new JavaGenerator(tree, dump) {
 			public void visit(cb.petal.Class clazz) {
 				if (clazz.getQualifiedName().startsWith("Logical View::barat::reflect"))
 					clazz.setStereotype("Interface"); // Meant to be interfaces

@@ -9,7 +9,7 @@
  * and the license as outlined there applies
  * @since 2015-01
  */
-package cb.xmi;
+package cb.generator;
 
 import cb.petal.DescendingVisitor;
 import cb.petal.PetalFile;
@@ -34,7 +34,7 @@ public class GeneratorVisitor extends DescendingVisitor implements Generator {
 	 * @return the dump
 	 */
 	@Override
-	public String getDumpFileName() {
+	public String getDumpPath() {
 		return dump;
 	}
 
@@ -42,7 +42,7 @@ public class GeneratorVisitor extends DescendingVisitor implements Generator {
 	 * @param dump the dump to set
 	 */
 	@Override
-	public void setDumpFileName(String dump) {
+	public void setDumpPath(String dump) {
 		this.dump = dump;
 	}
 

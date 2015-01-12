@@ -1,4 +1,4 @@
-package cb.generator;
+package cb.generator.java;
 
 import java.io.PrintWriter;
 import java.util.*;
@@ -10,7 +10,7 @@ import cb.petal.Parameter;
  * @version $Id: ParameterImpl.java,v 1.2 2001/06/27 10:26:03 dahm Exp $
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class ParameterImpl extends NodeImpl implements cb.generator.Parameter {
+public class ParameterImpl extends NodeImpl implements cb.generator.java.Parameter {
   private   String  type;
   protected cb.petal.Parameter parameter;
 

@@ -30,6 +30,8 @@ import ru.novosoft.uml.foundation.core.MUsage;
 import ru.novosoft.uml.model_management.MModel;
 import ru.novosoft.uml.model_management.MPackage;
 import ru.novosoft.uml.xmi.XMIWriter;
+import cb.generator.Generator;
+import cb.generator.GeneratorVisitor;
 import cb.petal.Association;
 import cb.petal.ClassAttribute;
 import cb.petal.DependencyRelationship;
@@ -144,7 +146,7 @@ public class XMIGenerator extends GeneratorVisitor implements Generator {
 	 *          where to dump the generated XMI file
 	 */
 	public XMIGenerator(PetalFile tree, String dump) {
-		setDumpFileName(dump);
+		setDumpPath(dump);
 		setTree(tree);
 
 		factory = getFactory();
@@ -364,11 +366,11 @@ public class XMIGenerator extends GeneratorVisitor implements Generator {
 			ru.novosoft.uml.xmi.IncompleteXMIException {
 		XMIWriter writer;
 		PrintWriter outwriter = null;
-		if (getDumpFileName() == null || "-".equals(getDumpFileName())) {
+		if (getDumpPath() == null || "-".equals(getDumpPath())) {
 			outwriter = new PrintWriter(System.out);
 			writer = new XMIWriter(model, outwriter);
 		} else {
-			writer = new XMIWriter(model, getDumpFileName());
+			writer = new XMIWriter(model, getDumpPath());
 		}
 		writer.gen();
 		writer.close();

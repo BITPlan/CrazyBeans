@@ -109,6 +109,8 @@ import ru.novosoft.uml.model_management.MElementImport;
 import ru.novosoft.uml.model_management.MModel;
 import ru.novosoft.uml.model_management.MPackage;
 import ru.novosoft.uml.model_management.MSubsystem;
+import cb.generator.Generator;
+import cb.generator.GeneratorVisitor;
 import cb.parser.PrintVisitor;
 import cb.petal.PetalFile;
 import cb.util.PetalObjectFactory;
@@ -141,7 +143,7 @@ public class RoseGenerator extends GeneratorVisitor implements Generator {
    * @param dump where to dump the generated petal file
    */
   public RoseGenerator(MModel model, String dump) {
-    this.setDumpFileName(dump);
+    this.setDumpPath(dump);
     this.model = model;
 
     setTree(factory.createModel());
@@ -154,7 +156,7 @@ public class RoseGenerator extends GeneratorVisitor implements Generator {
   }
 
   public void dump() throws IOException {
-    PrintStream os = new PrintStream(new FileOutputStream(getDumpFileName()));
+    PrintStream os = new PrintStream(new FileOutputStream(getDumpPath()));
     getTree().accept(new PrintVisitor(os));
     os.close();
   }
