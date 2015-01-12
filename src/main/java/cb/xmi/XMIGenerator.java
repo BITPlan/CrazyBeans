@@ -362,6 +362,7 @@ public class XMIGenerator extends GeneratorVisitor implements Generator {
 	 * @throws IOException
 	 * @throws ru.novosoft.uml.xmi.IncompleteXMIException
 	 */
+	@Override
 	public void dump() throws IOException,
 			ru.novosoft.uml.xmi.IncompleteXMIException {
 		XMIWriter writer;

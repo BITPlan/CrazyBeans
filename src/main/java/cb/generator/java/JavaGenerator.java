@@ -163,8 +163,10 @@ public class JavaGenerator extends GeneratorVisitor {
       factory.addMethod(c, m);
   }
 
+  @Override
   public void dump() throws IOException {
-    for (Iterator i = factory.getObjects().iterator(); i.hasNext();) {
+    for (@SuppressWarnings("rawtypes")
+		Iterator i = factory.getObjects().iterator(); i.hasNext();) {
       Node n = (Node) i.next();
 
       if (n instanceof Class) {

@@ -38,4 +38,10 @@ public interface Generator {
 	 * @param dump the dump to set
 	 */
 	public void setDumpPath(String dump);
+	
+	/**
+	 * dump the result of the generator
+	 * @throws Exception  - if something goes wrong
+	 */
+	public void dump() throws Exception;
 }

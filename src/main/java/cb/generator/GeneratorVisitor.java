@@ -19,7 +19,7 @@ import cb.petal.PetalFile;
  * @author wf
  *
  */
-public class GeneratorVisitor extends DescendingVisitor implements Generator {
+public abstract class GeneratorVisitor extends DescendingVisitor implements Generator {
 	/**
 	 * Where to dump the result of this generator
    */

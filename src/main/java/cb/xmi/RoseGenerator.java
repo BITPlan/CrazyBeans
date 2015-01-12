@@ -155,7 +155,11 @@ public class RoseGenerator extends GeneratorVisitor implements Generator {
     d.accept(model); // Should read: model.accept(this) ...
   }
 
-  public void dump() throws IOException {
+  /**
+   * dump the result
+   */
+  @Override
+  public void dump() throws Exception {
     PrintStream os = new PrintStream(new FileOutputStream(getDumpPath()));
     getTree().accept(new PrintVisitor(os));
     os.close();
