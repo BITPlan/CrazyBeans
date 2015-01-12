@@ -127,7 +127,8 @@ public class RoseGenerator extends GeneratorVisitor implements Generator {
    */
   protected static PetalObjectFactory factory = PetalObjectFactory.getInstance();
 
-  /** The XMI model being set up
+  /** 
+   * The XMI model being set up
    */
   protected MModel     model;
 

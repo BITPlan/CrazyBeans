@@ -84,10 +84,13 @@ public class XMIGenerator extends GeneratorVisitor implements Generator {
 	 */
 	protected Map<String,MClassifier> quid_map = new HashMap<String,MClassifier>(); // Map<quid, MClassifier>
 
-	protected HashMap package_map = new HashMap(); // Map<ClassCategory, MPackage>
+	/**
+	 * link Categories to MPackages
+	 */
+	protected Map<QuidObject,MPackage> package_map = new HashMap<QuidObject,MPackage>(); // Map<ClassCategory, MPackage>
 
 	/**
-	 * add an object
+	 * add the given classifier object to the by-Quid lookup map
 	 * @param quid
 	 * @param obj
 	 */
@@ -103,11 +106,23 @@ public class XMIGenerator extends GeneratorVisitor implements Generator {
 		quid_map.remove(quid);
 	}
 
+	/**
+	 * lookup a clssifier by quid
+	 * @param quid
+	 * @return
+	 */
 	protected final MClassifier getClassifier(String quid) {
-		return (MClassifier) quid_map.get(quid);
+		return quid_map.get(quid);
 	}
 
+	/**
+	 * get the Package for the given quid
+	 * @param quid - the quid to lookup
+	 * @return - the package
+	 */
+	@SuppressWarnings("rawtypes")
 	protected final MPackage getPackage(String quid) {
+		// FIXME performance and readbility could be improved with another Map
 		for (Iterator iter = package_map.values().iterator(); iter.hasNext();) {
 			java.lang.Object element = (java.lang.Object) iter.next();
 
@@ -300,14 +315,15 @@ public class XMIGenerator extends GeneratorVisitor implements Generator {
 	 *          Class searched element is an instance of
 	 * @return found element or null
 	 */
-	public MModelElement searchElement(String name, java.lang.Class clazz) {
+	public MModelElement searchElement(String name, java.lang.Class<?> clazz) {
 		return searchElement(model, name, clazz);
 	}
 
 	private static MModelElement searchElement(MPackage pack, String name,
-			java.lang.Class clazz) {
-		for (Iterator i = pack.getOwnedElements().iterator(); i.hasNext();) {
-			MModelElement elem = (MModelElement) i.next();
+			java.lang.Class<?> clazz) {
+		for (@SuppressWarnings("unchecked")
+		Iterator<MModelElement> i = pack.getOwnedElements().iterator(); i.hasNext();) {
+			MModelElement elem = i.next();
 
 			if (name.indexOf("::") > 0 && getQualifiedName(elem).equals(name)
 					&& clazz.isInstance(elem))
