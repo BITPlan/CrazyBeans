@@ -25,8 +25,8 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2015</copyright>
     <item>
-      <title>File: 172,
-             Errors: 9718,
+      <title>File: 175,
+             Errors: 9793,
              Warnings: 0,
              Infos: 0
       </title>
@@ -480,20 +480,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.petaltools.XmiExport.java">cb/petaltools/XmiExport.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  216
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.petal.Role.java">cb/petal/Role.java</a>
                 </td>
                 <td>
@@ -718,6 +704,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.generator.package-info.java">cb/generator/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.util.PiggybackVisitor.java">cb/util/PiggybackVisitor.java</a>
                 </td>
                 <td>
@@ -742,6 +742,20 @@ under the License.
                 </td>
                 <td>
                   32
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.petaltools.PetalTool.java">cb/petaltools/PetalTool.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  314
                 </td>
               </tr>
                           <tr>
@@ -797,7 +811,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  218
+                  220
                 </td>
               </tr>
                           <tr>
@@ -937,7 +951,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  96
+                  73
                 </td>
               </tr>
                           <tr>
@@ -951,7 +965,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  33
+                  32
                 </td>
               </tr>
                           <tr>
@@ -979,7 +993,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  47
+                  46
                 </td>
               </tr>
                           <tr>
@@ -1455,7 +1469,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  134
+                  83
                 </td>
               </tr>
                           <tr>
@@ -1908,6 +1922,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.parser.package-info.java">cb/parser/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.petal.PetalNode.java">cb/petal/PetalNode.java</a>
                 </td>
                 <td>
@@ -1917,7 +1945,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  6
+                  10
                 </td>
               </tr>
                           <tr>
@@ -1992,6 +2020,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.petaltools.Utils.java">cb/petaltools/Utils.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  46
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.petal.ObjectDiagram.java">cb/petal/ObjectDiagram.java</a>
                 </td>
                 <td>
@@ -2057,7 +2099,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  64
+                  63
                 </td>
               </tr>
                           <tr>
@@ -2113,7 +2155,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  113
+                  112
                 </td>
               </tr>
                           <tr>
