@@ -61,5 +61,14 @@ public abstract class GeneratorVisitor extends DescendingVisitor implements Gene
 	public void setTree(PetalFile tree) {
 		this.tree = tree;
 	}
+	
+	/**
+	 * default run method
+	 */
+	@Override
+	public void run() throws Exception {
+		start();
+		dump();
+	}
 
 }

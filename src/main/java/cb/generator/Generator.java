@@ -40,8 +40,21 @@ public interface Generator {
 	public void setDumpPath(String dump);
 	
 	/**
+	 * start the generator
+	 * @throws Exception - if something goes wrong
+	 */
+	public void start() throws Exception;
+	
+	/**
 	 * dump the result of the generator
 	 * @throws Exception  - if something goes wrong
 	 */
 	public void dump() throws Exception;
+	
+	
+	/**
+	 * calls start and dump but may be overriden
+	 * @throws Exception 
+	 */
+	public void run() throws Exception;
 }

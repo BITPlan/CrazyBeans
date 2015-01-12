@@ -162,6 +162,11 @@ public class JavaGenerator extends GeneratorVisitor {
     if (c != null)
       factory.addMethod(c, m);
   }
+  
+  @Override
+	public void start() throws Exception {
+		getTree().accept(new PiggybackVisitor(this));
+	}
 
   @Override
   public void dump() throws IOException {
@@ -188,15 +193,16 @@ public class JavaGenerator extends GeneratorVisitor {
     }
   }
 
+  /**
+   * main routine to test from command line
+   * @param args
+   */
   public static void main(String[] args) {
     try {
       PetalFile tree = PetalParser.parse(args);
       String dump = cb.util.Constants.getTmp();
       JavaGenerator gen = new JavaGenerator(tree, dump);
-
-      tree.accept(new PiggybackVisitor(gen));
-
-      gen.dump();
+      gen.run();
     } catch (Exception e) {
       e.printStackTrace();
     }

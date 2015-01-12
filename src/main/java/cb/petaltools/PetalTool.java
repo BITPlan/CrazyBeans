@@ -121,11 +121,9 @@ public class PetalTool {
 	 *          - the path to the .mdl file if null then use System.in
 	 * @param output
 	 *          - the path to the .xmi output file if null use System.out
-	 * @throws IOException
-	 * @throws IncompleteXMIException
+	 * @throws Exception 
 	 */
-	public void exportXmi(String input, String output) throws IOException,
-			IncompleteXMIException {
+	public void exportXmi(String input, String output) throws Exception {
 		try {
 			Class.forName("ru.novosoft.uml.MBase");
 		} catch (ClassNotFoundException e) {
@@ -145,9 +143,7 @@ public class PetalTool {
 		PetalFile tree = parser.parse();
 		XMIGenerator gen;
 		gen = new XMIGenerator(tree, output);
-
-		gen.start();
-		gen.dump();
+		gen.run();
 	}
 	
 	/**
