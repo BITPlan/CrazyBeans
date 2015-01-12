@@ -1,3 +1,17 @@
+/**
+ * Copyright (c) 2001 Markus Dahm
+ * Copyright (C) 2015 BITPlan GmbH
+ *
+ * Pater-Delp-Str. 1
+
+ *
+ * http://www.bitplan.com
+ * 
+ * This source is part of
+ * https://github.com/BITPlan/CrazyBeans
+ * and the license as outlined there applies
+ * 
+ */
 package cb.petal;
 
 /**
@@ -10,6 +24,10 @@ package cb.petal;
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public interface Visitor {
+  /**
+   * visit the PetalFile
+   * @param obj - the PetalFile object to visit
+   */
   public void visit(PetalFile obj);
 
   public void visit(cb.petal.Class obj);

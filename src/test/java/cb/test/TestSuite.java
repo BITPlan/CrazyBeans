@@ -1,8 +1,7 @@
 /**
  * Copyright (C) 2015 BITPlan GmbH
  *
- * Pater-Delp-Str. 1
- * D-47877 Willich-Schiefbahn
+
  *
  * http://www.bitplan.com
  * 
@@ -20,7 +19,7 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ TestTemplates.class, TestUniversityModel.class,
-		TestGenerator.class, TestPetalTreeView.class })
+		TestGenerator.class, TestPetalTreeView.class , TestPetalTool.class})
 public class TestSuite {
 
 }

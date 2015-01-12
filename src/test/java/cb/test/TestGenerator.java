@@ -3,7 +3,7 @@
  * Copyright (C) 2015 BITPlan GmbH
  *
  * Pater-Delp-Str. 1
- * D-47877 Willich-Schiefbahn
+
  *
  * http://www.bitplan.com
  * 
@@ -13,6 +13,8 @@
  * 
  */
 package cb.test;
+
+import java.util.logging.Level;
 
 import org.junit.Test;
 
@@ -40,11 +42,14 @@ public class TestGenerator extends BaseTest {
 		/*
 		 * For the university classes we just use the predefined behaviour
 		 */
-		PetalFile tree = PetalParser.createParser(getExampleFilePath("uni.mdl"))
+	  Example uni=Example.get("uni");
+		PetalFile tree = PetalParser.createParser(uni.getFilePath())
 				.parse();
-		String dump = cb.util.Constants.isDOS() ? "C:\\TEMP\\TestGenerator" : "/tmp/TestGenerator";
+		String dump = uni.getSrcRoot();
+		if (debug)
+		  LOGGER.log(Level.INFO,dump);
 
-		Generator gen = new Generator(tree, dump, ".java");
+		Generator gen = new Generator(tree, dump);
 		tree.accept(new PiggybackVisitor(gen));
 		gen.dump();
 
@@ -53,7 +58,8 @@ public class TestGenerator extends BaseTest {
 		 * generation of associations, and take the all classes in barat.reflect are
 		 * marked as interfaces.
 		 */
-		tree = PetalParser.createParser(getExampleFilePath("Barat.mdl")).parse();
+		Example barat=Example.get("Barat");
+		tree = PetalParser.createParser(barat.getFilePath()).parse();
 		Factory f = new Factory() {
 			public void addAssociation(cb.generator.Class class1, Role role1,
 					cb.generator.Class class2, Role role2, cb.generator.Class assoc_class) {
@@ -63,7 +69,7 @@ public class TestGenerator extends BaseTest {
 
 		Factory.setInstance(f);
 
-		gen = new Generator(tree, dump, ".java") {
+		gen = new Generator(tree, dump) {
 			public void visit(cb.petal.Class clazz) {
 				if (clazz.getQualifiedName().startsWith("Logical View::barat::reflect"))
 					clazz.setStereotype("Interface"); // Meant to be interfaces

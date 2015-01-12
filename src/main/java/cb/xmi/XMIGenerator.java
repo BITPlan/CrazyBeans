@@ -2,8 +2,7 @@
  * Copyright (c) 2001 Markus Dahm
  * Copyright (C) 2015 BITPlan GmbH
  *
- * Pater-Delp-Str. 1
- * D-47877 Willich-Schiefbahn
+
  *
  * http://www.bitplan.com
  * 

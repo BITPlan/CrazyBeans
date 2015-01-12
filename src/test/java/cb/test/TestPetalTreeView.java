@@ -3,7 +3,7 @@
  * Copyright (C) 2015 BITPlan GmbH
  *
  * Pater-Delp-Str. 1
- * D-47877 Willich-Schiefbahn
+
  *
  * http://www.bitplan.com
  * 
@@ -36,9 +36,8 @@ public class TestPetalTreeView extends BaseTest {
 		
 		if (!GraphicsEnvironment.isHeadless()) {
 
-			for (String exampleModelFileName : exampleModelFileNames) {
-				String exampleModelFilePath = super
-						.getExampleFilePath(exampleModelFileName);
+			for (Example exampleModel : exampleModels) {
+				String exampleModelFilePath = exampleModel.getFilePath();
 				try {
 					PetalTreeView petalTreeView=new PetalTreeView();
 					petalTreeView.showTree(exampleModelFilePath);

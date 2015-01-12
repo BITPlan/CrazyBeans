@@ -2,9 +2,6 @@
  * Copyright (c) 2001 Markus Dahm
  * Copyright (C) 2015 BITPlan GmbH
  *
- * Pater-Delp-Str. 1
- * D-47877 Willich-Schiefbahn
- *
  * http://www.bitplan.com
  * 
  * This source is part of
@@ -14,27 +11,34 @@
  */
 package cb.petaltools;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
 
 import ru.novosoft.uml.xmi.IncompleteXMIException;
+import cb.generator.Generator;
 import cb.parser.PetalParser;
+import cb.parser.PrintVisitor;
 import cb.petal.PetalFile;
+import cb.util.PiggybackVisitor;
 import cb.xmi.XMIGenerator;
 
 /**
- * Convert Rose file into XMI format. You'll need to install <a
- * href="http://nsuml.sourceforge.net/">NSUML</a> to run this example. It also
+ * Convert Rose file into different formats. You'll need to install <a
+ * href="http://nsuml.sourceforge.net/">NSUML</a> to run format=xmi. 
+ * This code is derived from Test4. This test also
  * shows how to reduce memory consumption by omitting certain nodes when parsing
  * the petal file.
  *
  * @version $Id: Test4.java,v 1.5 2001/11/01 15:56:49 dahm Exp $
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class XmiExport {
+public class PetalTool {
 	public static final String VERSION = "0.0.1";
 	public static boolean testMode = false;
 
@@ -67,7 +71,7 @@ public class XmiExport {
 		System.err.println(msg);
 
 		showVersion();
-		System.err.println("usage: java cb.petaltools.XmiExport");
+		System.err.println("usage: java cb.petaltools.PetalTool");
 		parser.printUsage(System.err);
 		exitCode = 1;
 	}
@@ -94,14 +98,17 @@ public class XmiExport {
 	@Option(name = "-v", aliases = { "--version" }, usage = "showVersion\nshow current version if this switch is used")
 	boolean showVersion = false;
 
-	@Option(name = "-i", aliases = { "--input" }, usage = "input\nthe path to the rational rose input .mdl file - will use stdin if '-' is specified as input parameter")
-	protected String input = null;
+	@Option(name = "-i", aliases = { "--input" }, usage = "input\nthe path to the rational rose input .mdl file - will use stdin if omitted or '-' is specified as input parameter")
+	protected String input = "-";
 
-	@Option(name = "-o", aliases = { "--output" }, usage = "output\nthe path to the xmi output .xmi file - will use stdout if omitted or '-' is specified as output parameter")
-	protected String output = null;
+	@Option(name = "-o", aliases = { "--output" }, usage = "output\nthe path to the output file - will use stdout if omitted or '-' is specified as output parameter")
+	protected String output = "-";
 
-	@Option(name = "-ne", aliases = { "--noexport" }, usage = "no export\nthe xmi export is supressed")
-	protected boolean noExport = false;
+	@Option(name = "-f", aliases = { "--format" }, usage = "output format \ndefault: xmi, could also be rose,java or none")
+	protected String format = "xmi";
+	
+  @Option(name = "-src", aliases = { "--source-root" }, usage = "path to source\nthe path to the folder where the generated (java) code should be created")
+	protected String srcRoot=null;
 
 	@Option(name = "-tv", aliases = { "--treeview" }, usage = "treeView\na Java Swing based GUI to show the petal tree is started")
 	protected boolean showTree = false;
@@ -117,7 +124,7 @@ public class XmiExport {
 	 * @throws IOException
 	 * @throws IncompleteXMIException
 	 */
-	public void xmiexport(String input, String output) throws IOException,
+	public void exportXmi(String input, String output) throws IOException,
 			IncompleteXMIException {
 		try {
 			Class.forName("ru.novosoft.uml.MBase");
@@ -142,6 +149,50 @@ public class XmiExport {
 		gen.start();
 		gen.dump();
 	}
+	
+	/**
+	 * get the PetalFile Tree for the given input
+	 * @param input - the input file name or "-" for stdin
+	 */
+	public PetalFile getTree(String input) {
+	  PetalParser parser;
+    parser = PetalParser.createParser(input);
+    PetalFile tree = parser.parse();
+    return tree;
+	}
+	
+	/**
+	 * export to rational rose petal file
+	 * @param input - the petal file to read
+	 * @param output - the petal file to create
+	 * @throws FileNotFoundException
+	 */
+	private void exportRose(String input, String output) throws FileNotFoundException {
+	  PetalFile tree=getTree(input);
+    PrintVisitor printVisitor;
+    if ("-".equals(output)) {
+      printVisitor=new PrintVisitor(System.out);
+    } else {
+      PrintStream printStream = new PrintStream(
+          new FileOutputStream(output));
+      printVisitor=new PrintVisitor(printStream);
+    }
+    printVisitor.visit(tree);  
+  }
+	
+	/**
+	 * export the given input to Java
+	 * @param input
+	 * @param output
+	 * @param srcRoot
+	 * @throws IOException 
+	 */
+	private void exportJava(String input, String output, String srcRoot) throws IOException {
+	  PetalFile tree=getTree(input);
+	  Generator gen = new Generator(tree, srcRoot);
+    tree.accept(new PiggybackVisitor(gen));
+    gen.dump();
+  }
 
 	/**
 	 * main instance - this is the non-static version of main - it will run as a
@@ -170,10 +221,23 @@ public class XmiExport {
 						PetalTreeView petalTreeView = new PetalTreeView();
 						petalTreeView.showTree(this.input);
 					}
-					if (!this.noExport) {
-						this.xmiexport(input, output);
+					format=this.format.toLowerCase().trim();
+					if ("none".equals(format)) {
+					  // just ignore this format
+	          exitCode = 0;
+					}	if ("xmi".equals(format)) {
+						this.exportXmi(input, output);
+	          exitCode = 0;
+					} else if ("rose".equals(this.format.toLowerCase())) {
+					  this.exportRose(input,output);
+	          exitCode = 0;
+					} else if ("java".equals(this.format.toLowerCase())) {
+					  if (srcRoot==null) {
+					    usage("srcRoot may not be empty");
+					  } else {
+					    this.exportJava(input,output,srcRoot);
+					  }
 					}
-					exitCode = 0;
 				}
 			}
 		} catch (CmdLineException e) {
@@ -186,14 +250,14 @@ public class XmiExport {
 		return exitCode;
 	}
 
-	/**
+  /**
 	 * XMIExport from the command line
 	 * 
 	 * @param args
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
-		XmiExport xmiexport = new XmiExport();
+		PetalTool xmiexport = new PetalTool();
 		int result = xmiexport.maininstance(args);
 		if (!testMode && result != 0)
 			System.exit(result);

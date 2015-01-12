@@ -5,10 +5,9 @@ CrazyBeans
 ... allows to read modify or create model files form Rational Rose. 
 
 ### Documentation
-* [Javadoc](http://wolfgangfahl.github.io/CrazyBeans/apidocs/index.html)
+* [Javadoc](http://bitplan.github.io/CrazyBeans/apidocs/index.html)
 
-
-## INSTALLATION
+## Installation
 ```
 git clone https://github.com/BITPlan/CrazyBeans
 mvn install
@@ -20,6 +19,13 @@ mvn clean compile assembly:single
 ```
 to create a standalone jar
 
+## Test
+```
+mvn test
+...
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0
+```
+
 ## Usage
 ```
 java -jar target/crazybeans-0.0.1-jar-with-dependencies.jar --help
@@ -29,23 +35,28 @@ cb.petal Version: 0.0.1
 
  github: https://github.com/BITPlan/CrazyBeans
 
-usage: java cb.petaltools.XmiExport
- -d (--debug)       : debug
-                      adds debugging output
- -h (--help)        : help
-                      show this usage
- -i (--input) WERT  : input
-                      the path to the rational rose input .mdl file - will use
-                      stdin if '-' is specified as input parameter
- -ne (--noexport)   : no export
-                      the xmi export is supressed
- -o (--output) WERT : output
-                      the path to the xmi output .xmi file - will use stdout if
-                      omitted or - is specified as output parameter
- -tv (--treeview)   : treeView
-                      a Java Swing based GUI to show the petal tree is started
- -v (--version)     : showVersion
-                      show current version if this switch is used
+usage: java cb.petaltools.PetalTool
+  -d (--debug)              : debug
+                             adds debugging output
+ -f (--format) VALUE        : output format 
+                             default: xmi, could also be rose,java or none
+ -h (--help)               : help
+                             show this usage
+ -i (--input) VALUE         : input
+                             the path to the rational rose input .mdl file -
+                             will use stdin if omitted or '-' is specified as
+                             input parameter
+ -o (--output) VALUE        : output
+                             the path to the output file - will use stdout if
+                             omitted or '-' is specified as output parameter
+ -src (--source-root) VALUE : path to source
+                             the path to the folder where the generated (java)
+                             code should be created
+ -tv (--treeview)          : treeView
+                             a Java Swing based GUI to show the petal tree is
+                             started
+ -v (--version)            : showVersion
+                             show current version if this switch is used
 ```                      
 
 ### Example - xmiExport to stdout
@@ -53,14 +64,24 @@ usage: java cb.petaltools.XmiExport
 java -jar target/crazybeans-0.0.1-jar-with-dependencies.jar -i examples/uni.mdl 
 ```
 
-### Example - xmiExport to file
+### Example - rose petal file dump to stdout
+```
+java -jar target/crazybeans-0.0.1-jar-with-dependencies.jar -i examples/uni.mdl --format rose
+```
+
+### Example - xmiExport to file (with pipe)
 ```
 cat examples/uni.mdl | java -jar target/crazybeans-0.0.1-jar-with-dependencies.jar  -i - -o examples/uni.xmi
 ```
 
+### Example - java code generation
+```
+java -jar target/crazybeans-0.0.1-jar-with-dependencies.jar  -i examples/uni.mdl -src /tmp/uni
+```
+
 ### Example - treeView
 ```
-java -jar target/crazybeans-0.0.1-jar-with-dependencies.jar -i examples/uni.mdl -ne -tv 
+java -jar target/crazybeans-0.0.1-jar-with-dependencies.jar -i examples/uni.mdl --format none -tv 
 ```
 
 ## AUTHORS

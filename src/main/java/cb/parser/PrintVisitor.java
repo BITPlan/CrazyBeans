@@ -1,11 +1,23 @@
+/**
+ * Copyright (c) 2001 Markus Dahm
+ * Copyright (C) 2015 BITPlan GmbH
+ *
+
+ *
+ * http://www.bitplan.com
+ * 
+ * This source is part of
+ * https://github.com/BITPlan/CrazyBeans
+ * and the license as outlined there applies
+ * 
+ */
 package cb.parser;
-import java.util.Iterator;
-import java.io.*;
+
+import java.io.PrintStream;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Stack;
 
-
-import cb.util.*;
 import cb.petal.BooleanLiteral;
 import cb.petal.DescendingVisitor;
 import cb.petal.FloatLiteral;
@@ -27,7 +39,7 @@ import cb.petal.Value;
  * identical.
  *
  * @version $Id: PrintVisitor.java,v 1.18 2001/11/01 15:56:49 dahm Exp $
- * @author  <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
+ * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public class PrintVisitor extends DescendingVisitor {
   private PrintStream out;
@@ -35,10 +47,17 @@ public class PrintVisitor extends DescendingVisitor {
   private int column = 0, row = 1;
   private Stack align_stack = new Stack();
 
+  /**
+   * initialize this Visitor with the given PrintStream
+   * @param out - the output stream e.g. System.out
+   */
   public PrintVisitor(PrintStream out) {
     this.out = out;
   }
 
+  /**
+   * visit the given PetalFile object
+   */
   public void visit(PetalFile obj) {
     println();
     obj.getPetal().accept(this);
@@ -51,35 +70,34 @@ public class PrintVisitor extends DescendingVisitor {
   public void visitObject(PetalObject obj) {
     StringBuffer buf = new StringBuffer("(object " + obj.getName());
 
-    for(Iterator i = obj.getParameterList().iterator(); i.hasNext(); )
+    for (Iterator i = obj.getParameterList().iterator(); i.hasNext();)
       buf.append(" \"" + i.next() + "\"");
 
-    if(obj instanceof Tagged) {
-      int label = ((Tagged)obj).getTag();
-      
-      if(label > 0)
-	buf.append(" @" + label);
+    if (obj instanceof Tagged) {
+      int label = ((Tagged) obj).getTag();
+
+      if (label > 0)
+        buf.append(" @" + label);
     }
 
     print(buf);
 
-    if(obj.getNames().size() > 0)
+    if (obj.getNames().size() > 0)
       println();
 
     level++;
     setAlignment(obj.getLongestName().length());
 
-    for(Iterator i = obj.getNames().iterator(), j = obj.getPropertyList().iterator();
-	i.hasNext(); )
-    {
+    for (Iterator i = obj.getNames().iterator(), j = obj.getPropertyList()
+        .iterator(); i.hasNext();) {
       indent();
       print(i.next());
       align();
 
-      ((PetalNode)j.next()).accept(this);
+      ((PetalNode) j.next()).accept(this);
 
-      if(i.hasNext())
-	println();
+      if (i.hasNext())
+        println();
     }
 
     print(")");
@@ -88,22 +106,24 @@ public class PrintVisitor extends DescendingVisitor {
     restoreAlignment();
   }
 
-  /* Property names are aligned to a 4 column boundary
-   * Property values are aligned to a 8 column boundary
-   * 8 spaces are replaced by one tab.
+  /*
+   * Property names are aligned to a 4 column boundary Property values are
+   * aligned to a 8 column boundary 8 spaces are replaced by one tab.
    */
 
-  private int align_at=-1;
+  private int align_at = -1;
 
   private void setAlignment(int max) {
     align_stack.push(new Integer(align_at));
 
     int indent = level * 4;
-    int min_dist; // min distance between first char of name and first char of property
+    int min_dist; // min distance between first char of name and first char of
+                  // property
 
-    if(indent % 8 == 0) // name aligned on 8
+    if (indent % 8 == 0) // name aligned on 8
       min_dist = 16;
-    else                // name aligned on 4
+    else
+      // name aligned on 4
       min_dist = 12;
 
     align_at = indent + min_dist;
@@ -114,52 +134,55 @@ public class PrintVisitor extends DescendingVisitor {
     align_at = i.intValue();
   }
 
-  /** Insert spaces up to next 8 column boundary
+  /**
+   * Insert spaces up to next 8 column boundary
    */
   private void align() {
     int fill;
 
-    if(column < align_at) {
+    if (column < align_at) {
       fill = align_at - column;
-      //System.err.println("< : " + align_at + ":" + column + ":" + fill);
-    }  else {
+      // System.err.println("< : " + align_at + ":" + column + ":" + fill);
+    } else {
       fill = 8 - (column % 8);
-      //System.err.println(">= : " + align_at + ":" + column + ":" + fill);
+      // System.err.println(">= : " + align_at + ":" + column + ":" + fill);
     }
 
     int spaces = 4 - (fill % 4);
-    for(int i=0; i < spaces; i++)
+    for (int i = 0; i < spaces; i++)
       out.print(' ');
-    
+
     column += spaces;
-    fill   -= spaces;
+    fill -= spaces;
 
-    if(fill > 0) {
-      int tabs   = fill / 8;
+    if (fill > 0) {
+      int tabs = fill / 8;
 
-      if(fill % 8 > 0)
-	tabs++;
-    
-      for(int i=0; i < tabs; i++)
-      out.print('\t');
+      if (fill % 8 > 0)
+        tabs++;
+
+      for (int i = 0; i < tabs; i++)
+        out.print('\t');
     }
 
-    //for(int i=0; i < fill; i++)
-    //out.print(' ');
+    // for(int i=0; i < fill; i++)
+    // out.print(' ');
 
     column += fill;
   }
 
-  /** Initial indentation of line depend on current nesting level to 4 column boundary.
+  /**
+   * Initial indentation of line depend on current nesting level to 4 column
+   * boundary.
    */
   private void indent() {
-    int tabs   = level / 2; // 4 spaces (INDENT) == 1 tab
+    int tabs = level / 2; // 4 spaces (INDENT) == 1 tab
     int spaces = level % 2;
 
-    for(int i=0; i < tabs; i++)
+    for (int i = 0; i < tabs; i++)
       out.print('\t');
 
-    for(int i=0; i < spaces; i++)
+    for (int i = 0; i < spaces; i++)
       out.print("    ");
 
     column += level * 4;
@@ -179,14 +202,14 @@ public class PrintVisitor extends DescendingVisitor {
   }
 
   public void visit(StringLiteral obj) {
-    if(obj.isMultiLine()) {
+    if (obj.isMultiLine()) {
       println();
 
       Collection c = obj.getLines();
 
-      for(Iterator i = c.iterator(); i.hasNext(); ) {
-	print("|" + i.next());
-	println();
+      for (Iterator i = c.iterator(); i.hasNext();) {
+        print("|" + i.next());
+        println();
       }
 
       indent();
@@ -217,18 +240,18 @@ public class PrintVisitor extends DescendingVisitor {
   public void visit(List list) {
     print("(list ");
 
-    if(list.getName() != null)
+    if (list.getName() != null)
       print(list.getName());
 
     java.util.List c = list.getElements();
 
-    if(c.size() > 0) {
+    if (c.size() > 0) {
       level++;
 
-      for(Iterator i = c.iterator(); i.hasNext(); ) {
-	println();
-	indent();
-	((PetalNode)i.next()).accept(this);
+      for (Iterator i = c.iterator(); i.hasNext();) {
+        println();
+        indent();
+        ((PetalNode) i.next()).accept(this);
       }
 
       level--;
@@ -242,9 +265,9 @@ public class PrintVisitor extends DescendingVisitor {
 
     StringLiteral val = value.getValue();
 
-    if(val.isMultiLine()) {
+    if (val.isMultiLine()) {
       val.accept(this);
-      
+
       print(")");
     } else
       print(" " + val + ")");
@@ -254,6 +277,10 @@ public class PrintVisitor extends DescendingVisitor {
     print(tuple);
   }
 
+  /**
+   * this class can be called from the command line with given command line arguments
+   * @param args
+   */
   public static void main(String[] args) {
     PetalFile tree = PetalParser.parse(args);
     tree.accept(new PrintVisitor(System.out));
