@@ -67,6 +67,7 @@ public abstract class GeneratorVisitor extends DescendingVisitor implements Gene
 	 */
 	@Override
 	public void run() throws Exception {
+		init();
 		start();
 		dump();
 	}

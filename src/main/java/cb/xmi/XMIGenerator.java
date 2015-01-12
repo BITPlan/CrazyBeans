@@ -148,15 +148,19 @@ public class XMIGenerator extends GeneratorVisitor implements Generator {
 	public XMIGenerator(PetalFile tree, String dump) {
 		setDumpPath(dump);
 		setTree(tree);
-
+	}
+	
+	@Override
+	public void init() {
 		factory = getFactory();
 		model = factory.createModel();
-		pack = model;
+		pack = model;		
 	}
 
 	/**
 	 * Start generation of XMI code.
 	 */
+	@Override
 	public void start() {
 		/*
 		 * Run a first pass visitor to add all packages, classes, use cases, etc.

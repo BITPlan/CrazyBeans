@@ -40,6 +40,12 @@ public interface Generator {
 	public void setDumpPath(String dump);
 	
 	/**
+	 * initialize the generator
+	 * @throws Exception
+	 */
+	public void init() throws Exception;
+	
+	/**
 	 * start the generator
 	 * @throws Exception - if something goes wrong
 	 */
@@ -53,7 +59,7 @@ public interface Generator {
 	
 	
 	/**
-	 * calls start and dump but may be overriden
+	 * calls init, start and dump but may be overridden
 	 * @throws Exception 
 	 */
 	public void run() throws Exception;

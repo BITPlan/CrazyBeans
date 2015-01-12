@@ -144,12 +144,16 @@ public class RoseGenerator extends GeneratorVisitor implements Generator {
   public RoseGenerator(MModel model, String dump) {
     this.setDumpPath(dump);
     this.model = model;
+  }
 
+  @Override
+  public void init() {
     setTree(factory.createModel());
   }
 
   /** Start generation of Petal file.
    */
+  @Override
   public void start() {
     d.accept(model); // Should read: model.accept(this) ...
   }

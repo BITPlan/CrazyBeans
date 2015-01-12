@@ -40,6 +40,7 @@ import cb.petal.UsesRelationship;
 public class JavaGenerator extends GeneratorVisitor {
   protected Factory factory = Factory.getInstance();
   private String suffix;
+	private PiggybackVisitor visitor;
 
   /**
    * generate the java code
@@ -163,9 +164,17 @@ public class JavaGenerator extends GeneratorVisitor {
       factory.addMethod(c, m);
   }
   
+  /**
+   * initialize my visitor
+   */
+  @Override
+  public void init() {
+  	visitor=new PiggybackVisitor(this);
+  }
+  
   @Override
 	public void start() throws Exception {
-		getTree().accept(new PiggybackVisitor(this));
+		getTree().accept(visitor);
 	}
 
   @Override
