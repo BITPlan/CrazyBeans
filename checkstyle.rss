@@ -19,14 +19,14 @@ under the License.
 -->
 <rss version="0.91">
   <channel>
-    <title>BITPlan crazybeans fork - Checkstyle report</title>
+    <title>BITPlan crazybeans fork of http://crazybeans.sourceforge.net/ 1.5.1 - Checkstyle report</title>
     <link>https://github.com/BITPlan/CrazyBeans</link>
-    <description>BITPlan crazybeans fork - Checkstyle report</description>
+    <description>BITPlan crazybeans fork of http://crazybeans.sourceforge.net/ 1.5.1 - Checkstyle report</description>
     <language>en-us</language>
     <copyright>&#169;2015</copyright>
     <item>
-      <title>File: 175,
-             Errors: 9793,
+      <title>File: 177,
+             Errors: 10344,
              Warnings: 0,
              Infos: 0
       </title>
@@ -44,6 +44,20 @@ under the License.
             </tr>
           </thead>
           <tbody>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.generator.java.ClassImpl.java">cb/generator/java/ClassImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  149
+                </td>
+              </tr>
                           <tr>
                 <td>
                   <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.petal.ActivityDiagram.java">cb/petal/ActivityDiagram.java</a>
@@ -102,7 +116,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.generator.NodeImpl.java">cb/generator/NodeImpl.java</a>
+                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.generator.java.ParameterImpl.java">cb/generator/java/ParameterImpl.java</a>
                 </td>
                 <td>
                   0
@@ -111,7 +125,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  48
+                  29
                 </td>
               </tr>
                           <tr>
@@ -144,34 +158,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.generator.ParameterImpl.java">cb/generator/ParameterImpl.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  28
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.generator.Field.java">cb/generator/Field.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  8
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.petal.RealizeRelationship.java">cb/petal/RealizeRelationship.java</a>
                 </td>
                 <td>
@@ -182,6 +168,20 @@ under the License.
                 </td>
                 <td>
                   7
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.generator.java.Factory.java">cb/generator/java/Factory.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  294
                 </td>
               </tr>
                           <tr>
@@ -266,6 +266,20 @@ under the License.
                 </td>
                 <td>
                   9
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.generator.java.FieldImpl.java">cb/generator/java/FieldImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  31
                 </td>
               </tr>
                           <tr>
@@ -363,7 +377,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  31
+                  32
                 </td>
               </tr>
                           <tr>
@@ -392,20 +406,6 @@ under the License.
                 </td>
                 <td>
                   23
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.generator.Factory.java">cb/generator/Factory.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  294
                 </td>
               </tr>
                           <tr>
@@ -550,20 +550,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.generator.Node.java">cb/generator/Node.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  14
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.petal.Action.java">cb/petal/Action.java</a>
                 </td>
                 <td>
@@ -606,20 +592,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.generator.MethodImpl.java">cb/generator/MethodImpl.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  62
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.petal.DerivedClass.java">cb/petal/DerivedClass.java</a>
                 </td>
                 <td>
@@ -648,6 +620,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.generator.java.Node.java">cb/generator/java/Node.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  14
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.petal.Compartment.java">cb/petal/Compartment.java</a>
                 </td>
                 <td>
@@ -658,6 +644,20 @@ under the License.
                 </td>
                 <td>
                   45
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.generator.java.Field.java">cb/generator/java/Field.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  8
                 </td>
               </tr>
                           <tr>
@@ -704,20 +704,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.generator.package-info.java">cb/generator/package-info.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.util.PiggybackVisitor.java">cb/util/PiggybackVisitor.java</a>
                 </td>
                 <td>
@@ -727,7 +713,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  8
+                  11
                 </td>
               </tr>
                           <tr>
@@ -755,7 +741,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  314
+                  310
                 </td>
               </tr>
                           <tr>
@@ -951,21 +937,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  73
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.generator.Class.java">cb/generator/Class.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  32
+                  66
                 </td>
               </tr>
                           <tr>
@@ -984,6 +956,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.generator.java.NodeImpl.java">cb/generator/java/NodeImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  48
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.petaltools.PetalTreeView.java">cb/petaltools/PetalTreeView.java</a>
                 </td>
                 <td>
@@ -993,7 +979,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  46
+                  104
                 </td>
               </tr>
                           <tr>
@@ -1133,7 +1119,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  94
+                  34
                 </td>
               </tr>
                           <tr>
@@ -1194,20 +1180,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.generator.Parameter.java">cb/generator/Parameter.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  5
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.xmi.XMIGenerator.java">cb/xmi/XMIGenerator.java</a>
                 </td>
                 <td>
@@ -1217,7 +1189,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  404
+                  420
                 </td>
               </tr>
                           <tr>
@@ -1301,21 +1273,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  408
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.generator.ClassImpl.java">cb/generator/ClassImpl.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  149
+                  392
                 </td>
               </tr>
                           <tr>
@@ -1376,6 +1334,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.generator.java.Class.java">cb/generator/java/Class.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  32
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.petal.Mechanism.java">cb/petal/Mechanism.java</a>
                 </td>
                 <td>
@@ -1386,6 +1358,20 @@ under the License.
                 </td>
                 <td>
                   20
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.generator.java.JavaGenerator.java">cb/generator/java/JavaGenerator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  81
                 </td>
               </tr>
                           <tr>
@@ -1414,6 +1400,20 @@ under the License.
                 </td>
                 <td>
                   53
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.generator.java.Method.java">cb/generator/java/Method.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  12
                 </td>
               </tr>
                           <tr>
@@ -1600,20 +1600,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.generator.Method.java">cb/generator/Method.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  12
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.petal.ClassDiagram.java">cb/petal/ClassDiagram.java</a>
                 </td>
                 <td>
@@ -1624,6 +1610,20 @@ under the License.
                 </td>
                 <td>
                   38
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.generator.java.Parameter.java">cb/generator/java/Parameter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
                 </td>
               </tr>
                           <tr>
@@ -1680,6 +1680,20 @@ under the License.
                 </td>
                 <td>
                   27
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.generator.java.package-info.java">cb/generator/java/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
                 </td>
               </tr>
                           <tr>
@@ -1819,7 +1833,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  136
+                  187
                 </td>
               </tr>
                           <tr>
@@ -1847,7 +1861,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  229
+                  589
                 </td>
               </tr>
                           <tr>
@@ -2029,7 +2043,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  46
+                  47
                 </td>
               </tr>
                           <tr>
@@ -2099,7 +2113,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  63
+                  64
                 </td>
               </tr>
                           <tr>
@@ -2183,7 +2197,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  334
+                  337
                 </td>
               </tr>
                           <tr>
@@ -2240,20 +2254,6 @@ under the License.
                 </td>
                 <td>
                   70
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.generator.FieldImpl.java">cb/generator/FieldImpl.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  31
                 </td>
               </tr>
                           <tr>
@@ -2412,6 +2412,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.generator.java.MethodImpl.java">cb/generator/java/MethodImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  62
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.petal.VisibilityRelationship.java">cb/petal/VisibilityRelationship.java</a>
                 </td>
                 <td>
@@ -2450,6 +2464,20 @@ under the License.
                 </td>
                 <td>
                   27
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/CrazyBeans/checkstyle.html#cb.generator.GeneratorVisitor.java">cb/generator/GeneratorVisitor.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  62
                 </td>
               </tr>
                           <tr>
