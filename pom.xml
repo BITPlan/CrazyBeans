@@ -4,10 +4,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.bitplan</groupId>
-	<artifactId>crazybeans</artifactId>
+	<artifactId>org.crazybeans</artifactId>
 	<packaging>jar</packaging>
-	<name>BITPlan crazybeans fork</name>
-	<version>0.0.1</version>
+	<name>BITPlan crazybeans fork of http://crazybeans.sourceforge.net/ 1.5.1</name>
+	<version>1.5.2</version>
 	<description>Java library to read in Rational Rose petal files</description>
 	<prerequisites>
 		<maven>3.1.1</maven>

@@ -7,6 +7,21 @@ CrazyBeans
 ### Documentation
 * [Javadoc](http://bitplan.github.io/CrazyBeans/apidocs/index.html)
 
+### Distribution
+Available at Maven Central see 
+
+http://search.maven.org/#artifactdetails|com.bitplan|org.crazybeans|1.5.2|jar
+
+Maven dependency:
+
+```xml
+<dependency>
+  <groupId>com.bitplan</groupId>
+  <artifactId>org.crazybeans</artifactId>
+  <version>1.5.2</version>
+</dependency>
+```
+
 ## Installation
 ```
 git clone https://github.com/BITPlan/CrazyBeans
@@ -85,13 +100,12 @@ java -jar target/crazybeans-0.0.1-jar-with-dependencies.jar -i examples/uni.mdl 
 ```
 
 ## AUTHORS
-The original CrazyBeans framework is copyright (2001) M. Dahm. 
+The original CrazyBeans framework is copyright (2001) Markus Dahm. 
 
-This fork is Copyright(c) 2015 BITPlan GmbH
+This fork is Copyright(c) 2015 BITPlan GmbH (Owner: Wolfgang Fahl)
 
 based on the githubytized version of https://github.com/matthewmeyer
 
 ## Version history
-* 2001-2013: Original by Markus Dahm on SourceForge https://sourceforge.net/projects/crazybeans/
-* 0.0.0 - 2015-01-10: start of fork
-* 0.0.1 - 2015-01-12: first version of this fork
+* 1.5.1: 2001-2013 : Original by Markus Dahm on SourceForge https://sourceforge.net/projects/crazybeans/
+* 1.5.2: 2015-01-13: first version of this fork
