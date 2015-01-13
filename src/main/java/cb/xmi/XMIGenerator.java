@@ -109,9 +109,9 @@ public class XMIGenerator extends GeneratorVisitor implements Generator {
 	}
 
 	/**
-	 * lookup a clssifier by quid
+	 * lookup a classifier by quid
 	 * @param quid
-	 * @return
+	 * @return - the classifier found 
 	 */
 	protected final MClassifier getClassifier(String quid) {
 		return quid_map.get(quid);
