@@ -23,7 +23,7 @@ public class DescendingVisitor implements Visitor {
 
   /**
    * visit the given PetalFile
-   * @obj the PetalFile
+   * @param obj - the PetalFile to visit
    */
   public void visit(PetalFile obj) {
     obj.getPetal().accept(this);

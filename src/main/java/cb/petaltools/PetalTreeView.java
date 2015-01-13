@@ -63,8 +63,8 @@ public class PetalTreeView {
 	
 	/**
 	 * show the given Tree
-	 * @param tree
-	 * @param the Object to lock with (if any)
+	 * @param tree - the tree to view
+	 * @param lock - the Object to lock with (if any)
 	 * @throws InterruptedException 
 	 */
 	public void showTree(PetalFile tree, Object lock) throws InterruptedException {
