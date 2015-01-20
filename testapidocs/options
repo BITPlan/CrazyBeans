@@ -1,24 +1,26 @@
 -classpath
-'/Volumes/HD2014-02/Users/wf/Documents/workspace/CrazyBeans/target/classes:/Volumes/HD2014-02/Users/wf/Documents/workspace/CrazyBeans/target/test-classes:/Volumes/HD2014-02/Users/wf/.m2/repository/nsuml/nsuml/0.4.20/nsuml-0.4.20.jar:/Volumes/HD2014-02/Users/wf/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Volumes/HD2014-02/Users/wf/.m2/repository/junit/junit/4.11/junit-4.11.jar:/Volumes/HD2014-02/Users/wf/.m2/repository/args4j/args4j/2.0.29/args4j-2.0.29.jar'
+'/Volumes/HD2014-02/Users/wf/Documents/workspace/com.bitplan.rest.freemarker/target/classes:/Volumes/HD2014-02/Users/wf/Documents/workspace/com.bitplan.rest.freemarker/target/test-classes:/Volumes/HD2014-02/Users/wf/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Volumes/HD2014-02/Users/wf/.m2/repository/org/freemarker/freemarker/2.3.21/freemarker-2.3.21.jar:/Volumes/HD2014-02/Users/wf/.m2/repository/junit/junit/4.11/junit-4.11.jar'
 -encoding
 'UTF-8'
 -protected
 -sourcepath
-'/Volumes/HD2014-02/Users/wf/Documents/workspace/CrazyBeans/src/test/java'
+'/Volumes/HD2014-02/Users/wf/Documents/workspace/com.bitplan.rest.freemarker/src/test/java'
 -author
 -bottom
 'Copyright &#169; 2015. All Rights Reserved.'
 -charset
 'UTF-8'
 -d
-'/Volumes/HD2014-02/Users/wf/Documents/workspace/CrazyBeans/target/site/testapidocs'
+'/Volumes/HD2014-02/Users/wf/Documents/workspace/com.bitplan.rest.freemarker/target/site/testapidocs'
 -docencoding
 'UTF-8'
 -doctitle
-'BITPlan crazybeans fork of http://crazybeans.sourceforge.net/ 1.5.1 1.5.2 Test API'
+'com.bitplan.rest.freemarker 0.0.1 Test API'
+-link
+'../apidocs'
 -link
 'http://java.sun.com/javase/6/docs/api'
 -use
 -version
 -windowtitle
-'BITPlan crazybeans fork of http://crazybeans.sourceforge.net/ 1.5.1 1.5.2 Test API'
+'com.bitplan.rest.freemarker 0.0.1 Test API'
