@@ -38,7 +38,7 @@ public class TestPetalTool extends BaseTest {
   private String outText;
 
   /**
-   * test the MJPegStreamer
+   * test the petal tool command line
    * 
    * @param args
    *          - command line arguments
