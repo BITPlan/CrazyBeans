@@ -324,13 +324,23 @@ public abstract class PetalObject implements PetalNode {
      return design;
   }
   
-  /** Strict variant: If the property does not exist, an exception is thrown
+  public static boolean strict=true;
+  
+  /**
+   * Strict variant: If the property does not exist, an exception is thrown
+   * @param obj
+   * @param prop
+   * @return
    */
   static String getPropertyAsString(PetalObject obj, String prop) {
     StringLiteral s = (StringLiteral)obj.getProperty(prop);
 
-    if(s == null)
-      throw new RuntimeException("No property named " + prop + " for " + obj);
+    if(s == null) {
+    	if (strict)
+    		throw new RuntimeException("No property named " + prop + " for " + obj);
+    	else
+    		s=new StringLiteral("?");
+    }
 
     return s.getValue();
   }

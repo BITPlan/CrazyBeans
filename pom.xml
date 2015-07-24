@@ -7,7 +7,7 @@
 	<artifactId>org.crazybeans</artifactId>
 	<packaging>jar</packaging>
 	<name>BITPlan crazybeans fork of http://crazybeans.sourceforge.net/ 1.5.1</name>
-	<version>1.5.2</version>
+	<version>1.5.3</version>
 	<description>Java library to read in Rational Rose petal files</description>
 	<prerequisites>
 		<maven>3.1.1</maven>
