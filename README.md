@@ -109,3 +109,4 @@ based on the githubytized version of https://github.com/matthewmeyer
 ## Version history
 * 1.5.1: 2001-2013 : Original by Markus Dahm on SourceForge https://sourceforge.net/projects/crazybeans/
 * 1.5.2: 2015-01-13: first version of this fork
+* 1.5.3: 2015-07-24: improves Petal File reading by allowing non strict reading to ignore errors

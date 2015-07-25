@@ -1,6 +1,7 @@
 package cb.generator.java;
 
 import java.util.Collection;
+import java.util.List;
 import java.io.*;
 
 /**
@@ -26,4 +27,5 @@ public interface Class extends Node {
   public Collection getFields();
   public Collection getMethods();
   public String getQualifiedName();
+  public List<String> getDocumentation();
 }
