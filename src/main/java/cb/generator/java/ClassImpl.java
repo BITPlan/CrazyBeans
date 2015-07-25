@@ -23,6 +23,7 @@ public class ClassImpl extends NodeImpl implements Class {
   }
 
   public void setClazz(cb.petal.Class c) {
+    super.setDocumentedObject(c);;
     clazz = c;
   }
 
@@ -112,29 +113,12 @@ public class ClassImpl extends NodeImpl implements Class {
   }
 
   /**
-   * get the documentation
-   * 
-   * @return
-   */
-  @SuppressWarnings("unchecked")
-  public List<String> getDocumentation() {
-    List<String> result = new ArrayList<String>();
-    cb.petal.StringLiteral str = (cb.petal.StringLiteral) clazz
-        .getProperty("documentation");
-
-    if (str != null) {
-      result = new ArrayList<String>(str.getLines());
-    }
-    return result;
-  }
-
-  /**
    * Default implementation prints Java code
    */
   public void dump(PrintWriter stream) {
     print(stream, "package ", pack, ";\n");
 
-    for (Iterator i = prefix.iterator(); i.hasNext();)
+    for (Iterator<String> i = prefix.iterator(); i.hasNext();)
       stream.println(i.next());
 
     stream.println("\n/** Created with Generator/"
@@ -159,7 +143,7 @@ public class ClassImpl extends NodeImpl implements Class {
     if (!super_classes.isEmpty()) {
       stream.print("extends ");
 
-      for (Iterator i = super_classes.iterator(); i.hasNext();) {
+      for (Iterator<String> i = super_classes.iterator(); i.hasNext();) {
         stream.print(i.next());
 
         if (i.hasNext())
@@ -172,7 +156,7 @@ public class ClassImpl extends NodeImpl implements Class {
     if (!interfaces.isEmpty() && !isInterface()) {
       stream.print("implements ");
 
-      for (Iterator i = interfaces.iterator(); i.hasNext();) {
+      for (Iterator<String> i = interfaces.iterator(); i.hasNext();) {
         stream.print(i.next());
         if (i.hasNext())
           stream.print(", ");
@@ -183,13 +167,13 @@ public class ClassImpl extends NodeImpl implements Class {
 
     stream.println("{");
 
-    for (Iterator i = getFields().iterator(); i.hasNext();)
-      ((Field) i.next()).dump(stream);
+    for (Iterator<Field> i = getFields().iterator(); i.hasNext();)
+      (i.next()).dump(stream);
 
     stream.println();
 
-    for (Iterator i = getMethods().iterator(); i.hasNext();) {
-      ((Method) i.next()).dump(stream);
+    for (Iterator<Method> i = getMethods().iterator(); i.hasNext();) {
+      (i.next()).dump(stream);
 
       if (i.hasNext())
         stream.println();

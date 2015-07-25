@@ -7,7 +7,7 @@ import java.util.Collection;
  * @version $Id: Parameter.java,v 1.11 2002/07/23 19:56:26 dahm Exp $
  * @author  <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class Parameter extends PetalObject implements Named {
+public class Parameter extends PetalObject implements Named,Documented {
   public Parameter(PetalNode parent, Collection params) {
     super(parent, "Parameter", params);
   }
@@ -42,5 +42,13 @@ public class Parameter extends PetalObject implements Named {
 
   public void accept(Visitor v) {
     v.visit(this);
+  }
+
+  public String getDocumentation() {
+    return getPropertyAsString("documentation");
+  }
+
+  public void setDocumentation(String o) {
+    defineProperty("documentation", o);
   }
 }

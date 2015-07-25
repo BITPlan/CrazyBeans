@@ -1,7 +1,10 @@
 package cb.generator.java;
 
 import java.io.PrintWriter;
-import java.io.PrintStream;
+import java.util.List;
+
+import cb.petal.AccessObject;
+import cb.petal.Documented;
 
 /**
  * Node that can be dumped to a file.
@@ -14,10 +17,25 @@ public interface Node {
   public String getName();
   public void   setAccess(String a);
   public String getAccess();
+  
+  /**
+   * @return the documentedObject
+   */
+  public Documented getDocumentedObject();
+
+  /**
+   * @param documentedObject the Documented to set
+   */
+  public void setDocumentedObject(Documented documentedObject);
 
   /** E.g., if(is("public")) ...
    */
   public boolean is(String s);
 
   public void dump(PrintWriter stream);
+  /**
+   * get the documentation of the node
+   * @return a list of strings - one per line
+   */
+  public List<String> getDocumentation();
 }

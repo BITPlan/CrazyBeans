@@ -1,5 +1,7 @@
 package cb.generator.java;
 
+import java.util.List;
+
 /**
  * Represents a field of a class.
  *
@@ -11,4 +13,5 @@ public interface Field extends Node {
   public String getInitialValue();
   public void   setType(String p);
   public String getType();
+  public List<String> getDocumentation();
 }

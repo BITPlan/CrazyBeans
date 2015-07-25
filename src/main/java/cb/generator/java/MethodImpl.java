@@ -11,72 +11,99 @@ import cb.petal.Operation;
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public class MethodImpl extends NodeImpl implements Method {
-  private   String    type;
-  private   List      parameters;
-  private   List      code;
+  private String type;
+  private List<Parameter> parameters;
+  private List<String> code;
   protected Operation operation;
 
-  public MethodImpl() {  }
-  public void      setOperation(Operation o) { operation = o; }
-  public Operation getOperation()            { return operation; }
+  public MethodImpl() {
+  }
 
-  public void   setReturnType(String p) { type = p; }
-  public String getReturnType() { return type; }
-  public void setParameters(List p) { parameters = p; }
-  public List getParameters()       { return parameters; }
-  public void setCode(List c) { code = c; }
-  public List getCode()       { return code; }
+  public void setOperation(Operation o) {
+    super.setDocumentedObject(o);
+    operation = o;
+  }
 
-  /** Default implementation prints Java code
+  public Operation getOperation() {
+    return operation;
+  }
+
+  public void setReturnType(String p) {
+    type = p;
+  }
+
+  public String getReturnType() {
+    return type;
+  }
+
+  public void setParameters(List<Parameter> p) {
+    parameters = p;
+  }
+
+  public List<Parameter> getParameters() {
+    return parameters;
+  }
+
+  public void setCode(List<String> c) {
+    code = c;
+  }
+
+  public List<String> getCode() {
+    return code;
+  }
+
+  /**
+   * Default implementation prints Java code
    */
   public void dump(PrintWriter stream) {
-    printDocumentation(stream, operation);
+    printDocumentation(stream);
 
     stream.print("  ");
     String acc = getAccess();
 
-    if(acc != null)
+    if (acc != null)
       stream.print(acc.toLowerCase() + " ");
 
     stream.print(getReturnType() + " " + getName());
     stream.print("(");
 
-    for(Iterator i = parameters.iterator(); i.hasNext();) {
-      Parameter p = (Parameter)i.next();
+    for (Iterator<Parameter> i = parameters.iterator(); i.hasNext();) {
+      Parameter p = (Parameter) i.next();
       p.dump(stream);
 
-      if(i.hasNext())
-	stream.print(", ");
+      if (i.hasNext())
+        stream.print(", ");
     }
-      
+
     stream.print(")");
 
-    if(is("abstract"))
+    if (is("abstract"))
       stream.println(";");
     else {
       stream.println(" {");
 
-      if(code != null) {
-	for(Iterator i = code.iterator(); i.hasNext();)
-	  stream.println(i.next());
+      if (code != null) {
+        for (Iterator<String> i = code.iterator(); i.hasNext();)
+          stream.println(i.next());
       } else {
-	String t = getReturnType().toLowerCase();
+        String t = getReturnType().toLowerCase();
 
-	if(!(t.equals("void") || t.equals(""))) {
-	  stream.println("  return " + cb.util.Constants.getValueForType(t));
-	}
+        if (!(t.equals("void") || t.equals(""))) {
+          stream.println("  return " + cb.util.Constants.getValueForType(t));
+        }
       }
-      
+
       stream.println("  }");
     }
   }
 
   public boolean equals(Object o) {
-    if(o instanceof Method) {
-      Method m = (Method)o;
+    if (o instanceof Method) {
+      Method m = (Method) o;
 
-      return getParameters().equals(m.getParameters()) &&
-	getName().equals(m.getName()) && getReturnType().equals(m.getReturnType());
+      return getParameters().equals(m.getParameters())
+          && getName().equals(m.getName())
+          && getReturnType().equals(m.getReturnType());
     } else
       return false;
   }

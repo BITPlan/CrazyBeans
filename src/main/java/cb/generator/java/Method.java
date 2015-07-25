@@ -9,11 +9,11 @@ import java.util.List;
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public interface Method extends Node {
-  public void setParameters(List p);
-  public List getParameters();
+  public void setParameters(List<Parameter> p);
+  public List<Parameter> getParameters();
 
-  public void   setCode(List c);
-  public List   getCode();
+  public void   setCode(List<String> c);
+  public List<String>   getCode();
   public void   setReturnType(String p);
   public String getReturnType();
 }

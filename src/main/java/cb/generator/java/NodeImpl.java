@@ -1,10 +1,12 @@
 package cb.generator.java;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import cb.petal.Documented;
+import cb.petal.PetalNode;
 import cb.petal.PetalObject;
-import cb.petal.StringLiteral;
 
-
-import java.util.*;
 /**
  * Simple representation of a node.
  *
@@ -14,37 +16,74 @@ import java.util.*;
 public abstract class NodeImpl implements Node {
   protected String name;
   protected String access;
+  protected Documented documentedObject;
 
-  public void   setName(String n)    { name = n; }
-  public String getName()            { return name; }
-  public void   setAccess(String a)  { access = a; }
-  public String getAccess()          { return access; }
+  public void setName(String n) {
+    name = n;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setAccess(String a) {
+    access = a;
+  }
+
+  public String getAccess() {
+    return access;
+  }
+
+  /**
+   * @return the documentedObject
+   */
+  public Documented getDocumentedObject() {
+    return documentedObject;
+  }
+
+  /**
+   * @param documentedObject the documentedObject to set
+   */
+  public void setDocumentedObject(Documented documentedObject) {
+    this.documentedObject = documentedObject;
+  }
 
   public boolean is(String s) {
     return access.toLowerCase().indexOf(s.toLowerCase()) >= 0;
   }
 
-  protected static void print(java.io.PrintWriter stream,
-			      String pre, String o, String post) {
-    if((o != null) && !"".equals(o))
+  protected static void print(java.io.PrintWriter stream, String pre, String o,
+      String post) {
+    if ((o != null) && !"".equals(o))
       stream.print(pre + o + post);
   }
 
-  protected static void printDocumentation(java.io.PrintWriter stream, Documented d) {
-    if(d != null) {
-      StringLiteral str =
-	(StringLiteral)((PetalObject)d).getProperty("documentation");
-      
-      if(str != null) {
-	stream.print("  /**");
-	Collection lines = str.getLines();
-	
-	for(Iterator i=lines.iterator(); i.hasNext(); ) {
-	  stream.println(" * " + i.next());
-	}
+  /**
+   * get the documentation
+   * 
+   * @return
+   */
+  @SuppressWarnings("unchecked")
+  public List<String> getDocumentation() {
+    List<String> result = new ArrayList<String>();
+    PetalObject pobject=(PetalObject) documentedObject;
+    PetalNode doc = pobject.getProperty("documentation");
+    cb.petal.StringLiteral str = (cb.petal.StringLiteral) doc;
+    if (str != null) {
+      result = new ArrayList<String>(str.getLines());
+    }
+    return result;
+  }
 
-	stream.println("  */");
+  protected void printDocumentation(java.io.PrintWriter stream) {
+    if (documentedObject != null) {
+      stream.print("  /**");
+
+      for (String line : this.getDocumentation()) {
+        stream.println(" * " + line);
       }
+
+      stream.println("  */");
     }
   }
 }

@@ -2,7 +2,6 @@ package cb.generator.java;
 
 import java.util.Collection;
 import java.util.List;
-import java.io.*;
 
 /**
  * Represents a class consisting of fields and methods, should be useful
@@ -24,8 +23,7 @@ public interface Class extends Node {
   public void   setPackage(String p);
   public String getPackage();
   public boolean isInterface();
-  public Collection getFields();
-  public Collection getMethods();
+  public Collection<Field> getFields();
+  public Collection<Method> getMethods();
   public String getQualifiedName();
-  public List<String> getDocumentation();
 }

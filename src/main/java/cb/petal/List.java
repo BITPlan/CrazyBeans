@@ -11,9 +11,13 @@ import java.util.*;
 public class List implements PetalNode {
   static final long serialVersionUID = -9142706599368764080L;
 
-  private ArrayList list = new ArrayList();
+  private ArrayList<PetalNode> list = new ArrayList<PetalNode>();
   private String name;
 
+  /**
+   * create a list with the given name
+   * @param name
+   */
   public List(String name) {
     setName(name);
   }
@@ -21,7 +25,7 @@ public class List implements PetalNode {
   public java.lang.Object clone() {
     List list = new List(name);
 
-    list.list = (ArrayList)this.list.clone();
+    list.list = (ArrayList<PetalNode>)this.list.clone();
     return list;
   }
 
@@ -61,7 +65,7 @@ public class List implements PetalNode {
     return list.size();
   }
 
-  public final java.util.List getElements() {
+  public final java.util.List<PetalNode> getElements() {
     return (ArrayList)list.clone();
   }
 

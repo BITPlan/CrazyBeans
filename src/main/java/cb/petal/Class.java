@@ -128,11 +128,11 @@ public class Class extends Inheritable {
     return getClassList(getRealizedInterfacesList());
   }
 
-  private java.util.List getClassList(List list) {
+  private java.util.List<Class> getClassList(List list) {
     if(list == null)
       return Collections.EMPTY_LIST;
 
-    ArrayList result = new ArrayList();
+    ArrayList<Class> result = new ArrayList<Class>();
     PetalFile root   = getRoot();
 
     for(Iterator i = list.getElements().iterator(); i.hasNext(); ) {

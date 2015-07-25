@@ -1,7 +1,7 @@
 package cb.generator.java;
 
 import java.io.PrintWriter;
-import java.util.*;
+
 import cb.petal.ClassAttribute;
 
 /**
@@ -16,7 +16,7 @@ public class FieldImpl extends NodeImpl implements Field {
 
   public FieldImpl() {  }
 
-  public void           setAttribute(ClassAttribute a) { attribute = a; }
+  public void           setAttribute(ClassAttribute a) { super.setDocumentedObject(a);;attribute = a; }
   public ClassAttribute getAttribute()                 { return attribute; }
 
   public void   setInitialValue(String s) { init = s; }
@@ -27,7 +27,7 @@ public class FieldImpl extends NodeImpl implements Field {
   /** Default implementation prints Java code
    */
   public void dump(PrintWriter stream) {
-    printDocumentation(stream, attribute);
+    printDocumentation(stream);
 
     stream.print("  ");
     print(stream, "", getAccess(), " ");

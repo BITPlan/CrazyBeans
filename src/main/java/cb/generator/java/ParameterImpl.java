@@ -1,7 +1,7 @@
 package cb.generator.java;
 
 import java.io.PrintWriter;
-import java.util.*;
+
 import cb.petal.Parameter;
 
 /**
@@ -16,7 +16,7 @@ public class ParameterImpl extends NodeImpl implements cb.generator.java.Paramet
 
   public ParameterImpl() {  }
 
-  public void               setParameter(cb.petal.Parameter p) { parameter = p; }
+  public void               setParameter(cb.petal.Parameter p) { super.setDocumentedObject(p);;parameter = p; }
   public cb.petal.Parameter getParameter()                     { return parameter; }
 
   public void   setType(String p) { type = p; }
