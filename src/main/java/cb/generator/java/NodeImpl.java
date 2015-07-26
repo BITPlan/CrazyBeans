@@ -12,7 +12,9 @@
 package cb.generator.java;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,6 +22,8 @@ import cb.petal.Attribute;
 import cb.petal.Documented;
 import cb.petal.PetalNode;
 import cb.petal.PetalObject;
+import cb.petal.StringLiteral;
+import cb.petal.Value;
 
 /**
  * Simple representation of a node.
@@ -29,10 +33,11 @@ import cb.petal.PetalObject;
  */
 public abstract class NodeImpl implements Node {
   protected static Logger LOGGER = Logger.getLogger("cb.generator.java");
-  
+  public static final boolean debug = false;
   protected String name;
   protected String access;
   protected Documented documentedObject;
+  Map<String, String> taggedValues = new LinkedHashMap<String, String>();
 
   public void setName(String n) {
     name = n;
@@ -64,18 +69,48 @@ public abstract class NodeImpl implements Node {
   public void setDocumentedObject(Documented documentedObject) {
     this.documentedObject = documentedObject;
   }
-  
+
+  /**
+   * @return the taggedValues
+   */
+  public Map<String, String> getTaggedValues() {
+    return taggedValues;
+  }
+
+  /**
+   * get the PropertyValue of the given property
+   * 
+   * @param property
+   * @return
+   */
+  public String getPropertyValue(PetalNode property) {
+    if (property instanceof StringLiteral) {
+      StringLiteral sl = (StringLiteral) property;
+      return sl.getValue();
+    } else if (property instanceof Value) {
+      Value v = (Value) property;
+      return v.getStringValue();
+    }
+    if (debug)
+      LOGGER.log(Level.INFO, "can't get value of property "
+          + property.getClass().getName());
+    return "";
+  }
+
   /**
    * add the given list of Attributes as taggedValues to this node
+   * 
    * @param attributes
    */
   public void addTaggedValues(List<Attribute> attributes) {
-    for (Attribute attribute:attributes) {
-      System.out.println(attribute.getTool());
-      System.out.println(attribute.getValue());
+    for (Attribute attribute : attributes) {
+      ArrayList<PetalNode> properties = attribute.getPropertyList();
+      String tool=getPropertyValue(properties.get(0));
+      String name = getPropertyValue(properties.get(1));
+      String value = getPropertyValue(properties.get(2));
+      taggedValues.put(name, value);
     }
   }
-  
 
   public boolean is(String s) {
     return access.toLowerCase().indexOf(s.toLowerCase()) >= 0;
@@ -97,7 +132,8 @@ public abstract class NodeImpl implements Node {
     List<String> result = new ArrayList<String>();
     PetalObject pobject = (PetalObject) documentedObject;
     if (pobject == null) {
-      LOGGER.log(Level.WARNING,"getDocumentation called with null documentedObject");
+      LOGGER.log(Level.WARNING,
+          "getDocumentation called with null documentedObject");
     } else {
       PetalNode doc = pobject.getProperty("documentation");
       cb.petal.StringLiteral str = (cb.petal.StringLiteral) doc;
@@ -110,6 +146,7 @@ public abstract class NodeImpl implements Node {
 
   /**
    * print the documentation to the given stream
+   * 
    * @param stream
    */
   protected void printDocumentation(java.io.PrintWriter stream) {

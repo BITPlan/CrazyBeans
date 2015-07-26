@@ -50,6 +50,7 @@ public class JavaGenerator extends GeneratorVisitor {
   private String suffix;
   private PiggybackVisitor visitor;
   private Map<String, List<Attribute>> taggedValueMap=new LinkedHashMap<String,List<Attribute>>();
+  public Map<String, List<Class>> classesByPackage;
 
   /**
    * generate the java code
@@ -192,9 +193,9 @@ public class JavaGenerator extends GeneratorVisitor {
    */
   public void visit(Attribute attribute) {
     // go two steps up the hierarchy - the attribute is part of a set
-    PetalObject attributeSet = (PetalObject) attribute.getParent();
+    // PetalObject attributeSet = (PetalObject) attribute.getParent();
     // the parent of the set is the owner ...
-    PetalNode parent = attributeSet.getParent();
+    PetalNode parent = attribute.getParent();
     if (parent instanceof QuidObject) {
       QuidObject parentquidObj = (QuidObject) parent;
       String quid = parentquidObj.getQuid();
@@ -257,6 +258,35 @@ public class JavaGenerator extends GeneratorVisitor {
         out.close();
       }
     }
+  }
+
+  /**
+   * get the Classes
+   * @return
+   */
+  public Map<String,List<Class>> getClassesByPackage() {
+    if (classesByPackage == null) {
+      classesByPackage = new TreeMap<String,List<Class>>();
+      for (@SuppressWarnings("rawtypes")
+      Iterator i = factory.getObjects().iterator(); i.hasNext();) {
+        Node n = (Node) i.next();
+        if (debug)
+          LOGGER.log(Level.INFO, n.getClass().getName());
+        if (n instanceof Class) {
+          Class clazz = (Class) n;
+          String pack=clazz.getPackage();
+          List<Class> classes;
+          if (classesByPackage.containsKey(pack)) {
+            classes=classesByPackage.get(pack);
+          } else {
+            classes=new ArrayList<Class>();
+            classesByPackage.put(pack,classes);
+          }
+          classes.add(clazz);
+        }
+      }
+    }
+    return classesByPackage;
   }
 
   /**

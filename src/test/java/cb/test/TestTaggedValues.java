@@ -13,105 +13,87 @@
  */
 package cb.test;
 
+import static org.junit.Assert.*;
+
 import java.io.File;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
+import java.util.Map.Entry;
 
 import org.junit.Test;
 
-import cb.generator.GeneratorVisitor;
+import cb.generator.java.Class;
+import cb.generator.java.Field;
 import cb.generator.java.JavaGenerator;
+import cb.generator.java.Method;
+import cb.generator.java.Node;
 import cb.parser.PetalParser;
-import cb.petal.Attribute;
-import cb.petal.DescendingVisitor;
 import cb.petal.PetalFile;
-import cb.petal.PetalNode;
 import cb.petal.PetalObject;
-import cb.petal.StringLiteral;
-import cb.petal.Value;
 
 /**
  * test the tagged Value handling
+ * 
  * @author wf
  *
  */
 public class TestTaggedValues {
-  
-  // public static class TaggedValueVisitor extends GeneratorVisitor {
-  public static class TaggedValueVisitor extends JavaGenerator {
-    protected static Logger LOGGER = Logger.getLogger("cb.test");
+  boolean debug = false;
 
-    /**
-     * create this visitor
-     * @param tree
-     */
-    public TaggedValueVisitor(PetalFile tree) {
-      // super.setTree(tree);
-      super(tree,(File)null);
+  /**
+   * inspect the given node for name values and return them as a comma separated
+   * name=value list
+   * 
+   * @param node
+   * @return
+   */
+  public String inspectNode(Node node) {
+    String result = "";
+    String delim = "";
+    if (debug)
+      System.out.println(node.getClass().getSimpleName().replace("Impl", "")
+          + " " + node.getName());
+    for (Entry<String, String> taggedValueEntry : node.getTaggedValues()
+        .entrySet()) {
+      String name = taggedValueEntry.getKey();
+      String value = taggedValueEntry.getValue();
+      if (debug)
+        System.out.println("\t" + name + "=" + value);
+      result += delim + name + "=" + value;
+      delim = ",";
     }
- 
-    
-    public void visit(Attribute attribute) { 
-      PetalNode parent = attribute.getParent();
-      String className=parent.getClass().getName();
-      if ("cb.petal.Class".equals(className)) {
-        LOGGER.log(Level.INFO,"class "+className+" is parent");
-      }
-      System.out.println(className);
-      System.out.println(attribute.getTool());
-      System.out.println(attribute.getValue());
-      ArrayList<PetalNode> properties = attribute.getPropertyList();
-      for (PetalNode property:properties) {
-        System.out.println(property.getClass().getName());
-        if (property instanceof StringLiteral) {
-          StringLiteral sl = (StringLiteral)property;
-          System.out.println("\t"+sl.getValue());
-        } else if (property instanceof Value) {
-          Value v=(Value)property;
-          System.out.println("\t"+v.getValue());
-        }
-        
-      }
-    }
-
- 
-  /*
-    @Override
-    public void init() throws Exception {
-      // TODO Auto-generated method stub
-      
-    }
-
-
-    @Override
-    public void start() throws Exception {
-      getTree().accept(this);
-    }
-
-
-    @Override
-    public void dump() throws Exception {
-      // TODO Auto-generated method stub
-      
-    }
- */
+    if (!"".equals(result))
+      result += "\n";
+    return result;
   }
-  
+
   @Test
   public void testTaggedValueHandling() throws Exception {
     // test File (taken from BITPlan smartGENERATOR test cases ...
-    File petalFile=new File("examples/AF2006_AC001.mdl");
+    File petalFile = new File("examples/AF2006_AC001.mdl");
     PetalObject.strict = false;
     PetalFile petalTree = PetalParser.createParser(petalFile.getPath()).parse();
-    JavaGenerator gen=new JavaGenerator(petalTree,(File)null);
+    JavaGenerator gen = new JavaGenerator(petalTree, (File) null);
     gen.init();
     gen.start();
-    /*
-    TaggedValueVisitor visitor = new TaggedValueVisitor(petalTree);
-    visitor.init();
-    visitor.start();
-    */
+    String taggedValueTxt = "";
+    for (Entry<String, List<Class>> packageEntry : gen.getClassesByPackage()
+        .entrySet()) {
+      if (debug)
+        System.out.println("Package: '" + packageEntry.getKey() + "'");
+      for (Class clazz : packageEntry.getValue()) {
+        taggedValueTxt += inspectNode(clazz);
+        for (Field field : clazz.getFields()) {
+          taggedValueTxt += inspectNode(field);
+        }
+        for (Method method : clazz.getMethods()) {
+          taggedValueTxt += inspectNode(method);
+        }
+      }
+    }
+    if (debug)
+      System.out.println(taggedValueTxt);
+    assertEquals("Template=,XMIId=Class1\n" + "XMIId=attribute1\n"
+        + "XMIId=operation1\n" + "Template=,XMIId=Class2\n", taggedValueTxt);
   }
 
 }
