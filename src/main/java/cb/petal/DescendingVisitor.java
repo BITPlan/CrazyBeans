@@ -31,8 +31,8 @@ public class DescendingVisitor implements Visitor {
   }
 
   public void visit(List list) {
-    for(Iterator i = list.getElements().iterator(); i.hasNext(); )
-      ((PetalNode)i.next()).accept(this);
+    for(Iterator<PetalNode> i = list.getElements().iterator(); i.hasNext(); )
+      (i.next()).accept(this);
   }
 
   public void visit(Value value) {
@@ -40,8 +40,8 @@ public class DescendingVisitor implements Visitor {
   }
 
   public void visitObject(PetalObject obj) {
-    for(Iterator i = obj.getPropertyList().iterator(); i.hasNext(); )
-      ((PetalNode)i.next()).accept(this);
+    for(Iterator<PetalNode> i = obj.getPropertyList().iterator(); i.hasNext(); )
+      (i.next()).accept(this);
   }
 
   public void visit(Class obj) { visitObject(obj); }
