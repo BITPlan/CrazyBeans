@@ -30,8 +30,8 @@ public abstract class PetalObject implements PetalNode {
     }
   };
 
-  private ArrayList names = new ArrayList();
-  private ArrayList values = new ArrayList();
+  private ArrayList<String> names = new ArrayList<String>();
+  private ArrayList<PetalNode> values = new ArrayList<PetalNode>();
   private String name;
   protected ArrayList params = EMPTY;
   private PetalNode parent;
@@ -104,14 +104,14 @@ public abstract class PetalObject implements PetalNode {
       if (this.values.size() != obj.values.size())
         return false;
 
-      TreeSet n1 = new TreeSet(this.names);
-      TreeSet n2 = new TreeSet(obj.names);
+      TreeSet<String> n1 = new TreeSet<String>(this.names);
+      TreeSet<String> n2 = new TreeSet<String>(obj.names);
 
       if (!n1.equals(n2))
         return false;
-
-      for (Iterator i = names.iterator(), j = values.iterator(); i.hasNext();) {
-        String name = (String) i.next();
+      Iterator<PetalNode> j = values.iterator();
+      for (Iterator<String> i = names.iterator(); i.hasNext();) {
+        String name =i.next();
         PetalNode value1 = (PetalNode) j.next();
         PetalNode value2 = obj.getProperty(name);
 
@@ -199,7 +199,7 @@ public abstract class PetalObject implements PetalNode {
    */
   public final int indexOf(PetalNode value) {
     int j = 0;
-    for (Iterator i = values.iterator(); i.hasNext(); j++)
+    for (Iterator<PetalNode> i = values.iterator(); i.hasNext(); j++)
       if (i.next() == value)
         return j;
 
@@ -268,9 +268,11 @@ public abstract class PetalObject implements PetalNode {
 
   /**
    * Override property if exists already or add it if not.
+   * @param name
+   * @param value
    */
   public final void defineProperty(String name, String value) {
-    ArrayList list = new ArrayList();
+    ArrayList<String> list = new ArrayList<String>();
     StringTokenizer st = new StringTokenizer(value, "\r\n");
 
     while (st.hasMoreTokens())
@@ -506,14 +508,16 @@ public abstract class PetalObject implements PetalNode {
   }
 
   /**
+   * get the properties with the given name
+   * @param name
    * @return all properties with key "name"
    */
-  public ArrayList getProperties(String name) {
-    ArrayList list = new ArrayList();
-
-    for (Iterator i = names.iterator(), j = values.iterator(); i.hasNext();) {
-      String s = (String) i.next();
-      PetalNode o = (PetalNode) j.next();
+  public ArrayList<PetalNode> getProperties(String name) {
+    ArrayList<PetalNode> list = new ArrayList<PetalNode>();
+    Iterator<PetalNode> j = values.iterator();
+    for (Iterator<String> i = names.iterator(); i.hasNext();) {
+      String s =  i.next();
+      PetalNode o = j.next();
 
       if (s.equals(name))
         list.add(o);
@@ -525,8 +529,8 @@ public abstract class PetalObject implements PetalNode {
   /**
    * @return all property names
    */
-  public ArrayList getNames() {
-    return (ArrayList) names.clone();
+  public ArrayList<String> getNames() {
+    return (ArrayList<String>) names.clone();
   }
 
   /**

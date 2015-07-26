@@ -1,3 +1,14 @@
+/**
+ * Copyright (c) 2001 Markus Dahm
+ * Copyright (C) 2015 BITPlan GmbH
+ *
+ * http://www.bitplan.com
+ * 
+ * This source is part of
+ * https://github.com/BITPlan/CrazyBeans
+ * and the license as outlined there applies
+ * 
+ */
 package cb.generator.java;
 
 import java.util.ArrayList;
@@ -84,6 +95,10 @@ public abstract class NodeImpl implements Node {
     return result;
   }
 
+  /**
+   * print the documentation to the given stream
+   * @param stream
+   */
   protected void printDocumentation(java.io.PrintWriter stream) {
     if (documentedObject != null) {
       stream.print("  /**");
