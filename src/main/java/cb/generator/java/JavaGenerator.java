@@ -16,13 +16,18 @@ import cb.parser.*;
 import cb.util.*;
 
 import java.util.*;
+import java.util.Map.Entry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.io.*;
 
 import cb.petal.Association;
+import cb.petal.Attribute;
 import cb.petal.ClassAttribute;
 import cb.petal.HasQuidu;
 import cb.petal.Operation;
 import cb.petal.PetalFile;
+import cb.petal.PetalNode;
 import cb.petal.PetalObject;
 import cb.petal.QuidObject;
 import cb.petal.RealizeRelationship;
@@ -38,9 +43,13 @@ import cb.petal.UsesRelationship;
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public class JavaGenerator extends GeneratorVisitor {
+  protected static Logger LOGGER = Logger.getLogger("cb.generator.java");
+  public static final boolean debug=false;
+  
   protected Factory factory = Factory.getInstance();
   private String suffix;
-	private PiggybackVisitor visitor;
+  private PiggybackVisitor visitor;
+  private Map<String, List<Attribute>> taggedValueMap=new LinkedHashMap<String,List<Attribute>>();
 
   /**
    * generate the java code
@@ -63,13 +72,15 @@ public class JavaGenerator extends GeneratorVisitor {
    *          e.g. java
    */
   public JavaGenerator(PetalFile tree, File dump, String suffix) {
-    this.setDumpPath(dump.getPath());
-    this.suffix = suffix;  
+    if (dump!=null)
+      this.setDumpPath(dump.getPath());
+    this.suffix = suffix;
     setTree(tree);
   }
 
   /**
    * generate java from the given dump_path
+   * 
    * @param tree
    * @param dump_path
    */
@@ -124,6 +135,9 @@ public class JavaGenerator extends GeneratorVisitor {
       factory.addUsedClass(c, getClass(rel), rel);
   }
 
+  /**
+   * visit an association
+   */
   public void visit(Association assoc) {
     Role first = assoc.getFirstRole();
     Role second = assoc.getSecondRole();
@@ -140,6 +154,9 @@ public class JavaGenerator extends GeneratorVisitor {
     }
   }
 
+  /**
+   * visite the given class
+   */
   public void visit(cb.petal.Class clazz) {
     String quid = clazz.getQuid();
 
@@ -149,6 +166,9 @@ public class JavaGenerator extends GeneratorVisitor {
     }
   }
 
+  /**
+   * visit the given attribute
+   */
   public void visit(ClassAttribute attr) {
     Field f = factory.createField(attr);
     factory.addObject(attr.getQuid(), f);
@@ -156,6 +176,9 @@ public class JavaGenerator extends GeneratorVisitor {
     factory.addField(c, f);
   }
 
+  /**
+   * visit the given operation
+   */
   public void visit(Operation op) {
     Method m = factory.createMethod(op);
     factory.addObject(op.getQuid(), m);
@@ -163,24 +186,58 @@ public class JavaGenerator extends GeneratorVisitor {
     if (c != null)
       factory.addMethod(c, m);
   }
-  
+
+  /**
+   * tagged Value handling
+   */
+  public void visit(Attribute attribute) {
+    // go two steps up the hierarchy - the attribute is part of a set
+    PetalObject attributeSet = (PetalObject) attribute.getParent();
+    // the parent of the set is the owner ...
+    PetalNode parent = attributeSet.getParent();
+    if (parent instanceof QuidObject) {
+      QuidObject parentquidObj = (QuidObject) parent;
+      String quid = parentquidObj.getQuid();
+      if (debug)
+        LOGGER.log(Level.INFO,"parent for attribute is "+parent.getClass().getName()+"("+quid+")");
+      List<Attribute> attrs=null;
+      if (taggedValueMap.containsKey(quid)) {
+        attrs=taggedValueMap.get(quid);
+      } else {
+        attrs=new ArrayList<Attribute>();
+        taggedValueMap.put(quid, attrs);
+      }
+      attrs.add(attribute);
+    } else {
+      if (debug)
+        LOGGER.log(Level.INFO,"parent for attribute is "+parent.getClass().getName());
+    }
+  }
+
   /**
    * initialize my visitor
    */
   @Override
   public void init() {
-  	visitor=new PiggybackVisitor(this);
+    visitor = new PiggybackVisitor(this);
   }
-  
+
   @Override
-	public void start() throws Exception {
-		getTree().accept(visitor);
-	}
+  public void start() throws Exception {
+    getTree().accept(visitor);
+    // pass2 tagged Value handling
+    for (Entry<String, List<Attribute>> taggedValueEntry:taggedValueMap.entrySet()) {
+       String quid=taggedValueEntry.getKey();
+       NodeImpl node = (NodeImpl)factory.getObject(quid);
+       if (node!=null)
+         node.addTaggedValues(taggedValueEntry.getValue());
+    }
+  }
 
   @Override
   public void dump() throws IOException {
     for (@SuppressWarnings("rawtypes")
-		Iterator i = factory.getObjects().iterator(); i.hasNext();) {
+    Iterator i = factory.getObjects().iterator(); i.hasNext();) {
       Node n = (Node) i.next();
 
       if (n instanceof Class) {
@@ -204,6 +261,7 @@ public class JavaGenerator extends GeneratorVisitor {
 
   /**
    * main routine to test from command line
+   * 
    * @param args
    */
   public static void main(String[] args) {

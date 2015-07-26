@@ -1,11 +1,18 @@
+/**
+ * Copyright (c) 2001 Markus Dahm
+ * Copyright (C) 2015 BITPlan GmbH
+ *
+ * http://www.bitplan.com
+ * 
+ * This source is part of
+ * https://github.com/BITPlan/CrazyBeans
+ * and the license as outlined there applies
+ * 
+ */
 package cb.parser;
+import java.io.PrintStream;
 import java.util.Iterator;
-import java.io.*;
-import java.util.Collection;
-import java.util.Stack;
 
-
-import cb.util.*;
 import cb.petal.Association;
 import cb.petal.HasQuidu;
 import cb.petal.Named;

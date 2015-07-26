@@ -1,7 +1,17 @@
+/**
+ * Copyright (c) 2001 Markus Dahm
+ * Copyright (C) 2015 BITPlan GmbH
+ *
+ * http://www.bitplan.com
+ * 
+ * This source is part of
+ * https://github.com/BITPlan/CrazyBeans
+ * and the license as outlined there applies
+ * 
+ */
 package cb.generator.java;
 
 import java.util.Collection;
-import java.util.List;
 
 /**
  * Represents a class consisting of fields and methods, should be useful

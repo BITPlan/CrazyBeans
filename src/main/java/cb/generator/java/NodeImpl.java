@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import cb.petal.Attribute;
 import cb.petal.Documented;
 import cb.petal.PetalNode;
 import cb.petal.PetalObject;
@@ -63,6 +64,18 @@ public abstract class NodeImpl implements Node {
   public void setDocumentedObject(Documented documentedObject) {
     this.documentedObject = documentedObject;
   }
+  
+  /**
+   * add the given list of Attributes as taggedValues to this node
+   * @param attributes
+   */
+  public void addTaggedValues(List<Attribute> attributes) {
+    for (Attribute attribute:attributes) {
+      System.out.println(attribute.getTool());
+      System.out.println(attribute.getValue());
+    }
+  }
+  
 
   public boolean is(String s) {
     return access.toLowerCase().indexOf(s.toLowerCase()) >= 0;

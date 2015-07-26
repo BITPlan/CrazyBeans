@@ -14,6 +14,7 @@ package cb.generator.java;
 import java.io.PrintWriter;
 import java.util.List;
 
+import cb.petal.Attribute;
 import cb.petal.Documented;
 
 /**
@@ -48,4 +49,5 @@ public interface Node {
    * @return a list of strings - one per line
    */
   public List<String> getDocumentation();
+ 
 }

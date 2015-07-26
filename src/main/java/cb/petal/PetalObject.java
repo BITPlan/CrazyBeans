@@ -1,6 +1,19 @@
+/**
+ * Copyright (c) 2001 Markus Dahm
+ * Copyright (C) 2015 BITPlan GmbH
+ *
+ * http://www.bitplan.com
+ * 
+ * This source is part of
+ * https://github.com/BITPlan/CrazyBeans
+ * and the license as outlined there applies
+ * 
+ */
 package cb.petal;
 
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Super class for all petal objects which have a list of
@@ -12,6 +25,7 @@ import java.util.*;
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public abstract class PetalObject implements PetalNode {
+  protected static Logger LOGGER = Logger.getLogger("cb.petal");
   static final long serialVersionUID = 7215267546012147332L;
 
   public static final ArrayList EMPTY = new ArrayList() {
@@ -74,6 +88,7 @@ public abstract class PetalObject implements PetalNode {
    * @return shallow copy of object, do not forget to assign a new quid
    *         if you want to use it within the same model.
    */
+  @SuppressWarnings("unchecked")
   public java.lang.Object clone() {
     PetalObject obj = null;
 
@@ -83,8 +98,8 @@ public abstract class PetalObject implements PetalNode {
       return null;
     }
 
-    obj.names = (ArrayList) names.clone();
-    obj.values = (ArrayList) values.clone();
+    obj.names = (ArrayList<String>) names.clone();
+    obj.values = (ArrayList<PetalNode>) values.clone();
     obj.params = (params == EMPTY) ? EMPTY : (ArrayList) params.clone();
 
     return obj;
@@ -351,7 +366,7 @@ public abstract class PetalObject implements PetalNode {
     }
 
     if (node == null) {
-      // System.err.println("No such property: " + name + " for " + this);
+      LOGGER.log(Level.FINER,"No such property: " + name + " for " + this.name);
       return null;
     }
 
@@ -536,8 +551,8 @@ public abstract class PetalObject implements PetalNode {
   /**
    * @return all property values
    */
-  public ArrayList getPropertyList() {
-    return (ArrayList) values.clone();
+  public ArrayList<PetalNode> getPropertyList() {
+    return  (ArrayList<PetalNode>) values.clone();
   }
 
   /**

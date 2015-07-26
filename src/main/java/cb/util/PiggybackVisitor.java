@@ -13,6 +13,7 @@ package cb.util;
 
 import cb.petal.DescendingVisitor;
 import cb.petal.EmptyVisitor;
+import cb.petal.List;
 import cb.petal.PetalObject;
 import cb.petal.Visitor;
 
@@ -39,11 +40,21 @@ public class PiggybackVisitor extends DescendingVisitor {
   public PiggybackVisitor(Visitor v) {
     this.v = v;
   }
+  
+  /**
+   * apply both visitors to lists
+   */
+  @Override
+  public void visit(List list) {
+    list.accept(v);
+    super.visit(list);
+  }
 
   /**
    * apply both visitors for the given obj
    * @param obj - the object to visit
    */
+  @Override
   public void visitObject(PetalObject obj) {
     obj.accept(v);
     super.visitObject(obj);

@@ -1,3 +1,14 @@
+/**
+ * Copyright (c) 2001 Markus Dahm
+ * Copyright (C) 2015 BITPlan GmbH
+ *
+ * http://www.bitplan.com
+ * 
+ * This source is part of
+ * https://github.com/BITPlan/CrazyBeans
+ * and the license as outlined there applies
+ * 
+ */
 package cb.generator.java;
 
 import java.io.PrintWriter;
@@ -122,7 +133,7 @@ public class ClassImpl extends NodeImpl implements Class {
       stream.println(i.next());
 
     stream.println("\n/** Created with Generator/"
-        + "<a href=\"http://crazybeans.sourceforge.net/\">"
+        + "<a href=\"https://github.com/BITPlan/CrazyBeans/\">"
         + "\n * CrazyBeans</a> " + new Date() + "\n *");
 
     // Print documentation if any

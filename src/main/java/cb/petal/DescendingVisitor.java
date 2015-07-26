@@ -30,6 +30,9 @@ public class DescendingVisitor implements Visitor {
     obj.getDesign().accept(this);
   }
 
+  /**
+   * visit the given List
+   */
   public void visit(List list) {
     for(Iterator<PetalNode> i = list.getElements().iterator(); i.hasNext(); )
       (i.next()).accept(this);
@@ -39,6 +42,10 @@ public class DescendingVisitor implements Visitor {
     value.getValue().accept(this);
   }
 
+  /**
+   * visit the given PetalObject
+   * @param obj
+   */
   public void visitObject(PetalObject obj) {
     for(Iterator<PetalNode> i = obj.getPropertyList().iterator(); i.hasNext(); )
       (i.next()).accept(this);
