@@ -2,6 +2,8 @@ package cb.generator.java;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import cb.petal.Documented;
 import cb.petal.PetalNode;
@@ -14,6 +16,8 @@ import cb.petal.PetalObject;
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public abstract class NodeImpl implements Node {
+  protected static Logger LOGGER = Logger.getLogger("cb.generator.java");
+  
   protected String name;
   protected String access;
   protected Documented documentedObject;
@@ -42,7 +46,8 @@ public abstract class NodeImpl implements Node {
   }
 
   /**
-   * @param documentedObject the documentedObject to set
+   * @param documentedObject
+   *          the documentedObject to set
    */
   public void setDocumentedObject(Documented documentedObject) {
     this.documentedObject = documentedObject;
@@ -66,11 +71,15 @@ public abstract class NodeImpl implements Node {
   @SuppressWarnings("unchecked")
   public List<String> getDocumentation() {
     List<String> result = new ArrayList<String>();
-    PetalObject pobject=(PetalObject) documentedObject;
-    PetalNode doc = pobject.getProperty("documentation");
-    cb.petal.StringLiteral str = (cb.petal.StringLiteral) doc;
-    if (str != null) {
-      result = new ArrayList<String>(str.getLines());
+    PetalObject pobject = (PetalObject) documentedObject;
+    if (pobject == null) {
+      LOGGER.log(Level.WARNING,"getDocumentation called with null documentedObject");
+    } else {
+      PetalNode doc = pobject.getProperty("documentation");
+      cb.petal.StringLiteral str = (cb.petal.StringLiteral) doc;
+      if (str != null) {
+        result = new ArrayList<String>(str.getLines());
+      }
     }
     return result;
   }
