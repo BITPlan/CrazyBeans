@@ -24,6 +24,7 @@ import cb.generator.java.Class;
 import cb.generator.java.Factory;
 import cb.generator.java.Field;
 import cb.generator.java.Method;
+import cb.generator.java.Node;
 import cb.generator.java.NodeImpl;
 import cb.petal.Association;
 import cb.petal.Attribute;
@@ -73,17 +74,20 @@ public abstract class GeneratorVisitor extends DescendingVisitor implements
 	 * @return class given by quid or null if it isn't a class
 	 */
 	protected Class getClass(String quid) {
-		Class clazz = (Class) factory.getObject(quid);
-
-		if (clazz == null) {
+		Node classCandidateNode = factory.getObject(quid);
+		Class clazz = null;
+		if (classCandidateNode == null) {
 			QuidObject obj = getTree().getQuidObject(quid);
 
 			if (obj instanceof cb.petal.Class) {
 				visit((cb.petal.Class) obj);
 				clazz = (Class) factory.getObject(quid);
 			}
+		} else {
+			if (classCandidateNode instanceof Class) {
+				clazz = (Class) classCandidateNode;
+			}
 		}
-
 		return clazz;
 	}
 
