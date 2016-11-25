@@ -141,7 +141,9 @@ public abstract class GeneratorVisitor extends DescendingVisitor implements
 
 	/**
 	 * get the category for the given petal class
-	 * @param clazz - the class
+	 * 
+	 * @param clazz
+	 *          - the class
 	 * @return - the ClassCategory
 	 */
 	public ClassCategory getCategory(cb.petal.Class clazz) {
@@ -151,10 +153,12 @@ public abstract class GeneratorVisitor extends DescendingVisitor implements
 		} else if (categoryNode instanceof cb.petal.Class) {
 			return getCategory((cb.petal.Class) categoryNode);
 		} else {
-			throw new RuntimeException("invalid parent for Class "+clazz.getQualifiedName()+" "+categoryNode.getClass().getName());
+			throw new RuntimeException("invalid parent for Class "
+					+ clazz.getQualifiedName() + " " + categoryNode.getClass().getName());
 		}
-		
+
 	}
+
 	/**
 	 * visit the given petal class
 	 */
@@ -162,17 +166,11 @@ public abstract class GeneratorVisitor extends DescendingVisitor implements
 		String quid = clazz.getQuid();
 
 		if (factory.getObject(quid) == null) {
-			PetalNode categoryNode = clazz.getParent();
-			if (categoryNode instanceof ClassCategory) {
-				cb.generator.java.Package p = addPackage((ClassCategory) categoryNode);
-				Class cl = factory.createClass(clazz, p);
-				factory.addObject(quid, cl);
-			} else {
-				LOGGER.log(Level.WARNING,
-						"wrong type of parent for class " + clazz.getQualifiedName()
-								+ " is " + categoryNode.getClass().getName()
-								+ " but should be ClassCategory");
-			}
+			ClassCategory category = getCategory(clazz);
+
+			cb.generator.java.Package p = addPackage(category);
+			Class cl = factory.createClass(clazz, p);
+			factory.addObject(quid, cl);
 
 		}
 	}
