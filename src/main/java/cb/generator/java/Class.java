@@ -30,8 +30,8 @@ public interface Class extends Node {
   public void   removeField(Field f);
   public void   addMethod(Method m);
   public void   removeMethod(Method m);
-  public void   setPackage(String p);
-  public String getPackage();
+  public void setPackage(Package p);
+  public Package getPackage();
   public boolean isInterface();
   public Collection<Field> getFields();
   public Collection<Method> getMethods();

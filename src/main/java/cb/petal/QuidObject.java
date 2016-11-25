@@ -12,6 +12,13 @@ import java.util.*;
 public abstract class QuidObject extends PetalObject {
   static final long serialVersionUID = -1442259881047075234L;
 
+  /**
+   * create a QuidObject for the given parent with the given name and the
+   * given collection of params
+   * @param parent
+   * @param name
+   * @param params
+   */
   protected QuidObject(PetalNode parent, String name, Collection params) {
     super(parent, name, params);
   }

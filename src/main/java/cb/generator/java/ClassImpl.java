@@ -21,7 +21,7 @@ import java.util.*;
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public class ClassImpl extends NodeImpl implements Class {
-  private String pack;
+  private Package pack;
   private ArrayList<Field> fields = new ArrayList<Field>();
   private ArrayList<Method> methods = new ArrayList<Method>();
   private ArrayList<String> super_classes = new ArrayList<String>();
@@ -42,11 +42,17 @@ public class ClassImpl extends NodeImpl implements Class {
     return clazz;
   }
 
-  public void setPackage(String p) {
+  /**
+   * set my package
+   */
+  public void setPackage(Package p) {
     pack = p;
   }
 
-  public String getPackage() {
+  /**
+   * get my package
+   */
+  public Package getPackage() {
     return pack;
   }
 
@@ -127,7 +133,7 @@ public class ClassImpl extends NodeImpl implements Class {
    * Default implementation prints Java code
    */
   public void dump(PrintWriter stream) {
-    print(stream, "package ", pack, ";\n");
+    print(stream, "package ", pack.getQualifiedName(), ";\n");
 
     for (Iterator<String> i = prefix.iterator(); i.hasNext();)
       stream.println(i.next());

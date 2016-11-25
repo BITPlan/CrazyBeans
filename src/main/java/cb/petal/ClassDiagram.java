@@ -1,9 +1,7 @@
 package cb.petal;
-import java.util.Collection;
-import java.util.Iterator;
-import java.awt.Dimension;
-import java.util.HashSet;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
 
 /**
  * Represents ClassDiagram object contained within a LogicalCategory
@@ -17,6 +15,11 @@ import java.util.Arrays;
 public class ClassDiagram extends Diagram {
   static final long serialVersionUID = 8346233868380071759L;
 
+  /**
+   * construct a class diagram from the given collection of params
+   * @param parent
+   * @param params
+   */
   public ClassDiagram(PetalNode parent, Collection params) {
     super(parent, "ClassDiagram", params);
   }

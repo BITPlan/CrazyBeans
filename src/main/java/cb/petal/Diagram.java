@@ -13,6 +13,12 @@ import java.awt.Dimension;
 public abstract class Diagram extends QuidObject implements Named {
   static final long serialVersionUID = 7903944716610637612L;
 
+  /**
+   * construct a diagram from the given parent with the given name and collection of parameters
+   * @param parent
+   * @param name
+   * @param params
+   */
   protected Diagram(PetalNode parent, String name, Collection params) {
     super(parent, name, params);
   }

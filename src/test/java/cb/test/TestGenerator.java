@@ -14,6 +14,8 @@
  */
 package cb.test;
 
+import static org.junit.Assert.*;
+
 import java.util.logging.Level;
 
 import org.junit.Test;
@@ -52,6 +54,7 @@ public class TestGenerator extends BaseTest {
 		JavaGenerator gen = new JavaGenerator(tree, dump);
 		tree.accept(new PiggybackVisitor(gen));
 		gen.dump();
+		assertEquals(0,gen.getWarn());
 
 		/*
 		 * With Barat there are some special considerations: We suppress the
@@ -79,5 +82,6 @@ public class TestGenerator extends BaseTest {
 
 		tree.accept(new PiggybackVisitor(gen));
 		gen.dump();
+		assertEquals(0,gen.getWarn());
 	}
 }
