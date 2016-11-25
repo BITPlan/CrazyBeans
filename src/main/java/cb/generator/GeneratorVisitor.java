@@ -140,6 +140,22 @@ public abstract class GeneratorVisitor extends DescendingVisitor implements
 	}
 
 	/**
+	 * get the category for the given petal class
+	 * @param clazz - the class
+	 * @return - the ClassCategory
+	 */
+	public ClassCategory getCategory(cb.petal.Class clazz) {
+		PetalNode categoryNode = clazz.getParent();
+		if (categoryNode instanceof ClassCategory) {
+			return (ClassCategory) categoryNode;
+		} else if (categoryNode instanceof cb.petal.Class) {
+			return getCategory((cb.petal.Class) categoryNode);
+		} else {
+			throw new RuntimeException("invalid parent for Class "+clazz.getQualifiedName()+" "+categoryNode.getClass().getName());
+		}
+		
+	}
+	/**
 	 * visit the given petal class
 	 */
 	public void visit(cb.petal.Class clazz) {
