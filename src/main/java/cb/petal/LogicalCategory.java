@@ -19,6 +19,10 @@ package cb.petal;
 public class LogicalCategory extends ClassCategory {
   static final long serialVersionUID=421992761725074833L;
 
+  /**
+   * create the LogicalCategory - which is the root of the ClassCategory tree
+   * @param parent
+   */
   public LogicalCategory(PetalObject parent) {
     super(parent, "Logical View");
   }

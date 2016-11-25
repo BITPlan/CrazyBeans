@@ -190,7 +190,7 @@ public class Factory {
 	 */
 	public Package createPackage(ClassCategory category) {
 		PackageImpl pack = new PackageImpl();
-		pack.setName(category.getName());
+		pack.setName(category.getNameParameter());
 		String qname=category.getQualifiedName();
 		qname=qname.replace("Logical View::", ""); // remove Logical View part
 		qname=qname.replace("::", "."); // use java convention
