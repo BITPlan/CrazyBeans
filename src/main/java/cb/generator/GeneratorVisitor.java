@@ -174,6 +174,7 @@ public abstract class GeneratorVisitor extends DescendingVisitor implements
 
 			cb.generator.java.Package p = addPackage(category);
 			Class cl = factory.createClass(clazz, p);
+			p.addClass(cl);
 			factory.addObject(quid, cl);
 
 		}
