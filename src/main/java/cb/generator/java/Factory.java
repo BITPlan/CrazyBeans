@@ -51,7 +51,7 @@ public class Factory {
 	/**
 	 * get the objects
 	 * 
-	 * @return
+	 * @return the objects
 	 */
 	public Collection<Node> getObjects() {
 		return quid_map.values();
@@ -170,7 +170,7 @@ public class Factory {
 	 * 
 	 * @param clazz
 	 * @param p 
-	 * @return
+	 * @return the Class
 	 */
 	public Class createClass(cb.petal.Class clazz, Package p) {
 		Name name=new Name(clazz.getQualifiedName());
@@ -318,7 +318,7 @@ public class Factory {
 	 * create a field based on a petal attribute
 	 * 
 	 * @param attr
-	 * @return
+	 * @return the field
 	 */
 	public Field createField(ClassAttribute attr) {
 		String name = attr.getNameParameter();
@@ -400,7 +400,7 @@ public class Factory {
 	 * get the cardinality for a given Role
 	 * 
 	 * @param role
-	 * @return
+	 * @return the Cardinality as a Dimension
 	 */
 	protected Dimension getCardinality(Role role) {
 		int from = 1, to = 1;

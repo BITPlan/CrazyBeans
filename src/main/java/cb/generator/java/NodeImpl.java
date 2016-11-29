@@ -81,7 +81,7 @@ public abstract class NodeImpl implements Node {
    * get the PropertyValue of the given property
    * 
    * @param property
-   * @return
+   * @return the property value
    */
   public String getPropertyValue(PetalNode property) {
     if (property instanceof StringLiteral) {
@@ -105,7 +105,8 @@ public abstract class NodeImpl implements Node {
   public void addTaggedValues(List<Attribute> attributes) {
     for (Attribute attribute : attributes) {
       ArrayList<PetalNode> properties = attribute.getPropertyList();
-      String tool=getPropertyValue(properties.get(0));
+      @SuppressWarnings("unused")
+			String tool=getPropertyValue(properties.get(0));
       String name = getPropertyValue(properties.get(1));
       String value = getPropertyValue(properties.get(2));
       taggedValues.put(name, value);
@@ -125,7 +126,7 @@ public abstract class NodeImpl implements Node {
   /**
    * get the documentation
    * 
-   * @return
+   * @return - the documentation
    */
   @SuppressWarnings("unchecked")
   public List<String> getDocumentation() {
