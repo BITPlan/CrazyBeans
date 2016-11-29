@@ -3,6 +3,7 @@ CrazyBeans
 
 ## Project 
 ... allows to read modify or create model files form Rational Rose. 
+[![Build Status](https://travis-ci.org/BITPlan/CrazyBeans.svg?branch=master)](https://travis-ci.org/BITPlan/CrazyBeans)
 
 ### Documentation
 * [Javadoc](http://bitplan.github.io/CrazyBeans/apidocs/index.html)
