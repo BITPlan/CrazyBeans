@@ -10,7 +10,7 @@ CrazyBeans
 ### Distribution
 Available at Maven Central see 
 
-http://search.maven.org/#artifactdetails|com.bitplan|org.crazybeans|1.5.2|jar
+http://search.maven.org/#artifactdetails|com.bitplan|org.crazybeans|1.5.3|jar
 
 Maven dependency:
 
@@ -18,7 +18,7 @@ Maven dependency:
 <dependency>
   <groupId>com.bitplan</groupId>
   <artifactId>org.crazybeans</artifactId>
-  <version>1.5.2</version>
+  <version>1.5.3</version>
 </dependency>
 ```
 
@@ -109,5 +109,5 @@ based on the githubytized version of https://github.com/matthewmeyer
 ## Version history
 * 1.5.1: 2001-2013 : Original by Markus Dahm on SourceForge https://sourceforge.net/projects/crazybeans/
 * 1.5.2: 2015-01-13: first version of this fork
-* 1.5.3: 2015-07-26: improves Petal File reading by allowing non strict reading to ignore errors
+* 1.5.3: 2016-11-29: improves Petal File reading by allowing non strict reading to ignore errors
 recreating .ser templates by running cb.util.Dump
