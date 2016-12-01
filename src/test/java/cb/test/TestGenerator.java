@@ -16,10 +16,13 @@ package cb.test;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+import java.util.Map.Entry;
 import java.util.logging.Level;
 
 import org.junit.Test;
 
+import cb.generator.java.Class;
 import cb.generator.java.Factory;
 import cb.generator.java.JavaGenerator;
 import cb.parser.PetalParser;
@@ -83,5 +86,11 @@ public class TestGenerator extends BaseTest {
 		tree.accept(new PiggybackVisitor(gen));
 		gen.dump();
 		assertEquals(0,gen.getWarn());
+		for (Entry<String, List<Class>> ce:gen.getClassesByPackage().entrySet()) {
+			for (Class clazz:ce.getValue()) {
+				// ids should look like 34CF28DD000A
+				assertEquals(12,clazz.getId().length());
+			}
+		}
 	}
 }

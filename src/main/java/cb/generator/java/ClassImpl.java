@@ -30,7 +30,13 @@ public class ClassImpl extends NodeImpl implements Class {
   private boolean isInterface;
   protected cb.petal.Class clazz;
 
-  public ClassImpl() {
+  /**
+   * construct me from the given clazz
+   * @param clazz
+   */
+  public ClassImpl(cb.petal.Class clazz) {
+  		super(clazz);
+  		setClazz(clazz);
   }
 
   public void setClazz(cb.petal.Class c) {

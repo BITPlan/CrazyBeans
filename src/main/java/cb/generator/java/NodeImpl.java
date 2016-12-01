@@ -22,6 +22,7 @@ import cb.petal.Attribute;
 import cb.petal.Documented;
 import cb.petal.PetalNode;
 import cb.petal.PetalObject;
+import cb.petal.QuidObject;
 import cb.petal.StringLiteral;
 import cb.petal.Value;
 
@@ -38,7 +39,25 @@ public abstract class NodeImpl implements Node {
   protected String access;
   protected Documented documentedObject;
   Map<String, String> taggedValues = new LinkedHashMap<String, String>();
+	private QuidObject quidObject;
 
+  /**
+   * construct me from the given QuidObject
+   * @param quidObject
+   */
+  public NodeImpl(QuidObject quidObject) {
+  		this.quidObject=quidObject;
+  }
+  
+  /**
+   * get my unique id
+   * @return - the original petal id
+   */
+  public String getId() {
+  		String id=quidObject.getQuid();
+  		return id;
+  }
+  
   public void setName(String n) {
     name = n;
   }

@@ -28,6 +28,11 @@ public interface Node {
   public String getName();
   public void   setAccess(String a);
   public String getAccess();
+  /**
+   * get my unique id
+   * @return - the original petal id
+   */
+  public String getId();
   
   /**
    * @return the documentedObject

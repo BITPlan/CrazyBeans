@@ -14,7 +14,14 @@ public class FieldImpl extends NodeImpl implements Field {
   private   String init, type;
   protected ClassAttribute attribute;
 
-  public FieldImpl() {  }
+  /**
+   * create me from the given Attribute
+   * @param attr
+   */
+  public FieldImpl(ClassAttribute attr) { 
+  		super(attr);
+  		setAttribute(attr);
+  }
 
   public void           setAttribute(ClassAttribute a) { super.setDocumentedObject(a);;attribute = a; }
   public ClassAttribute getAttribute()                 { return attribute; }

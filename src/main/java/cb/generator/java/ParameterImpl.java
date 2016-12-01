@@ -14,7 +14,12 @@ public class ParameterImpl extends NodeImpl implements cb.generator.java.Paramet
   private   String  type;
   protected cb.petal.Parameter parameter;
 
-  public ParameterImpl() {  }
+  /**
+   * construct me
+   */
+  public ParameterImpl() {
+  		super(null); // TODO can not get id from parameters since cb.petal.Parameter is not a quid object
+  }
 
   public void               setParameter(cb.petal.Parameter p) { super.setDocumentedObject(p);;parameter = p; }
   public cb.petal.Parameter getParameter()                     { return parameter; }

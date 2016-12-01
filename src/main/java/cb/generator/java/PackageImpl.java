@@ -14,6 +14,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import cb.petal.ClassCategory;
+
 /**
  * implementation of a package
  * @author wf
@@ -24,6 +26,14 @@ public class PackageImpl extends NodeImpl implements Package {
 	String qname;
 	Collection<Class> classes=new ArrayList<Class>();
 	
+	/**
+	 * construct me from the given category
+	 * @param category
+	 */
+	public PackageImpl(ClassCategory category) {
+		super(category);
+	}
+
 	@Override
 	public String getQualifiedName() {
 		return qname;

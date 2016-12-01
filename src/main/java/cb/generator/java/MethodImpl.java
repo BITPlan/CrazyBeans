@@ -16,7 +16,13 @@ public class MethodImpl extends NodeImpl implements Method {
   private List<String> code;
   protected Operation operation;
 
-  public MethodImpl() {
+  /**
+   * construct me from the given operation
+   * @param op
+   */
+  public MethodImpl(Operation op) {
+  		super(op);
+  		setOperation(op);
   }
 
   public void setOperation(Operation o) {

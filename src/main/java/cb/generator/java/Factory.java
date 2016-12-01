@@ -154,14 +154,12 @@ public class Factory {
 	 */
 	public Class createClass(cb.petal.Class clazz, String name, Package pack,
 			String acc, boolean is_interface) {
-		ClassImpl c = new ClassImpl();
+		ClassImpl c = new ClassImpl(clazz);
 
 		c.setName(name);
 		c.setPackage(pack);
 		c.setAccess(acc);
 		c.isInterface(is_interface);
-		c.setClazz(clazz);
-
 		return c;
 	}
 
@@ -189,7 +187,7 @@ public class Factory {
 	 * @return the package
 	 */
 	public Package createPackage(ClassCategory category) {
-		PackageImpl pack = new PackageImpl();
+		PackageImpl pack = new PackageImpl(category);
 		pack.setName(category.getNameParameter());
 		String qname=category.getQualifiedName();
 		qname=qname.replace("Logical View::", ""); // remove Logical View part
@@ -210,13 +208,13 @@ public class Factory {
 	 */
 	public Method createMethod(Operation op, String name, String type,
 			String acc, java.util.List params) {
-		MethodImpl method = new MethodImpl();
+		MethodImpl method = new MethodImpl(op);
 
 		method.setName(name);
 		method.setAccess(acc);
 		method.setReturnType(type);
 		method.setParameters(params);
-		method.setOperation(op);
+
 
 		return method;
 	}
@@ -303,14 +301,13 @@ public class Factory {
 	 */
 	public Field createField(ClassAttribute attr, String name, String type,
 			String acc, String init) {
-		FieldImpl field = new FieldImpl();
+		FieldImpl field = new FieldImpl(attr);
 
 		field.setName(name);
 		field.setAccess(acc);
 		field.setInitialValue(init);
 		field.setType(type);
-		field.setAttribute(attr);
-
+	
 		return field;
 	}
 
