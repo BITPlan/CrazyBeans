@@ -20,7 +20,7 @@
 		<!-- for parent pom to work -->
 		<github.project>CrazyBeans</github.project>
 		<!-- for readme generation -->
-		<documentation.wiki>http://www.bitplan.com/Com.bitplan.javafx</documentation.wiki>
+		<documentation.wiki>http://www.bitplan.com/CrazyBeans</documentation.wiki>
 		<!-- versions of other libraries to be used -->
 		<jersey.version>1.19</jersey.version>
 		<junit4.version>4.12</junit4.version>
