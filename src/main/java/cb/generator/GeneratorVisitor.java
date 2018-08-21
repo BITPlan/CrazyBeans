@@ -52,7 +52,7 @@ public abstract class GeneratorVisitor extends DescendingVisitor implements
 		Generator {
 
 	protected static Logger LOGGER = Logger.getLogger("cb.generator");
-	public static final boolean debug = false;
+	public static boolean debug = false;
 
 	protected Factory factory = Factory.getInstance();
 	private PiggybackVisitor visitor;

@@ -1,38 +1,3 @@
-### CrazyBeans
-[Java library to read, modify or create Rational Rose petal files](http://www.bitplan.com/Com.bitplan.javafx) 
-
-[![Travis (.org)](https://img.shields.io/travis/BITPlan/CrazyBeans.svg)](https://travis-ci.org/BITPlan/CrazyBeans)
-[![Maven Central](https://img.shields.io/maven-central/v/com.bitplan/org.crazybeans.svg)](https://search.maven.org/artifact/com.bitplan/org.crazybeans/1.5.3/jar)
-[![GitHub issues](https://img.shields.io/github/issues/BITPlan/CrazyBeans.svg)](https://github.com/BITPlan/CrazyBeans/issues)
-[![GitHub issues](https://img.shields.io/github/issues-closed/BITPlan/CrazyBeans.svg)](https://github.com/BITPlan/CrazyBeans/issues/?q=is%3Aissue+is%3Aclosed)
-[![GitHub](https://img.shields.io/github/license/BITPlan/CrazyBeans.svg)](https://www.apache.org/licenses/LICENSE-2.0)
-[![BITPlan](http://wiki.bitplan.com/images/wiki/thumb/3/38/BITPlanLogoFontLessTransparent.png/198px-BITPlanLogoFontLessTransparent.png)](http://www.bitplan.com)
-
-### Documentation
-* [Wiki](http://www.bitplan.com/Com.bitplan.javafx)
-* [CrazyBeans Project pages](https://BITPlan.github.io/CrazyBeans)
-* [Javadoc](https://BITPlan.github.io/CrazyBeans/apidocs/index.html)
-* [Test-Report](https://BITPlan.github.io/CrazyBeans/surefire-report.html)
-
-### Maven dependency
-
-Maven dependency
-```xml
-<dependency>
-  <groupId>com.bitplan</groupId>
-  <artifactId>org.crazybeans</artifactId>
-  <version>1.5.3</version>
-</dependency>
-```
-
-[Current release at repo1.maven.org](http://repo1.maven.org/maven2/com/bitplan/org.crazybeans/1.5.3/)
-
-### How to build
-```
-git clone https://github.com/BITPlan/CrazyBeans
-cd CrazyBeans
-mvn install
-```
 ## Installation
 ```
 mvn clean compile assembly:single
@@ -106,8 +71,3 @@ The original CrazyBeans framework is copyright (2001) Markus Dahm.
 This fork is Copyright(c) 2015 BITPlan GmbH (Owner: Wolfgang Fahl)
 
 based on the githubytized version of https://github.com/matthewmeyer
-## Version history
-* 1.5.1: 2001-2013 : Original by Markus Dahm on SourceForge https://sourceforge.net/projects/crazybeans/
-* 1.5.2: 2015-01-13: first version of this fork
-* 1.5.3: 2016-11-29: improves Petal File reading by allowing non strict reading to ignore errors
-recreating .ser templates by running cb.util.Dump
