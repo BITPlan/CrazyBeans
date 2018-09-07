@@ -8,10 +8,6 @@ import java.util.Collection;
  * @author  <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public class Attribute extends PetalObject {
-  /**
-   * 
-   */
-  private static final long serialVersionUID = 5229896536715615717L;
 
   /**
    * construct me
