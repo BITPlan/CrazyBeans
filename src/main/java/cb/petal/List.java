@@ -59,6 +59,10 @@ public class List implements PetalNode {
   public final PetalNode get(int i) {
     return (PetalNode)list.get(i);
   }
+  
+  public final ArrayList<PetalNode> get() {
+    return this.list;
+  }
 
   public final void set(int i, PetalNode node) {
     list.set(i, node);

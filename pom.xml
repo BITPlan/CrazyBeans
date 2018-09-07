@@ -7,47 +7,39 @@
 	<parent>
 		<groupId>com.bitplan.pom</groupId>
 		<artifactId>com.bitplan.pom</artifactId>
-		<version>0.0.7</version>
+		<version>0.0.16</version>
 		<relativePath>../com.bitplan.pom/pom.xml</relativePath>
 	</parent>
 	<groupId>com.bitplan</groupId>
 	<artifactId>org.crazybeans</artifactId>
 	<packaging>jar</packaging>
 	<name>BITPlan crazybeans fork of http://crazybeans.sourceforge.net/ 1.5.1</name>
-	<version>1.5.4</version>
+	<version>1.5.5</version>
 	<description>Java library to read, modify or create Rational Rose petal files</description>
 	<properties>
 		<!-- for parent pom to work -->
 		<github.project>CrazyBeans</github.project>
-		<!-- for readme generation -->
+		<!-- for README generation -->
 		<documentation.wiki>http://www.bitplan.com/CrazyBeans</documentation.wiki>
 		<!-- versions of other libraries to be used -->
-		<jersey.version>1.19</jersey.version>
-		<junit4.version>4.12</junit4.version>
-		<mockito.version>1.10.16</mockito.version>
-		<commons.io.version>2.4</commons.io.version>
-		<moxy.version>2.5.3</moxy.version>
-		<args4j.version>2.0.29</args4j.version>
+		<nsuml.version>0.4.20</nsuml.version>
 	</properties>
 	<dependencies>
 		<!-- Novosoft UML library -->
 		<dependency>
 			<groupId>nsuml</groupId>
 			<artifactId>nsuml</artifactId>
-			<version>0.4.20</version>
+			<version>${nsuml.version}</version>
 		</dependency>
 		<!-- JUnit testing -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${junit4.version}</version>
-			<scope>test</scope>
 		</dependency>
 		<!-- args4j command line utility -->
 		<dependency>
 			<groupId>args4j</groupId>
 			<artifactId>args4j</artifactId>
-			<version>${args4j.version}</version>
 		</dependency>
 	</dependencies>
 	<build>

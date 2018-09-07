@@ -89,6 +89,11 @@ public class PetalParser {
     return nodes;
   }
 
+  /**
+   * get filter flag for PetalNodes that should be ignored
+   * @param obj - the object to check
+   * @return - true if the object should be ignored
+   */
   private boolean ignored(PetalNode obj) {
     for (Iterator i = ignored_nodes.iterator(); i.hasNext();) {
       java.lang.Class clazz = (java.lang.Class) i.next();
@@ -96,7 +101,6 @@ public class PetalParser {
         return true;
       }
     }
-
     return false;
   }
 
@@ -401,8 +405,9 @@ public class PetalParser {
     if (!ignored(obj)) {
       obj.init();
       return obj;
-    } else
+    } else {
       return null;
+    }
   }
 
   private static PetalNode RPAREN = new PetalNode() {

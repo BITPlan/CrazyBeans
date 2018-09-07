@@ -13,7 +13,6 @@
 * [CrazyBeans Project pages](https://BITPlan.github.io/CrazyBeans)
 * [Javadoc](https://BITPlan.github.io/CrazyBeans/apidocs/index.html)
 * [Test-Report](https://BITPlan.github.io/CrazyBeans/surefire-report.html)
-
 ### Maven dependency
 
 Maven dependency

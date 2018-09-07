@@ -31,7 +31,8 @@ public abstract class QuidObject extends PetalObject {
     return PetalObject.getPropertyAsString(obj, "quid");
   }
 
-  /** Registers this object.
+  /** 
+   * Registers this object.
    */
   public void init() {
     getRoot().registerQuidObject(this);
