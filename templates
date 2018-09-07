@@ -1,0 +1,4 @@
+#!/bin/bash
+# WF 2018-09-07
+# make file target templates replacement
+java -cp target/classes cb.util.Dump

@@ -27,4 +27,5 @@ public class Properties extends QuidObject {
   public void accept(Visitor v) {
     v.visit(this);
   }
+ 
 }

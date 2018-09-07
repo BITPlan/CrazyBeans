@@ -41,6 +41,29 @@ public class Attribute extends PetalObject {
   public PetalNode getValue() {
     return getProperty("value");
   }
+  
+  /**
+   * get the Value
+   * @return
+   */
+  public String getStringValue() {
+    PetalNode valueNode=getValue();
+    if (valueNode instanceof Value) {
+      Value value=(Value)valueNode;
+      return value.getStringValue();
+    } else if (valueNode instanceof StringLiteral){
+      StringLiteral literal=(StringLiteral)valueNode;
+      return literal.getValue();
+    } else if (valueNode instanceof List){
+      List list=(List)valueNode;
+      return String.format("{%d}",list.size());
+    } else if (valueNode instanceof BooleanLiteral){
+      BooleanLiteral bliteral=(BooleanLiteral)valueNode;
+      return ""+bliteral.getValue();
+    } else {
+      return "";
+    }
+  }
 
   public void setValue(PetalNode o) {
     defineProperty("value", o);
