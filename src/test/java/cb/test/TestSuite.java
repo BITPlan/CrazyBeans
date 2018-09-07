@@ -11,13 +11,15 @@ import org.junit.runners.Suite;
 
 /**
  * Testsuite for CrazyBeans
+ * 
  * @author wf
  * @since 2015-01-11
  *
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ TestTemplates.class, TestUniversityModel.class,
-		TestGenerator.class, TestPetalTreeView.class , TestPetalTool.class, TestTaggedValues.class})
+    TestGenerator.class, TestPetalTreeView.class, TestPetalTool.class,
+    TestTaggedValues.class, TestParser.class })
 public class TestSuite {
 
 }

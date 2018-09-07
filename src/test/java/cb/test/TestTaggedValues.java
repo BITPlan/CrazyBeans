@@ -1,9 +1,6 @@
 /**
  * Copyright (C) 2015 BITPlan GmbH
- *
- * Pater-Delp-Str. 1
-
- *
+ * 
  * http://www.bitplan.com
  * 
  * This source is part of
