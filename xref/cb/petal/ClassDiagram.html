@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>ClassDiagram xref</title>
+<link type="text/css" rel="stylesheet" href="../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../apidocs/cb/petal/ClassDiagram.html">View Javadoc</a></div><pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> cb.petal;
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <strong class="jxr_keyword">import</strong> java.util.Arrays;
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> java.util.Collection;
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> java.util.HashSet;
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> * Represents ClassDiagram object contained within a LogicalCategory</em>
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * object. Items to the view can be added with the addToView()</em>
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <em class="jxr_javadoccomment"> * methods which call init() on the given Petal Object after adding</em>
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <em class="jxr_javadoccomment"> * them to the items list.</em>
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <em class="jxr_javadoccomment"> * @version $Id: ClassDiagram.java,v 1.17 2001/07/19 12:40:40 dahm Exp $</em>
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <em class="jxr_javadoccomment"> * @author &lt;A HREF="<a href="mailto:markus.dahm@berlin.de" target="alexandria_uri">mailto:markus.dahm@berlin.de</a>"&gt;M. Dahm&lt;/A&gt;</em>
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../cb/petal/ClassDiagram.html">ClassDiagram</a> <strong class="jxr_keyword">extends</strong> <a href="../../cb/petal/Diagram.html">Diagram</a> {
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>    <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">long</strong> serialVersionUID = 8346233868380071759L;
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>    <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <em class="jxr_javadoccomment">   * construct a class diagram from the given collection of params</em>
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <em class="jxr_javadoccomment">   * @param parent</em>
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <em class="jxr_javadoccomment">   * @param params</em>
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>    <strong class="jxr_keyword">public</strong> <a href="../../cb/petal/ClassDiagram.html">ClassDiagram</a>(<a href="../../cb/petal/PetalNode.html">PetalNode</a> parent, Collection params) {
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>      <strong class="jxr_keyword">super</strong>(parent, <span class="jxr_string">"ClassDiagram"</span>, params);
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>    }
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>    <strong class="jxr_keyword">public</strong> <a href="../../cb/petal/ClassDiagram.html">ClassDiagram</a>() {
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>      <strong class="jxr_keyword">super</strong>(<span class="jxr_string">"ClassDiagram"</span>);
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>    }
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>    <em class="jxr_javadoccomment">/** Adds a note view to the presentation view, sets location and tags</em>
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment">   * and calls init().</em>
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addToView(<a href="../../cb/petal/NoteView.html">NoteView</a> view) {
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>      <strong class="jxr_keyword">int</strong> index = addToViewsList(view);
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>      view.setLocation(<strong class="jxr_keyword">new</strong> <a href="../../cb/petal/Location.html">Location</a>(getX(), getY()));
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>      <em class="jxr_comment">// Don't set location on labels ...</em>
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>      <a href="../../cb/petal/ItemLabel.html">ItemLabel</a> label = view.getLabel();
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>      <strong class="jxr_keyword">if</strong>(label != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>        label.setParentView(<strong class="jxr_keyword">new</strong> <a href="../../cb/petal/Tag.html">Tag</a>(index));
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>        label.setLocation(view.getLocation());
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>      }
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>    }
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>  
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>    <em class="jxr_javadoccomment">/** Attach note to some already added view object.</em>
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>  <em class="jxr_javadoccomment">  */</em>
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addAttachView(<a href="../../cb/petal/NoteView.html">NoteView</a> from, <a href="../../cb/petal/View.html">View</a> to) {
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>      <a href="../../cb/petal/AttachView.html">AttachView</a> view = cb.util.PetalObjectFactory.getInstance().createAttachView();
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>      <strong class="jxr_keyword">int</strong> index = addToViewsList(view);
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>      view.setSupplier(<strong class="jxr_keyword">new</strong> <a href="../../cb/petal/Tag.html">Tag</a>(from.getTag()));
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>      view.setClient(<strong class="jxr_keyword">new</strong> <a href="../../cb/petal/Tag.html">Tag</a>(to.getTag()));
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>    }
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> HashSet set = <strong class="jxr_keyword">new</strong> HashSet(Arrays.asList(<strong class="jxr_keyword">new</strong> java.lang.Object[] {
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>      ClassView.<strong class="jxr_keyword">class</strong>}));
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>  
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>    <strong class="jxr_keyword">protected</strong> <a href="../../cb/petal/View.html">View</a> searchView(String qual_name) {
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>      <strong class="jxr_keyword">return</strong> searchView(qual_name, set);
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>    }
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>  
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>    <em class="jxr_javadoccomment">/** Class and super class and the according views must have been added</em>
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment">   * to the model already. Sets tag as well as client and supplier tags.</em>
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addToView(<a href="../../cb/petal/InheritView.html">InheritView</a> view) {
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>      view.setParent(<strong class="jxr_keyword">this</strong>);
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>      addRelationship(view, (InheritanceRelationship)view.getReferencedObject());
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>    }
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>  
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>    <em class="jxr_javadoccomment">/** Classes and the according views must have been added</em>
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  <em class="jxr_javadoccomment">   * to the model already. Sets tag as well as client and supplier tags.</em>
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>  <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addToView(<a href="../../cb/petal/UsesView.html">UsesView</a> view) {
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>      view.setParent(<strong class="jxr_keyword">this</strong>);
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>      addRelationship(view, (UsesRelationship)view.getReferencedObject());
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>    }
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>  
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>    <em class="jxr_javadoccomment">/** Class and interface and the according views must have been added</em>
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>  <em class="jxr_javadoccomment">   * to the model already. Sets tag as well as client and supplier tags.</em>
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>  <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addToView(<a href="../../cb/petal/RealizeView.html">RealizeView</a> view) {
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>      view.setParent(<strong class="jxr_keyword">this</strong>);
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>      addRelationship(view, (RealizeRelationship)view.getReferencedObject());
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>    }
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>  
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> accept(<a href="../../cb/petal/Visitor.html">Visitor</a> v) {
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>      v.visit(<strong class="jxr_keyword">this</strong>);
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>    }
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>  }
+</pre>
+<hr/>
+<div id="footer">Copyright &#169; 2018 <a href="http://www.bitplan.com">BITPlan GmbH</a>. All rights reserved.</div>
+</body>
+</html>

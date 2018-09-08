@@ -1,1 +1,7 @@
-com.bitplan.rest.freemarker
+cb.generator
+cb.generator.java
+cb.parser
+cb.petal
+cb.petaltools
+cb.util
+cb.xmi
