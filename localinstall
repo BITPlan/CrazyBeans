@@ -1,0 +1,1 @@
+mvn install -D skipTests -D gpg.skip
