@@ -1,8 +1,15 @@
 package cb.petal;
 
-import java.util.*;
-import javax.swing.tree.*;
-import javax.swing.event.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Random;
+
+import javax.swing.event.TreeModelListener;
+import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreePath;
 
 /**
  * Top level node (aka. model) containing two children: Petal and Design. To be
@@ -159,7 +166,7 @@ public class PetalFile implements PetalNode, TreeModel {
 		return (Class) classes.get(qual);
 	}
 
-	private HashMap assocs = new HashMap(); // Map<String,List<Association>>
+	private Map<String,java.util.List<Association>> assocs = new HashMap<String,java.util.List<Association>>(); 
 
 	/**
 	 * Register the association internally, i.e. associate it with the given
@@ -184,8 +191,8 @@ public class PetalFile implements PetalNode, TreeModel {
 	 * Association.init() by default) one can look up what associations a class
 	 * has.
 	 */
-	public final java.util.List getAssociations(cb.petal.Class clazz) {
-		return (java.util.List) assocs.get(clazz.getQuid());
+	public final java.util.List<Association> getAssociations(cb.petal.Class clazz) {
+		return assocs.get(clazz.getQuid());
 	}
 
 	/**
