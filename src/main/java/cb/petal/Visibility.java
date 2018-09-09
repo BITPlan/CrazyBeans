@@ -18,7 +18,7 @@ package cb.petal;
  */
 public enum Visibility {
 
-  PUBLIC("public"), PROTECTED("protected"), PRIVATE("private"), UNDEFINED(null);
+  PUBLIC("public"), PROTECTED("protected"), PRIVATE("private"), IMPLEMENTATION("implementation"), UNDEFINED(null);
   private String value;
 
   Visibility(String value) {
