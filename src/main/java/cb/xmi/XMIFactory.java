@@ -71,7 +71,7 @@ import cb.petal.ClassUtility;
 import cb.petal.DependencyRelationship;
 import cb.petal.Documented;
 import cb.petal.InheritanceRelationship;
-import cb.petal.List;
+import cb.petal.PetalNodeList;
 import cb.petal.Module;
 import cb.petal.Operation;
 import cb.petal.PetalFile;
@@ -522,7 +522,7 @@ public class XMIFactory {
 
 		PetalNode qualifierNode = role.getProperty("keys");
 		if (qualifierNode != null) {
-			List qualifierList = (List) qualifierNode;
+			PetalNodeList qualifierList = (PetalNodeList) qualifierNode;
 			for (Iterator iq = qualifierList.getElements().iterator(); iq.hasNext();) {
 				ClassAttribute attribute = (ClassAttribute) iq.next();
 

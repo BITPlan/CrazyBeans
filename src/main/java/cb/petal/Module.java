@@ -48,11 +48,11 @@ public class Module extends QuidObject implements Named, StereoTyped {
     return (String)params.get(2);
   }
 
-  public List getAttributes() {
-    return (List)getProperty("attributes");
+  public PetalNodeList getAttributes() {
+    return (PetalNodeList)getProperty("attributes");
   }
 
-  public void setAttributes(List o) {
+  public void setAttributes(PetalNodeList o) {
     defineProperty("attributes", o);
   }
 
@@ -64,11 +64,11 @@ public class Module extends QuidObject implements Named, StereoTyped {
     defineProperty("stereotype", o);
   }
 
-  public List getVisibleModules() {
-    return (List)getProperty("visible_modules");
+  public PetalNodeList getVisibleModules() {
+    return (PetalNodeList)getProperty("visible_modules");
   }
 
-  public void setVisibleModules(List o) {
+  public void setVisibleModules(PetalNodeList o) {
     defineProperty("visible_modules", o);
   }
 

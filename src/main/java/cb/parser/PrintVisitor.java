@@ -17,7 +17,7 @@ import cb.petal.BooleanLiteral;
 import cb.petal.DescendingVisitor;
 import cb.petal.FloatLiteral;
 import cb.petal.IntegerLiteral;
-import cb.petal.List;
+import cb.petal.PetalNodeList;
 import cb.petal.Location;
 import cb.petal.PetalFile;
 import cb.petal.PetalNode;
@@ -232,7 +232,7 @@ public class PrintVisitor extends DescendingVisitor {
     print(loc);
   }
 
-  public void visit(List list) {
+  public void visit(PetalNodeList list) {
     print("(list ");
 
     if (list.getName() != null)

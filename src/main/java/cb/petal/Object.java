@@ -38,11 +38,11 @@ public class Object extends QuiduObject implements Named {
     return (String)params.get(0);
   }
 
-  public List getCollaborators() {
-    return (List)getProperty("collaborators");
+  public PetalNodeList getCollaborators() {
+    return (PetalNodeList)getProperty("collaborators");
   }
 
-  public void setCollaborators(List o) {
+  public void setCollaborators(PetalNodeList o) {
     defineProperty("collaborators", o);
   }
 

@@ -32,11 +32,11 @@ public class State extends QuidObject implements Named {
     return (String)params.get(0);
   }
 
-  public List getTransitions() {
-    return (List)getProperty("transitions");
+  public PetalNodeList getTransitions() {
+    return (PetalNodeList)getProperty("transitions");
   }
 
-  public void setTransitions(List o) {
+  public void setTransitions(PetalNodeList o) {
     defineProperty("transitions", o);
   }
 
@@ -48,11 +48,11 @@ public class State extends QuidObject implements Named {
     defineProperty("type", o);
   }
 
-  public List getActions() {
-    return (List)getProperty("actions");
+  public PetalNodeList getActions() {
+    return (PetalNodeList)getProperty("actions");
   }
 
-  public void setActions(List o) {
+  public void setActions(PetalNodeList o) {
     defineProperty("actions", o);
   }
 

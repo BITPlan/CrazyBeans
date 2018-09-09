@@ -85,11 +85,11 @@ public class ObjectDiagram extends Diagram {
     defineProperty("origin_y", o);
   }
 
-  public List getItems() {
-    return (List)getProperty("items");
+  public PetalNodeList getItems() {
+    return (PetalNodeList)getProperty("items");
   }
 
-  public void setItems(List o) {
+  public void setItems(PetalNodeList o) {
     defineProperty("items", o);
   }
 

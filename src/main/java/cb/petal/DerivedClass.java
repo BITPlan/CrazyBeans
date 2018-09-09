@@ -24,11 +24,11 @@ public abstract class DerivedClass extends Class implements HasQuidu {
     setName(name);
   }
 
-  public List getUsedNodes() {
-    return (List)getProperty("used_nodes");
+  public PetalNodeList getUsedNodes() {
+    return (PetalNodeList)getProperty("used_nodes");
   }
 
-  public void setUsedNodes(List o) {
+  public void setUsedNodes(PetalNodeList o) {
     defineProperty("used_nodes", o);
   }
 

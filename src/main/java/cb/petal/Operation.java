@@ -27,20 +27,20 @@ public class Operation extends AccessObject {
     super("Operation");
   }
 
-  public List getParameters() {
-    return (List)getProperty("parameters");
+  public PetalNodeList getParameters() {
+    return (PetalNodeList)getProperty("parameters");
   }
 
-  public void setParameters(List o) {
+  public void setParameters(PetalNodeList o) {
     defineProperty("parameters", o);
   }
 
-  public List getExceptions() {
+  public PetalNodeList getExceptions() {
      PetalNode node = getProperty("exceptions");
-     if ( node instanceof List )
-        return (List)node;
+     if ( node instanceof PetalNodeList )
+        return (PetalNodeList)node;
      else if ( node instanceof StringLiteral ){
-        List list = new List("exceptions");
+        PetalNodeList list = new PetalNodeList("exceptions");
         
         StringTokenizer parse = new StringTokenizer(((StringLiteral)node).getValue(), ",");
         while (parse.hasMoreTokens()) {
@@ -52,7 +52,7 @@ public class Operation extends AccessObject {
         return null;
   }
   
-  public void setExceptions(List o) {
+  public void setExceptions(PetalNodeList o) {
      defineProperty("exceptions", o);
   }
   

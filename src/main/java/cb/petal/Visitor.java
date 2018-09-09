@@ -127,7 +127,7 @@ public interface Visitor {
   public void visit(SynchronizationState obj);
   public void visit(SimpleObject obj);
 
-  public void visit(List obj);
+  public void visit(PetalNodeList obj);
   public void visit(Value obj);
   public void visit(Tuple obj);
   public void visit(Location obj);

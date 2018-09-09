@@ -91,11 +91,11 @@ public class Association extends AccessObject {
     defineProperty("AssociationClass", qual_name);
   }
 
-  public List getRoles() {
-    return (List)getProperty("roles");
+  public PetalNodeList getRoles() {
+    return (PetalNodeList)getProperty("roles");
   }
 
-  public void setRoles(List o) {
+  public void setRoles(PetalNodeList o) {
     defineProperty("roles", o);
   }
 

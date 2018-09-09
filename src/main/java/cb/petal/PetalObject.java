@@ -326,7 +326,7 @@ public abstract class PetalObject implements PetalNode {
       int literalValue = tuple.getValue();
       Design design = getDesign();
       Properties properties = (Properties) design.getProperty("properties");
-      List attributes = (List) properties.getProperty("attributes");
+      PetalNodeList attributes = (PetalNodeList) properties.getProperty("attributes");
       PetalObject parent = (PetalObject) getParent();
       String parentKind = parent.getName();
       for (Iterator iter = attributes.getElements().iterator(); iter.hasNext();) {
@@ -334,14 +334,14 @@ public abstract class PetalObject implements PetalNode {
         String attrName = attribute.getPropertyAsString("name");
 
         if (attrName.endsWith(parentKind)) {
-          List list = (List) attribute.getValue();
+          PetalNodeList list = (PetalNodeList) attribute.getValue();
 
           for (Iterator iterator = list.getElements().iterator(); iterator
               .hasNext();) {
             Attribute attribute2 = (Attribute) iterator.next();
 
             if (attribute2.getPropertyAsString("name").equals(literalKind)) {
-              List list2 = (List) attribute2.getProperty("value");
+              PetalNodeList list2 = (PetalNodeList) attribute2.getProperty("value");
 
               for (Iterator iterator2 = list2.getElements().iterator(); iterator2
                   .hasNext();) {
@@ -578,10 +578,10 @@ public abstract class PetalObject implements PetalNode {
    * Add object to some given list and create the list if necessary.
    */
   protected void addToList(String prop_name, String list_name, PetalObject o) {
-    List list = (List) getProperty(prop_name);
+    PetalNodeList list = (PetalNodeList) getProperty(prop_name);
 
     if (list == null) {
-      list = new List(list_name);
+      list = new PetalNodeList(list_name);
       defineProperty(prop_name, list);
     }
 
@@ -592,7 +592,7 @@ public abstract class PetalObject implements PetalNode {
    * Remove object from some given list.
    */
   protected void removeFromList(String prop_name, PetalObject o) {
-    List list = (List) getProperty(prop_name);
+    PetalNodeList list = (PetalNodeList) getProperty(prop_name);
 
     if (list != null)
       list.remove(o);

@@ -64,8 +64,8 @@ public class Attribute extends PetalObject {
     } else if (valueNode instanceof StringLiteral){
       StringLiteral literal=(StringLiteral)valueNode;
       return literal.getValue();
-    } else if (valueNode instanceof List){
-      List list=(List)valueNode;
+    } else if (valueNode instanceof PetalNodeList){
+      PetalNodeList list=(PetalNodeList)valueNode;
       return String.format("{%d}",list.size());
     } else if (valueNode instanceof BooleanLiteral){
       BooleanLiteral bliteral=(BooleanLiteral)valueNode;

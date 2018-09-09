@@ -67,8 +67,8 @@ public class ClassCategory extends QuidObject implements AccessQualified,
 	 * logical view this returns class, association and mechanism objects. It may
 	 * of course also contain further ClassCategory objects.
 	 */
-	public List getLogicalModels() {
-		return (List) getProperty("logical_models");
+	public PetalNodeList getLogicalModels() {
+		return (PetalNodeList) getProperty("logical_models");
 	}
 
 	/**
@@ -76,18 +76,18 @@ public class ClassCategory extends QuidObject implements AccessQualified,
 	 * 
 	 * @param o
 	 */
-	public void setLogicalModels(List o) {
+	public void setLogicalModels(PetalNodeList o) {
 		defineProperty("logical_models", o);
 	}
 
 	/**
 	 * This returns a list of diagrams, ClassDiagram objects, e.g.
 	 */
-	public List getLogicalPresentations() {
-		return (List) getProperty("logical_presentations");
+	public PetalNodeList getLogicalPresentations() {
+		return (PetalNodeList) getProperty("logical_presentations");
 	}
 
-	public void setLogicalPresentations(List o) {
+	public void setLogicalPresentations(PetalNodeList o) {
 		defineProperty("logical_presentations", o);
 	}
 
@@ -95,7 +95,7 @@ public class ClassCategory extends QuidObject implements AccessQualified,
 	 * Find diagram by given class
 	 */
 	protected java.lang.Object lookupDiagram(java.lang.Class clazz) {
-		List list = getLogicalPresentations();
+		PetalNodeList list = getLogicalPresentations();
 
 		if ((list == null) || (list.size() == 0))
 			return null;

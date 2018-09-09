@@ -24,11 +24,11 @@ public class StateMachine extends QuidObject {
     super("State_Machine");
   }
 
-  public List getStates() {
-    return (List)getProperty("states");
+  public PetalNodeList getStates() {
+    return (PetalNodeList)getProperty("states");
   }
 
-  public void setStates(List o) {
+  public void setStates(PetalNodeList o) {
     defineProperty("states", o);
   }
 

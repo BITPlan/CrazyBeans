@@ -42,11 +42,11 @@ public class RoleView extends QuiduView implements SegLabeled {
     defineProperty("label", o);
   }
 
-  public List getVertices() {
-    return (List)getProperty("vertices");
+  public PetalNodeList getVertices() {
+    return (PetalNodeList)getProperty("vertices");
   }
 
-  public void setVertices(List o) {
+  public void setVertices(PetalNodeList o) {
     defineProperty("vertices", o);
   }
 

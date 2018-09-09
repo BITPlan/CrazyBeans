@@ -104,11 +104,11 @@ public class Role extends QuiduObject
     defineProperty("is_aggregate", o);
   }
 
-  public List getAttributes() {
-    return (List)getProperty("attributes");
+  public PetalNodeList getAttributes() {
+    return (PetalNodeList)getProperty("attributes");
   }
 
-  public void setAttributes(List o) {
+  public void setAttributes(PetalNodeList o) {
     defineProperty("attributes", o);
   }
 

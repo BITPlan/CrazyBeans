@@ -17,7 +17,7 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
-import cb.petal.List;
+import cb.petal.PetalNodeList;
 import cb.petal.PetalFile;
 import cb.petal.PetalNode;
 import cb.petal.PetalObject;
@@ -98,8 +98,8 @@ public class PetalTree extends JTree {
           buf.append(" " + ((Tagged) obj).getTag());
 
         value = buf;
-      } else if (value instanceof List) {
-        value = "list " + ((List) value).getName();
+      } else if (value instanceof PetalNodeList) {
+        value = "list " + ((PetalNodeList) value).getName();
       } else if ((value instanceof StringLiteral)) {
         value = '"' + (String) ((StringLiteral) value).getLiteralValue() + '"';
       } else if ((value instanceof Value)) {

@@ -285,8 +285,8 @@ public class PetalFile implements PetalNode, TreeModel {
 			PetalObject p = (PetalObject) node;
 
 			return p.getProperty(index);
-		} else if (node instanceof List) {
-			return ((List) node).get(index);
+		} else if (node instanceof PetalNodeList) {
+			return ((PetalNodeList) node).get(index);
 		} else
 			return null;
 	}

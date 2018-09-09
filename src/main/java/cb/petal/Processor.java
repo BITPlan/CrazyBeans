@@ -40,11 +40,11 @@ public class Processor extends QuidObject {
     defineProperty("documentation", o);
   }
 
-  public List getConnections() {
-    return (List)getProperty("connections");
+  public PetalNodeList getConnections() {
+    return (PetalNodeList)getProperty("connections");
   }
 
-  public void setConnections(List o) {
+  public void setConnections(PetalNodeList o) {
     defineProperty("connections", o);
   }
 
@@ -64,11 +64,11 @@ public class Processor extends QuidObject {
     defineProperty("scheduling", o);
   }
 
-  public List getProcesses() {
-    return (List)getProperty("processes");
+  public PetalNodeList getProcesses() {
+    return (PetalNodeList)getProperty("processes");
   }
 
-  public void setProcesses(List o) {
+  public void setProcesses(PetalNodeList o) {
     defineProperty("processes", o);
   }
 

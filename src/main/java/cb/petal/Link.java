@@ -48,11 +48,11 @@ public class Link extends QuidObject {
     defineProperty("client_containment", o);
   }
 
-  public List getMessages() {
-    return (List)getProperty("messages");
+  public PetalNodeList getMessages() {
+    return (PetalNodeList)getProperty("messages");
   }
 
-  public void setMessages(List o) {
+  public void setMessages(PetalNodeList o) {
     defineProperty("messages", o);
   }
 

@@ -25,13 +25,13 @@ public abstract class Inheritable extends AccessObject {
 
   /** @return list of InheritanceRelationship objects
    */
-  public List getSuperclassList() {
-    return (List)getProperty("superclasses");
+  public PetalNodeList getSuperclassList() {
+    return (PetalNodeList)getProperty("superclasses");
   }
 
   /** Set list of InheritanceRelationship objects
    */
-  public void setSuperclassList(List c) {
+  public void setSuperclassList(PetalNodeList c) {
     defineProperty("superclasses", c);
   }
 

@@ -31,11 +31,11 @@ public class Mechanism extends PetalObject implements Tagged {
 
   public int  getTag()      { return tag; }
 
-  public List getLogicalModels() {
-    return (List)getProperty("logical_models");
+  public PetalNodeList getLogicalModels() {
+    return (PetalNodeList)getProperty("logical_models");
   }
 
-  public void setLogicalModels(List o) {
+  public void setLogicalModels(PetalNodeList o) {
     defineProperty("logical_models", o);
   }
 

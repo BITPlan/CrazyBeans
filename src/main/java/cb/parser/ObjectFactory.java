@@ -11,7 +11,7 @@ package cb.parser;
 import cb.petal.BooleanLiteral;
 import cb.petal.FloatLiteral;
 import cb.petal.IntegerLiteral;
-import cb.petal.List;
+import cb.petal.PetalNodeList;
 import cb.petal.Location;
 import cb.petal.PetalNode;
 import cb.petal.PetalObject;
@@ -94,8 +94,8 @@ public class ObjectFactory {
 
   /** @return list like (list RoleViews ...) with given name
    */
-  public List createList(String name) {
-    return new List(name);
+  public PetalNodeList createList(String name) {
+    return new PetalNodeList(name);
   }
 
   /***************************** Literals **********************************/

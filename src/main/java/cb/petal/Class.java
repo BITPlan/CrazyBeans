@@ -136,7 +136,7 @@ public class Class extends Inheritable {
     return getClassList(getRealizedInterfacesList());
   }
 
-  private java.util.List<Class> getClassList(List list) {
+  private java.util.List<Class> getClassList(PetalNodeList list) {
     if(list == null)
       return Collections.EMPTY_LIST;
 
@@ -174,31 +174,31 @@ public class Class extends Inheritable {
 
   /** @return list of InheritanceRelationship objects
    */
-  public List getSuperclassList() {
-    return (List)getProperty("superclasses");
+  public PetalNodeList getSuperclassList() {
+    return (PetalNodeList)getProperty("superclasses");
   }
 
-  public void setSuperclassList(List c) {
+  public void setSuperclassList(PetalNodeList c) {
     defineProperty("superclasses", c);
   }
 
   /** @return list of UsesRelationship objects
    */
-  public List getUsedClassesList() {
-    return (List)getProperty("used_nodes");
+  public PetalNodeList getUsedClassesList() {
+    return (PetalNodeList)getProperty("used_nodes");
   }
 
-  public void setUsedClassesList(List c) {
+  public void setUsedClassesList(PetalNodeList c) {
     defineProperty("used_nodes", c);
   }
 
   /** @return list of RealizeRelationship objects
    */
-  public List getRealizedInterfacesList() {
-    return (List)getProperty("realized_interfaces");
+  public PetalNodeList getRealizedInterfacesList() {
+    return (PetalNodeList)getProperty("realized_interfaces");
   }
 
-  public void setRealizedInterfacesList(List c) {
+  public void setRealizedInterfacesList(PetalNodeList c) {
     defineProperty("realized_interfaces", c);
   }
 
@@ -212,7 +212,7 @@ public class Class extends Inheritable {
    * @return implicitly created operation object
    */
   public Operation addOperation(String name, String result, String qualifier, String[] param_types, String[] param_names) {
-    List list = new List("Parameters");
+    PetalNodeList list = new PetalNodeList("Parameters");
     Operation op = PetalObjectFactory.getInstance().createOperation(name, result, list);
     op.setExportControl(qualifier);
 
@@ -269,7 +269,7 @@ public class Class extends Inheritable {
   /** @return list of operations of this class
      */
   public java.util.List getOperations() {
-    List list = getOperationList();
+    PetalNodeList list = getOperationList();
 
     if(list != null)
       return list.getElements();
@@ -280,7 +280,7 @@ public class Class extends Inheritable {
   /** @return list of class attributes (aka fields) of this class
    */
   public java.util.List getClassAttributes() {
-     List list = getClassAttributeList();
+     PetalNodeList list = getClassAttributeList();
 
     if(list != null)
       return list.getElements();
@@ -290,21 +290,21 @@ public class Class extends Inheritable {
 
   /** @return list of Operation objects
    */
-  public List getOperationList() {
-    return (List)getProperty("operations");
+  public PetalNodeList getOperationList() {
+    return (PetalNodeList)getProperty("operations");
   }
 
-  public void setOperationList(List c) {
+  public void setOperationList(PetalNodeList c) {
     defineProperty("operations", c);
   }
 
   /** @return list of ClassAttribute objects
    */
-  public List getClassAttributeList() {
-    return (List)getProperty("class_attributes");
+  public PetalNodeList getClassAttributeList() {
+    return (PetalNodeList)getProperty("class_attributes");
   }
 
-  public void setClassAttributeList(List c) {
+  public void setClassAttributeList(PetalNodeList c) {
     defineProperty("class_attributes", c);
   }
 
@@ -316,19 +316,19 @@ public class Class extends Inheritable {
     defineProperty("language", c);
   }
 
-  public List getParameters() {
-    return (List)getProperty("parameters");
+  public PetalNodeList getParameters() {
+    return (PetalNodeList)getProperty("parameters");
   }
 
-  public void setParameters(List o) {
+  public void setParameters(PetalNodeList o) {
     defineProperty("parameters", o);
   }
 
-  public List getAttributes() {
-    return (List)getProperty("attributes");
+  public PetalNodeList getAttributes() {
+    return (PetalNodeList)getProperty("attributes");
   }
 
-  public void setAttributes(List o) {
+  public void setAttributes(PetalNodeList o) {
     defineProperty("attributes", o);
   }
 

@@ -25,7 +25,7 @@ import java.util.Stack;
 import java.util.StringTokenizer;
 
 import cb.petal.Design;
-import cb.petal.List;
+import cb.petal.PetalNodeList;
 import cb.petal.Petal;
 import cb.petal.PetalFile;
 import cb.petal.PetalNode;
@@ -491,12 +491,12 @@ public class PetalParser {
    * Example: (list unit_reference_list (object Module_Diagram "Main" quid
    * "35CB163B03CF"))
    */
-  public List parseList() {
+  public PetalNodeList parseList() {
     match(Lexer.LPAREN);
     Token.dispose(match(Lexer.IDENT, "list"));
 
     Token t = matchAny(Lexer.IDENT);
-    List list = factory.createList(t == null ? null : t.image);
+    PetalNodeList list = factory.createList(t == null ? null : t.image);
     Token.dispose(t);
 
     PetalNode obj;

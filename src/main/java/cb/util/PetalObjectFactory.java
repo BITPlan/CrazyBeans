@@ -183,7 +183,7 @@ public class PetalObjectFactory {
 	 * @see cb.petal.Class#addOperation(cb.petal.Operation)
 	 */
 	public Operation createOperation(String name, String result,
-			cb.petal.List params) {
+			cb.petal.PetalNodeList params) {
 		Operation op = (Operation) getTemplate("Operation");
 
 		op.setQuid(PetalFile.getQuid());

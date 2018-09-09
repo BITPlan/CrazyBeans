@@ -24,11 +24,11 @@ public class Properties extends QuidObject {
     super("Properties");
   }
 
-  public List getAttributes() {
-    return (List)getProperty("attributes");
+  public PetalNodeList getAttributes() {
+    return (PetalNodeList)getProperty("attributes");
   }
 
-  public void setAttributes(List o) {
+  public void setAttributes(PetalNodeList o) {
     defineProperty("attributes", o);
   }
 

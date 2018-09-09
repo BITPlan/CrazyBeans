@@ -24,11 +24,11 @@ public class Processes extends QuidObject {
     super("Processes");
   }
 
-  public List getProcsNDevs() {
-    return (List)getProperty("ProcsNDevs");
+  public PetalNodeList getProcsNDevs() {
+    return (PetalNodeList)getProperty("ProcsNDevs");
   }
 
-  public void setProcsNDevs(List o) {
+  public void setProcsNDevs(PetalNodeList o) {
     defineProperty("ProcsNDevs", o);
   }
 

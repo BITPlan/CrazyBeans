@@ -20,7 +20,7 @@ public class EmptyVisitor implements Visitor {
 
   public void visit(PetalFile obj) { }
 
-  public void visit(List list) { }
+  public void visit(PetalNodeList list) { }
 
   public void visit(Value value) { }
 

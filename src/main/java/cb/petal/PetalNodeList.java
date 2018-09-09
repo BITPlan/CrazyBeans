@@ -16,7 +16,7 @@ import java.util.*;
  * @version $Id: List.java,v 1.11 2001/07/09 07:48:52 dahm Exp $
  * @author  <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class List implements PetalNode {
+public class PetalNodeList implements PetalNode {
   static final long serialVersionUID = -9142706599368764080L;
 
   private ArrayList<PetalNode> list = new ArrayList<PetalNode>();
@@ -26,20 +26,21 @@ public class List implements PetalNode {
    * create a list with the given name
    * @param name
    */
-  public List(String name) {
+  public PetalNodeList(String name) {
     setName(name);
   }
 
+  @SuppressWarnings("unchecked")
   public java.lang.Object clone() {
-    List list = new List(name);
+    PetalNodeList list = new PetalNodeList(name);
 
     list.list = (ArrayList<PetalNode>)this.list.clone();
     return list;
   }
 
   public boolean equals(java.lang.Object o) {
-    return (o instanceof List) && ((List)o).name.equals(this.name) &&
-      ((List)o).list.equals(this.list);
+    return (o instanceof PetalNodeList) && ((PetalNodeList)o).name.equals(this.name) &&
+      ((PetalNodeList)o).list.equals(this.list);
   }
 
   public void setName(String n) {

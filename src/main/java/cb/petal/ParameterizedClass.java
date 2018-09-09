@@ -40,11 +40,11 @@ public class ParameterizedClass extends DerivedClass {
     defineProperty("module", o);
   }
 
-  public List getNestedClasses() {
-    return (List)getProperty("nestedClasses");
+  public PetalNodeList getNestedClasses() {
+    return (PetalNodeList)getProperty("nestedClasses");
   }
 
-  public void setNestedClasses(List o) {
+  public void setNestedClasses(PetalNodeList o) {
     defineProperty("nestedClasses", o);
   }
 

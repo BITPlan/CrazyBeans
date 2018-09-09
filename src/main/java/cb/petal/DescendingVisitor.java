@@ -30,7 +30,7 @@ public class DescendingVisitor implements Visitor {
   /**
    * visit the given List
    */
-  public void visit(List list) {
+  public void visit(PetalNodeList list) {
     for(Iterator<PetalNode> i = list.getElements().iterator(); i.hasNext(); )
       (i.next()).accept(this);
   }

@@ -35,11 +35,11 @@ public class AssociationViewNew extends QuiduView implements SegLabeled {
     return (RoleView)getRoleviewList().getElements().get(1);
   }
 
-  public List getRoleviewList() {
-    return (List)getProperty("roleview_list");
+  public PetalNodeList getRoleviewList() {
+    return (PetalNodeList)getProperty("roleview_list");
   }
 
-  public void setRoleviewList(List o) {
+  public void setRoleviewList(PetalNodeList o) {
     defineProperty("roleview_list", o);
   }
 

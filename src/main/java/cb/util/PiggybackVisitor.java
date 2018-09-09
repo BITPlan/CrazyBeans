@@ -10,7 +10,7 @@ package cb.util;
 
 import cb.petal.DescendingVisitor;
 import cb.petal.EmptyVisitor;
-import cb.petal.List;
+import cb.petal.PetalNodeList;
 import cb.petal.PetalObject;
 import cb.petal.Visitor;
 
@@ -42,7 +42,7 @@ public class PiggybackVisitor extends DescendingVisitor {
    * apply both visitors to lists
    */
   @Override
-  public void visit(List list) {
+  public void visit(PetalNodeList list) {
     list.accept(v);
     super.visit(list);
   }

@@ -11,7 +11,7 @@ package cb.parser;
 import java.io.*;
 
 import cb.petal.Design;
-import cb.petal.List;
+import cb.petal.PetalNodeList;
 import cb.petal.Petal;
 import cb.petal.PetalFile;
 import cb.petal.PetalNode;
@@ -284,11 +284,11 @@ public class Parser {
    *		quid       	"35CB163B03CF"))
    *
    */
-  public List parseList() {
+  public PetalNodeList parseList() {
     match(Lexer.LPAREN);  match(Lexer.IDENT, "list");
 
     Token t    = matchAny(Lexer.IDENT);
-    List  list = factory.createList(t == null ? null : t.image);
+    PetalNodeList  list = factory.createList(t == null ? null : t.image);
   
     PetalNode obj;
 

@@ -41,19 +41,19 @@ public class SubSystem extends QuidObject implements Named, StereoTyped {
     defineProperty("stereotype", o);
   }
 
-  public List getPhysicalModels() {
-    return (List)getProperty("physical_models");
+  public PetalNodeList getPhysicalModels() {
+    return (PetalNodeList)getProperty("physical_models");
   }
 
-  public void setPhysicalModels(List o) {
+  public void setPhysicalModels(PetalNodeList o) {
     defineProperty("physical_models", o);
   }
 
-  public List getPhysicalPresentations() {
-    return (List)getProperty("physical_presentations");
+  public PetalNodeList getPhysicalPresentations() {
+    return (PetalNodeList)getProperty("physical_presentations");
   }
 
-  public void setPhysicalPresentations(List o) {
+  public void setPhysicalPresentations(PetalNodeList o) {
     defineProperty("physical_presentations", o);
   }
 
