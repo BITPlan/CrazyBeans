@@ -1,16 +1,10 @@
 /**
  * Copyright (c) 2001 Markus Dahm
- * Copyright (C) 2015 BITPlan GmbH
+ * Copyright (C) 2015-2018 BITPlan GmbH http://www.bitplan.com
  *
- * Pater-Delp-Str. 1
-
- *
- * http://www.bitplan.com
- * 
  * This source is part of
  * https://github.com/BITPlan/CrazyBeans
  * and the license as outlined there applies
- * 
  */
 package cb.test;
 
@@ -48,13 +42,10 @@ import cb.petal.UsesView;
  * @author  <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public class TestUniversityModel extends BaseTest {
-	@SuppressWarnings("unchecked")
+
 	@Test
   public void testUniversityModel()  {
-   
-
     ///////////////// Create data and view for class diagram /////////////
-
     // Create objects via factory
     PetalFile      model      = factory.createModel();
     cb.petal.Class person     = factory.createClass("Person");

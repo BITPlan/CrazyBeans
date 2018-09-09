@@ -1,3 +1,11 @@
+/**
+ * Copyright (c) 2001 Markus Dahm
+ * Copyright (C) 2015-2018 BITPlan GmbH http://www.bitplan.com
+ *
+ * This source is part of
+ * https://github.com/BITPlan/CrazyBeans
+ * and the license as outlined there applies
+ */
 package cb.petal;
 
 // TODO: The quidu has to point to the models "Component View", i.e., the
