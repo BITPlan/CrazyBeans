@@ -62,7 +62,7 @@ public class TestParser {
     AccessVisitor accessVisitor = new AccessVisitor();
     petalTree.accept(accessVisitor);
     assertEquals(136, accessVisitor.visitCount);
-    int expectedVisibilities[] = { 4, 0, 1, 5 };
+    int expectedVisibilities[] = { 4, 0, 1,0, 5 };
     for (Visibility visibility : Visibility.values()) {
       assertEquals(visibility.toString(),
           expectedVisibilities[visibility.ordinal()], 
