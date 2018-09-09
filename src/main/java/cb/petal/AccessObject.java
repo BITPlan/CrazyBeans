@@ -77,4 +77,5 @@ public abstract class AccessObject extends QuidObject
   public boolean isPrivate() {
       return "Private".equals(getExportControl());
   }
+  
 }

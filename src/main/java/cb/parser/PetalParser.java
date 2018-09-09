@@ -188,7 +188,7 @@ public class PetalParser {
    * create a parser for the given file name and pathMap
    * @param file_name
    * @param pathMap
-   * @return
+   * @return - the parser
    */
   public static PetalParser createParser(String file_name, Map<String,String> pathMap) {
     return createParser(new File(file_name), pathMap);
@@ -198,7 +198,7 @@ public class PetalParser {
    * create parser for the given Url and pathMap
    * @param url
    * @param pathMap
-   * @return
+   * @return -the parser
    */
   public static PetalParser createParser(java.net.URL url, Map<String,String> pathMap) {
     try {
@@ -213,7 +213,7 @@ public class PetalParser {
   /**
    * crate a parser for the given file
    * @param file
-   * @return
+   * @return - the parser
    */
   public static PetalParser createParser(File file) {
     return createParser(file, null);
@@ -223,7 +223,7 @@ public class PetalParser {
    * create a parser for the given file and pathMap
    * @param file
    * @param pathMap
-   * @return
+   * @return the parser
    */
   public static PetalParser createParser(File file, Map<String,String> pathMap) {
     try {

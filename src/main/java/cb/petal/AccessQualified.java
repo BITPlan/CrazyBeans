@@ -10,4 +10,13 @@ package cb.petal;
 public interface AccessQualified {
   public String getExportControl();
   public void setExportControl(String o);
+  /**
+   * get the visibility of this access object
+   * @return the visibilty
+   */
+  public default Visibility getVisibility() {
+    String exportControl=this.getExportControl();
+    Visibility visibility=Visibility.valueOf(exportControl==null?"UNDEFINED":exportControl.toUpperCase());
+    return visibility;
+  }
 }

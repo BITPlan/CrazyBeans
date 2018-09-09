@@ -373,7 +373,7 @@ public abstract class PetalObject implements PetalNode {
     return null;
   }
 
-  Design getDesign() {
+  public Design getDesign() {
     Design design = null;
     PetalObject parent = (PetalObject) getParent();
 

@@ -43,8 +43,10 @@ public class Attribute extends PetalObject {
   }
   
   /**
-   * get the Value
-   * @return
+   * get the string representation of the value independent
+   * of the internal details
+   * 
+   * @return the string representation of the value
    */
   public String getStringValue() {
     PetalNode valueNode=getValue();

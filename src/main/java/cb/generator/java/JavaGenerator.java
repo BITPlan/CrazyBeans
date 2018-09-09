@@ -123,7 +123,7 @@ public class JavaGenerator extends GeneratorVisitor {
 	/**
 	 * get the Classes
 	 * 
-	 * @return
+	 * @return the list of classes by Packagecd /
 	 */
 	public Map<String, List<Class>> getClassesByPackage() {
 		if (classesByPackage == null) {

@@ -2,6 +2,4 @@
 # WF 2018-09-08
 # create fat jar and copy it to release directory
 # recompile skip tests and signing
-mvn clean install assembly:single -D skipTests -D gpg.skip
-# copy result to release directory
-cp -p target/org.crazybeans-1.5.5-jar-with-dependencies.jar release/crazybeans.jar
+mvn -U clean install  -D skipTests -D gpg.skip -D createRelease=true -D createAssembly=true

@@ -221,12 +221,12 @@ public class PetalFile implements PetalNode, TreeModel {
 
 	/**************************** TreeModel methods **********************/
 
-	private ArrayList treeModelListeners = new ArrayList();
+	private java.util.List<TreeModelListener> treeModelListeners = new ArrayList<TreeModelListener>();
 
 	/**
 	 * @return the root of the tree which is just "this" object.
 	 */
-	public java.lang.Object getRoot() {
+	public PetalFile getRoot() {
 		return this;
 	}
 

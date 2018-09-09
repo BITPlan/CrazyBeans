@@ -370,7 +370,7 @@ public class Factory {
 	 * 
 	 * @param name
 	 * @param type
-	 * @return
+	 * @return the list of getter and setter methods
 	 */
 	public Method[] createSetGetMethods(String name, String type) {
 		String mname = Character.toUpperCase(name.charAt(0)) + name.substring(1);

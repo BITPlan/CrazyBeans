@@ -1,11 +1,12 @@
- package cb.petal;
+package cb.petal;
+
 import java.util.Collection;
 
 /**
  * Represents class attribute (aka field) of class object.
  *
  * @version $Id: ClassAttribute.java,v 1.12 2001/06/22 09:10:36 dahm Exp $
- * @author  <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
+ * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public class ClassAttribute extends AccessObject {
   static final long serialVersionUID = -5435324245812367476L;
@@ -16,6 +17,20 @@ public class ClassAttribute extends AccessObject {
 
   public ClassAttribute() {
     super("ClassAttribute");
+  }
+
+  /**
+   * change the default visibility to private
+   */
+  @Override
+  public Visibility getVisibility() {
+    Visibility lv = super.getVisibility();
+    switch (lv) {
+    case UNDEFINED:
+      return Visibility.PRIVATE;
+    default:
+      return lv;
+    }
   }
 
   public String getType() {
@@ -43,7 +58,7 @@ public class ClassAttribute extends AccessObject {
   }
 
   public boolean getDerived() {
-     return getPropertyAsBoolean("derived");
+    return getPropertyAsBoolean("derived");
   }
 
   public void setDerived(boolean s) {
@@ -57,6 +72,7 @@ public class ClassAttribute extends AccessObject {
   public void setContainment(String o) {
     defineProperty("Containment", o);
   }
+
   public void accept(Visitor v) {
     v.visit(this);
   }
