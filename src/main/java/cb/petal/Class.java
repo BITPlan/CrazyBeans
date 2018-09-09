@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
 import cb.util.PetalObjectFactory;
 
@@ -132,15 +133,14 @@ public class Class extends Inheritable {
 
   /** @return list of implemented ("realized") Class objects (aka interfaces)
    */
-  public java.util.List getImplementedInterfaces() {
+  public List<Class> getImplementedInterfaces() {
     return getClassList(getRealizedInterfacesList());
   }
 
-  private java.util.List<Class> getClassList(PetalNodeList list) {
-    if(list == null)
-      return Collections.EMPTY_LIST;
-
+  private List<Class> getClassList(PetalNodeList list) {
     ArrayList<Class> result = new ArrayList<Class>();
+    if(list == null)
+      return result;
     PetalFile root   = getRoot();
 
     for(Iterator i = list.getElements().iterator(); i.hasNext(); ) {
@@ -168,7 +168,7 @@ public class Class extends Inheritable {
    * Association objects have been initialized with "init()".
    * @see Association#init()
    */
-  public java.util.List getAssociations() {
+  public List<Association> getAssociations() {
     return getRoot().getAssociations(this);
   }
 
