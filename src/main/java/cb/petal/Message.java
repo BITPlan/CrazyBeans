@@ -15,21 +15,13 @@ import java.util.Collection;
  * @version $Id: Message.java,v 1.8 2001/06/22 09:10:36 dahm Exp $
  * @author  <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class Message extends QuidObject implements Named {
+public class Message extends NamedQuidObject  {
   public Message(PetalNode parent, Collection params) {
     super(parent, "Message", params);
   }
 
   public Message() {
     super("Message");
-  }
-
-  public void setNameParameter(String o) {
-    params.set(0, o);
-  }
-
-  public String getNameParameter() {
-    return (String)params.get(0);
   }
 
   public String getFrequency() {

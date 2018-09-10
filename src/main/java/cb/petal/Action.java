@@ -15,21 +15,13 @@ import java.util.Collection;
  * @version $Id: Action.java,v 1.9 2001/06/22 09:10:36 dahm Exp $
  * @author  <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class Action extends QuidObject implements Named {
+public class Action extends NamedQuidObject  {
   public Action(PetalNode parent, Collection params) {
     super(parent, "action", params);
   }
 
   public Action() {
     super("action");
-  }
-
-  public void setNameParameter(String o) {
-    params.set(0, o);
-  }
-
-  public String getNameParameter() {
-    return (String)params.get(0);
   }
 
   public ActionTime getActionTime() {

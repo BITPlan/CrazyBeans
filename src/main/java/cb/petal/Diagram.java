@@ -18,7 +18,7 @@ import java.awt.Dimension;
  * @version $Id: Diagram.java,v 1.4 2001/07/19 12:40:40 dahm Exp $
  * @author  <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public abstract class Diagram extends QuidObject implements Named {
+public abstract class Diagram extends NamedQuidObject {
   static final long serialVersionUID = 7903944716610637612L;
 
   /**
@@ -33,14 +33,6 @@ public abstract class Diagram extends QuidObject implements Named {
 
   protected Diagram(String name) {
     super(name);
-  }
-
-  public void setNameParameter(String o) {
-    params.set(0, o);
-  }
-
-  public String getNameParameter() {
-    return (String)params.get(0);
   }
 
   public String getTitle() {

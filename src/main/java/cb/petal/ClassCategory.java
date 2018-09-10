@@ -18,7 +18,7 @@ import java.util.Iterator;
  * @version $Id: ClassCategory.java,v 1.17 2002/09/03 19:33:02 dahm Exp $
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class ClassCategory extends QuidObject implements AccessQualified,
+public class ClassCategory extends NamedQuidObject implements AccessQualified,
 		Named, Documented, StereoTyped {
 	static final long serialVersionUID = -8273790375346338894L;
 
@@ -28,14 +28,6 @@ public class ClassCategory extends QuidObject implements AccessQualified,
 
 	public ClassCategory() {
 		this(null, "Class Category");
-	}
-
-	public void setNameParameter(String o) {
-		params.set(0, o);
-	}
-
-	public String getNameParameter() {
-		return (String) params.get(0);
 	}
 
 	public String getDocumentation() {

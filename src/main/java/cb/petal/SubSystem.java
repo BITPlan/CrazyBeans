@@ -15,7 +15,7 @@ import java.util.Collection;
  * @version $Id: SubSystem.java,v 1.10 2001/08/01 14:26:56 dahm Exp $
  * @author  <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class SubSystem extends QuidObject implements Named, StereoTyped {
+public class SubSystem extends NamedQuidObject implements StereoTyped {
 	// FIXME - why is this not documented?
   public SubSystem(PetalNode parent, Collection params) {
     super(parent, "SubSystem", params);
@@ -23,14 +23,6 @@ public class SubSystem extends QuidObject implements Named, StereoTyped {
 
   public SubSystem() {
     super("SubSystem");
-  }
-
-  public void setNameParameter(String o) {
-    params.set(0, o);
-  }
-
-  public String getNameParameter() {
-    return (String)params.get(0);
   }
 
   public String getStereotype() {

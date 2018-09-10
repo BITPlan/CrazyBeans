@@ -15,21 +15,13 @@ import java.util.Collection;
  * @version $Id: Module.java,v 1.9 2001/08/01 14:26:56 dahm Exp $
  * @author  <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class Module extends QuidObject implements Named, StereoTyped {
+public class Module extends NamedQuidObject implements StereoTyped {
   public Module(PetalNode parent, Collection params) {
     super(parent, "module", params);
   }
 
   public Module() {
     super("module");
-  }
-
-  public void setNameParameter(String o) {
-    params.set(0, o);
-  }
-
-  public String getNameParameter() {
-    return (String)params.get(0);
   }
 
   public void setTypeParameter(String o) {

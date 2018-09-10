@@ -15,21 +15,13 @@ import java.util.Collection;
  * @version $Id: State.java,v 1.8 2001/06/22 09:10:36 dahm Exp $
  * @author  <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class State extends QuidObject implements Named {
+public class State extends NamedQuidObject {
   public State(PetalNode parent, Collection params) {
     super(parent, "State", params);
   }
 
   public State() {
     super("State");
-  }
-
-  public void setNameParameter(String o) {
-    params.set(0, o);
-  }
-
-  public String getNameParameter() {
-    return (String)params.get(0);
   }
 
   public PetalNodeList getTransitions() {

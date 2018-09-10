@@ -18,7 +18,7 @@ import java.util.*;
  * @version $Id: AccessObject.java,v 1.4 2001/07/09 07:48:52 dahm Exp $
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public abstract class AccessObject extends QuidObject
+public abstract class AccessObject extends NamedQuidObject
   implements AccessQualified, Named, StereoTyped, Documented
 {
   static final long serialVersionUID = -1442259881847075234L;
@@ -29,14 +29,6 @@ public abstract class AccessObject extends QuidObject
 
   protected AccessObject(String name) {
     super(name);
-  }
-
-  public void setNameParameter(String o) {
-    params.set(0, o);
-  }
-
-  public String getNameParameter() {
-    return (String)params.get(0);
   }
 
   public String getDocumentation() {

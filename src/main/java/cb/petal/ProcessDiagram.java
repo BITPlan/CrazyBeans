@@ -15,21 +15,13 @@ import java.util.Collection;
  * @version $Id: ProcessDiagram.java,v 1.8 2001/06/22 09:10:36 dahm Exp $
  * @author  <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class ProcessDiagram extends QuidObject {
+public class ProcessDiagram extends NamedQuidObject {
   public ProcessDiagram(PetalNode parent, Collection params) {
     super(parent, "Process_Diagram", params);
   }
 
   public ProcessDiagram() {
     super("Process_Diagram");
-  }
-
-  public void setNameParameter(String o) {
-    params.set(0, o);
-  }
-
-  public String getNameParameter() {
-    return (String)params.get(0);
   }
 
   public String getTitle() {
