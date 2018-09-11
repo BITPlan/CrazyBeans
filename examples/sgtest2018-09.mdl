@@ -1,0 +1,543 @@
+
+(object Petal
+    version    	50
+    _written   	"Rose 8.5.0503.xxx"
+    charSet    	0)
+
+(object Design "Logical View"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    quid       	"5B97A8A802FD"
+    enforceClosureAutoLoad 	FALSE
+    defaults   	(object defaults
+	rightMargin 	0.250000
+	leftMargin 	0.250000
+	topMargin  	0.250000
+	bottomMargin 	0.500000
+	pageOverlap 	0.250000
+	clipIconLabels 	TRUE
+	autoResize 	TRUE
+	snapToGrid 	TRUE
+	gridX      	0
+	gridY      	0
+	defaultFont 	(object Font
+	    size       	10
+	    face       	"Arial"
+	    bold       	FALSE
+	    italics    	FALSE
+	    underline  	FALSE
+	    strike     	FALSE
+	    color      	0
+	    default_color 	TRUE)
+	showMessageNum 	3
+	showClassOfObject 	TRUE
+	notation   	"Unified")
+    root_usecase_package 	(object Class_Category "Use Case View"
+	quid       	"5B97A8A802FF"
+	exportControl 	"Public"
+	global     	TRUE
+	logical_models 	(list unit_reference_list)
+	logical_presentations 	(list unit_reference_list
+	    (object UseCaseDiagram "Main"
+		quid       	"5B97A8A8030E"
+		title      	"Main"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list))))
+    root_category 	(object Class_Category "Logical View"
+	quid       	"5B97A8A802FE"
+	exportControl 	"Public"
+	global     	TRUE
+	subsystem  	"Component View"
+	quidu      	"5B97A8A80300"
+	logical_models 	(list unit_reference_list
+	    (object Class_Category "com"
+		quid       	"5B97A8C303AB"
+		exportControl 	"Public"
+		logical_models 	(list unit_reference_list
+		    (object Class_Category "bitplan"
+			quid       	"5B97A8CC0033"
+			exportControl 	"Public"
+			logical_models 	(list unit_reference_list
+			    (object Class_Category "sgtest"
+				quid       	"5B97A8E800D0"
+				exportControl 	"Public"
+				logical_models 	(list unit_reference_list
+				    (object Class "ClassA"
+					quid       	"5B97A8DD0075"))
+				logical_presentations 	(list unit_reference_list))
+			    (object Class_Category "catB"
+				is_unit    	TRUE
+				is_loaded  	FALSE
+				file_name  	"$CRS_HOME\\sgtest2018-09-B.cat"
+				quid       	"5B97A98100A4")
+			    (object Class_Category "catC"
+				is_unit    	TRUE
+				is_loaded  	FALSE
+				file_name  	"$CRS_HOME\\sgtest2018-09-C.cat"
+				quid       	"5B97A9A20290"))
+			logical_presentations 	(list unit_reference_list)))
+		logical_presentations 	(list unit_reference_list)))
+	logical_presentations 	(list unit_reference_list
+	    (object ClassDiagram "Main"
+		quid       	"5B97A8A80304"
+		title      	"Main"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list
+		    (object ClassView "Class" "Logical View::com::bitplan::sgtest::ClassA" @1
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(150, 377)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@1
+			    location   	(61, 303)
+			    nlines     	1
+			    max_width  	178
+			    justify    	0
+			    label      	"ClassA")
+			icon_style 	"Icon"
+			line_color 	33023
+			fill_color 	16777215
+			quidu      	"5B97A8DD0075"
+			width      	196
+			height     	172
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::com::bitplan::catB::ClassB" @2
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(372, 377)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@2
+			    location   	(287, 303)
+			    nlines     	1
+			    max_width  	170
+			    justify    	0
+			    label      	"ClassB")
+			icon_style 	"Icon"
+			line_color 	33023
+			fill_color 	16777215
+			quidu      	"5B97A90901D2"
+			width      	188
+			height     	172
+			annotation 	8
+			autoResize 	TRUE)
+		    (object NoteView @3
+			location   	(287, 150)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@3
+			    location   	(68, 53)
+			    nlines     	3
+			    max_width  	402
+			    justify    	1
+			    label      	
+|2018-09-11
+|RoseMdlSupport CatFileSupport
+			    )
+			line_color 	33023
+			fill_color 	16777215
+			width      	462
+			height     	207)
+		    (object ClassView "Class" "Logical View::com::bitplan::catC::ClassC" @4
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(573, 377)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@4
+			    location   	(490, 303)
+			    nlines     	1
+			    max_width  	166
+			    justify    	0
+			    label      	"ClassC")
+			icon_style 	"Icon"
+			line_color 	33023
+			fill_color 	16777215
+			quidu      	"5B97A9AC001F"
+			width      	184
+			height     	172
+			annotation 	8
+			autoResize 	TRUE)))))
+    root_subsystem 	(object SubSystem "Component View"
+	quid       	"5B97A8A80300"
+	physical_models 	(list unit_reference_list)
+	physical_presentations 	(list unit_reference_list
+	    (object Module_Diagram "Main"
+		quid       	"5B97A8A8030D"
+		title      	"Main"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list)))
+	category   	"Logical View"
+	quidu      	"5B97A8A802FE")
+    process_structure 	(object Processes
+	quid       	"5B97A8A80301"
+	ProcsNDevs 	(list
+	    (object Process_Diagram "Deployment View"
+		quid       	"5B97A8A80303"
+		title      	"Deployment View"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list))))
+    properties 	(object Properties
+	attributes 	(list Attribute_Set
+	    (object Attribute
+		tool       	"BITPlan"
+		name       	"propertyId"
+		value      	"809135966")
+	    (object Attribute
+		tool       	"BITPlan"
+		name       	"default__Project"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"Export-Directory"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"ToolName"
+			value      	"0")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"autogenerate"
+			value      	"false")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"XMIId"
+			value      	"0")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"XMIBaseId"
+			value      	"S100")))
+	    (object Attribute
+		tool       	"BITPlan"
+		name       	"default__Category"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"hasBOManager"
+			value      	"true")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"XMIId"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"Template"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"TemplateOptions"
+			value      	"")))
+	    (object Attribute
+		tool       	"BITPlan"
+		name       	"default__Class"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"hasBOManager"
+			value      	"true")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"final"
+			value      	"false")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"XMIId"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"Template"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"TemplateOptions"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"isGUI"
+			value      	"true")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"label"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"icon"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"toolTipText"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"SQLView"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"XMLderived"
+			value      	"false")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"persistent"
+			value      	"true")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"destroyable"
+			value      	"true")))
+	    (object Attribute
+		tool       	"BITPlan"
+		name       	"default__Attribute"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"final"
+			value      	"false")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"isGUI"
+			value      	"true")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"isKey"
+			value      	"false")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"autoKey"
+			value      	"false")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"sortPos"
+			value      	"0")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"catalog"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"catalogtype"
+			value      	"static")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"label"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"page"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"unit"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"isMandatory"
+			value      	"false")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"isReadonly"
+			value      	"false")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"isDefaultSearchField"
+			value      	"false")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"derivedfrom"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"showInGrid"
+			value      	"true")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"charWidth"
+			value      	"80")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"RegExp"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"toolTipText"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"XMIId"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"XMLasNode"
+			value      	"false")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"persistent"
+			value      	"true")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"selectAction"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"selectDesc"
+			value      	"")))
+	    (object Attribute
+		tool       	"BITPlan"
+		name       	"default__Operation"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"final"
+			value      	"false")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"XMIId"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"isGUI"
+			value      	"false")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"deprecated"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"confirm"
+			value      	"false")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"label"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"toolTipText"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"icon"
+			value      	"")))
+	    (object Attribute
+		tool       	"BITPlan"
+		name       	"default__Association"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"XMIId"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"isGUI"
+			value      	"true")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"toolTipText"
+			value      	"")))
+	    (object Attribute
+		tool       	"BITPlan"
+		name       	"default__Role"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"XMIId"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"transient"
+			value      	"false")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"isGUI"
+			value      	"true")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"page"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"label"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"toolTipText"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"icon"
+			value      	"")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"persistent"
+			value      	"false")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"showInGrid"
+			value      	"true")
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"isMandatory"
+			value      	"false")))
+	    (object Attribute
+		tool       	"BITPlan"
+		name       	"default__Inherit"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"BITPlan"
+			name       	"XMIId"
+			value      	"")))
+	    (object Attribute
+		tool       	"BITPlan"
+		name       	"HiddenTool"
+		value      	FALSE))
+	quid       	"5B97A8A80302"))

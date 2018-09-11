@@ -1,0 +1,15 @@
+
+(object Petal
+    version    	50
+    _written   	"Rose 8.5.0503.xxx"
+    charSet    	0)
+
+(object Class_Category "catB"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    quid       	"5B97A98100A4"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "ClassB"
+	    quid       	"5B97A90901D2"))
+    logical_presentations 	(list unit_reference_list))

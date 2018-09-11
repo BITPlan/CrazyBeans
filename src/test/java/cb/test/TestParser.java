@@ -16,6 +16,7 @@ import org.junit.Test;
 
 import cb.parser.PetalParser;
 import cb.petal.AccessQualified;
+import cb.petal.Class;
 import cb.petal.DescendingVisitor;
 import cb.petal.LogicalCategory;
 import cb.petal.PetalFile;
@@ -29,6 +30,7 @@ import cb.petal.Visibility;
  *
  */
 public class TestParser {
+  public static boolean debug = false;
 
   class AccessVisitor extends DescendingVisitor {
     public int visitCount = 0;
@@ -60,11 +62,44 @@ public class TestParser {
     AccessVisitor accessVisitor = new AccessVisitor();
     petalTree.accept(accessVisitor);
     assertEquals(136, accessVisitor.visitCount);
-    int expectedVisibilities[] = { 4, 0, 1,0, 5 };
+    int expectedVisibilities[] = { 4, 0, 1, 0, 5 };
     for (Visibility visibility : Visibility.values()) {
       assertEquals(visibility.toString(),
-          expectedVisibilities[visibility.ordinal()], 
+          expectedVisibilities[visibility.ordinal()],
           accessVisitor.visibilityCounter[visibility.ordinal()]);
     }
+  }
+
+  class ClassVisitor extends DescendingVisitor {
+    int classCount = 0;
+
+    public void visit(Class clazz) {
+      super.visit(clazz);
+      if (debug)
+        System.out.println(
+            String.format("%s(%s)", clazz.getQualifiedName(), clazz.getQuid()));
+      classCount++;
+    }
+  }
+
+  @Test
+  public void testPathMap() {
+    File petalFile = new File("examples/sgtest2018-09.mdl");
+    PetalObject.strict = true;
+    PetalFile petalTree = PetalParser.createParser(petalFile.getPath()).parse();
+    ClassVisitor classVisitor = new ClassVisitor();
+    petalTree.accept(classVisitor);
+    assertEquals(3, classVisitor.classCount);
+    assertEquals("5B97A8DD0075", petalTree
+        .getClassByQualifiedName("Logical View::com::bitplan::sgtest::ClassA")
+        .getQuid());
+    assertEquals("5B97A90901D2",
+        petalTree
+            .getClassByQualifiedName("Logical View::com::bitplan::catB::ClassB")
+            .getQuid());
+    assertEquals("5B97A9AC001F",
+        petalTree
+            .getClassByQualifiedName("Logical View::com::bitplan::catC::ClassC")
+            .getQuid());
   }
 }

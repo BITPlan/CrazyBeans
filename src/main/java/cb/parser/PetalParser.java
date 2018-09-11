@@ -19,16 +19,19 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Stack;
 import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import cb.petal.Design;
-import cb.petal.PetalNodeList;
 import cb.petal.Petal;
 import cb.petal.PetalFile;
 import cb.petal.PetalNode;
+import cb.petal.PetalNodeList;
 import cb.petal.PetalObject;
 import cb.petal.StringLiteral;
 import cb.petal.Value;
@@ -41,17 +44,26 @@ import cb.petal.Visitor;
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public class PetalParser {
+  protected static Logger LOGGER = Logger.getLogger("cb.parser");
   private Lexer lexer;
 
   private PetalNode current_parent = null;
-  private Stack<PetalNode> parent_stack = new Stack<PetalNode>(); // Stack<PetalNode>
-  private Map<String,String> pathMap = null;
+  private Stack<PetalNode> parent_stack = new Stack<PetalNode>();
+  private Map<String, String> pathMap = new HashMap<String, String>();
 
+  /**
+   * save the parent
+   * 
+   * @param new_parent
+   */
   private void saveParent(PetalNode new_parent) {
     parent_stack.push(current_parent);
     current_parent = new_parent;
   }
 
+  /**
+   * restore the parent
+   */
   private void restoreParent() {
     current_parent = (PetalNode) parent_stack.pop();
   }
@@ -60,12 +72,20 @@ public class PetalParser {
 
   /**
    * create a petal Parser with the given path Map
+   * 
    * @param r
    * @param pathMap
    */
-  public PetalParser(Reader r, Map<String,String> pathMap) {
+  public PetalParser(Reader r, Map<String, String> pathMap) {
     this.lexer = new Lexer(r);
-    this.pathMap = pathMap;
+    // if a pathMap was supplied use it
+    if (pathMap != null) {
+      this.pathMap = pathMap;
+    } else {
+      // create default Path Map entries
+      this.pathMap.put("$CRS_HOME", "&");
+      this.pathMap.put("$CURDIR", "&");
+    }
   }
 
   private java.util.List ignored_nodes = Collections.EMPTY_LIST;
@@ -87,7 +107,9 @@ public class PetalParser {
 
   /**
    * get filter flag for PetalNodes that should be ignored
-   * @param obj - the object to check
+   * 
+   * @param obj
+   *          - the object to check
    * @return - true if the object should be ignored
    */
   private boolean ignored(PetalNode obj) {
@@ -125,7 +147,8 @@ public class PetalParser {
     return match(kind, null);
   }
 
-  private ArrayList<String> list = new ArrayList<String>(); // Reused list to collect docs
+  private ArrayList<String> list = new ArrayList<String>(); // Reused list to
+                                                            // collect docs
 
   /**
    * (...)* wildcard
@@ -182,21 +205,25 @@ public class PetalParser {
 
   /**
    * create a parser for the given file name and pathMap
+   * 
    * @param file_name
    * @param pathMap
    * @return - the parser
    */
-  public static PetalParser createParser(String file_name, Map<String,String> pathMap) {
+  public static PetalParser createParser(String file_name,
+      Map<String, String> pathMap) {
     return createParser(new File(file_name), pathMap);
   }
 
   /**
    * create parser for the given Url and pathMap
+   * 
    * @param url
    * @param pathMap
    * @return -the parser
    */
-  public static PetalParser createParser(java.net.URL url, Map<String,String> pathMap) {
+  public static PetalParser createParser(java.net.URL url,
+      Map<String, String> pathMap) {
     try {
       return createParser(url.openStream(), pathMap);
     } catch (IOException e) {
@@ -208,6 +235,7 @@ public class PetalParser {
 
   /**
    * crate a parser for the given file
+   * 
    * @param file
    * @return - the parser
    */
@@ -217,11 +245,13 @@ public class PetalParser {
 
   /**
    * create a parser for the given file and pathMap
+   * 
    * @param file
    * @param pathMap
    * @return the parser
    */
-  public static PetalParser createParser(File file, Map<String,String> pathMap) {
+  public static PetalParser createParser(File file,
+      Map<String, String> pathMap) {
     try {
       PetalParser parser = new PetalParser(new FileReader(file), pathMap);
       String name = file.getName();
@@ -277,19 +307,19 @@ public class PetalParser {
         String str = (String) i.next();
 
         if (str.startsWith("$")) {
-          if (!str.toUpperCase().startsWith("$CURDIR")) {
-            String pathEntry = null;
+          String pathEntry = null;
 
-            if (pathMap != null) {
-              pathEntry = (String) pathMap.get(str);
-            }
-            if (pathEntry == null) {
-              throw new RuntimeException("Unknown variable " + str);
+          if (pathMap != null) {
+            pathEntry = (String) pathMap.get(str);
+          }
+          if (pathEntry == null) {
+            throw new RuntimeException("Unknown variable " + str);
+          } else {
+            if ("&".equals(pathEntry)) {
+              str = _current.getPath();
             } else {
               str = pathEntry;
             }
-          } else {
-            str = _current.getPath();
           }
         }
 
@@ -308,7 +338,8 @@ public class PetalParser {
     return createParser(stream, null);
   }
 
-  public static PetalParser createParser(Reader stream, Map<String,String> pathMap) {
+  public static PetalParser createParser(Reader stream,
+      Map<String, String> pathMap) {
     return new PetalParser(stream, pathMap);
   }
 
@@ -322,7 +353,8 @@ public class PetalParser {
     return createParser(stream, null);
   }
 
-  public static PetalParser createParser(InputStream stream, Map<String,String> pathMap) {
+  public static PetalParser createParser(InputStream stream,
+      Map<String, String> pathMap) {
     return new PetalParser(new InputStreamReader(stream), pathMap);
   }
 
@@ -390,11 +422,21 @@ public class PetalParser {
     if (cat != null) {
       File file = resolveReference(cat);
 
-      if ((file != null) && file.exists()) {
-        PetalParser p = PetalParser.createParser(file, pathMap);
-        p.current_parent = parent;
-        p.parseObject();
-        return p.parseObject();
+      if (file != null) {
+        if (file.exists()) {
+          PetalParser p = PetalParser.createParser(file, pathMap);
+          p.current_parent = parent;
+          p.parseObject();
+          return p.parseObject();
+        } else {
+          // file does not exist ...
+          String msg=String.format("%s does not exist",file.getPath());
+          if (PetalObject.strict) {
+            throw new RuntimeException(msg);
+          } else {
+            LOGGER.log(Level.WARNING, msg);
+          }
+        }
       }
     }
 
