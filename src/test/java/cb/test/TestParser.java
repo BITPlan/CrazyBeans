@@ -9,8 +9,12 @@
 package cb.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
+import java.util.Date;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -107,7 +111,13 @@ public class TestParser {
   public void testListFiles() {
     File petalFile = new File("examples/sgtest2018-09.mdl");
     PetalObject.strict = true;
-    PetalFile petalTree = PetalParser.createParser(petalFile.getPath()).parse();
-   
+    PetalParser parser=PetalParser.createParser(petalFile.getPath());
+    PetalFile petalTree =parser.parse();
+    assertNotNull(petalTree);
+    List<File> files = parser.getFiles();
+    assertEquals(3,files.size());
+    Date now=new Date();
+    assertFalse(parser.filesNewerThen(now));
+    
   }
 }

@@ -19,8 +19,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 import java.util.StringTokenizer;
@@ -51,6 +53,14 @@ public class PetalParser {
   private Stack<PetalNode> parent_stack = new Stack<PetalNode>();
   private Map<String, String> pathMap = new HashMap<String, String>();
 
+  public List<File> getFiles() {
+    return files;
+  }
+
+  public void setFiles(List<File> files) {
+    this.files = files;
+  }
+
   /**
    * save the parent
    * 
@@ -69,7 +79,7 @@ public class PetalParser {
   }
 
   private static ObjectFactory factory = ObjectFactory.getInstance();
-
+ 
   /**
    * create a petal Parser with the given path Map
    * 
@@ -88,7 +98,7 @@ public class PetalParser {
     }
   }
 
-  private java.util.List ignored_nodes = Collections.EMPTY_LIST;
+  private List<java.lang.Class> ignored_nodes = Collections.EMPTY_LIST;
 
   /**
    * If the parser finds such a node while building the petal tree, the node
@@ -254,6 +264,7 @@ public class PetalParser {
       Map<String, String> pathMap) {
     try {
       PetalParser parser = new PetalParser(new FileReader(file), pathMap);
+      parser.getFiles().add(file);
       String name = file.getName();
       int index = name.lastIndexOf('.');
 
@@ -269,6 +280,7 @@ public class PetalParser {
   }
 
   private File _current;
+  private List<File> files=new ArrayList<File>();
 
   /**
    * Set current, i.e., the directory where the source MDL file is located so
@@ -421,12 +433,13 @@ public class PetalParser {
      */
     if (cat != null) {
       File file = resolveReference(cat);
-
       if (file != null) {
         if (file.exists()) {
           PetalParser p = PetalParser.createParser(file, pathMap);
           p.current_parent = parent;
           p.parseObject();
+          // recursively add files from sub parsers
+          this.getFiles().addAll(p.getFiles());
           return p.parseObject();
         } else {
           // file does not exist ...
@@ -626,5 +639,20 @@ public class PetalParser {
    */
   public void setPathMap(Map pathMap) {
     this.pathMap = pathMap;
+  }
+
+  /**
+   * are there any files that are newer then the given date?
+   * @param date
+   * @return true if any newer
+   */
+  public boolean filesNewerThen(Date date) {
+    boolean newer=false;
+    for (File file:files) {
+      if (file.lastModified()>date.getTime()) {
+        return true;
+      }
+    }
+    return newer;
   }
 }
