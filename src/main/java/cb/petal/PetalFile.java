@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -33,6 +34,11 @@ public class PetalFile implements PetalNode, TreeModel {
 
 	static final long serialVersionUID = 5388875684404513535L;
 
+	/**
+	 * create  a petal file
+	 * @param petal
+	 * @param design
+	 */
 	public PetalFile(Petal petal, Design design) {
 		setPetal(petal);
 		setDesign(design);
@@ -116,7 +122,7 @@ public class PetalFile implements PetalNode, TreeModel {
 	/**
 	 * Register the quids for objects so they can be mapped back to objects.
 	 */
-	private HashMap quids = new HashMap(); // Map<String,PetalObject>
+	private Map<String,QuidObject> quids = new HashMap<String,QuidObject>(); 
 
 	/**
 	 * Register class by its quid property.
@@ -136,7 +142,7 @@ public class PetalFile implements PetalNode, TreeModel {
 	 * @return object by its "quid" (if registered via init())
 	 */
 	public final QuidObject getQuidObject(String quid) {
-		return (QuidObject) quids.get(quid);
+		return quids.get(quid);
 	}
 
 	/**
@@ -158,7 +164,7 @@ public class PetalFile implements PetalNode, TreeModel {
 		return getQuidObject(obj.getQuidu());
 	}
 
-	private HashMap classes = new HashMap();
+	private Map<String,Class> classes = new HashMap<String,Class>();
 
 	/**
 	 * Register class by its fully qualified name
@@ -171,7 +177,7 @@ public class PetalFile implements PetalNode, TreeModel {
 	 * @return class by its fully qualified name
 	 */
 	public final Class getClassByQualifiedName(String qual) {
-		return (Class) classes.get(qual);
+		return classes.get(qual);
 	}
 
 	private Map<String,java.util.List<Association>> assocs = new HashMap<String,java.util.List<Association>>(); 
@@ -199,7 +205,7 @@ public class PetalFile implements PetalNode, TreeModel {
 	 * Association.init() by default) one can look up what associations a class
 	 * has.
 	 */
-	public final java.util.List<Association> getAssociations(cb.petal.Class clazz) {
+	public final List<Association> getAssociations(cb.petal.Class clazz) {
 		return assocs.get(clazz.getQuid());
 	}
 
@@ -229,7 +235,7 @@ public class PetalFile implements PetalNode, TreeModel {
 
 	/**************************** TreeModel methods **********************/
 
-	private java.util.List<TreeModelListener> treeModelListeners = new ArrayList<TreeModelListener>();
+	private List<TreeModelListener> treeModelListeners = new ArrayList<TreeModelListener>();
 
 	/**
 	 * @return the root of the tree which is just "this" object.

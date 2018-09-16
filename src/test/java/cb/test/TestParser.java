@@ -102,4 +102,12 @@ public class TestParser {
             .getClassByQualifiedName("Logical View::com::bitplan::catC::ClassC")
             .getQuid());
   }
+  
+  @Test
+  public void testListFiles() {
+    File petalFile = new File("examples/sgtest2018-09.mdl");
+    PetalObject.strict = true;
+    PetalFile petalTree = PetalParser.createParser(petalFile.getPath()).parse();
+   
+  }
 }
