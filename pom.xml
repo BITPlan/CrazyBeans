@@ -14,7 +14,7 @@
 	<artifactId>org.crazybeans</artifactId>
 	<packaging>jar</packaging>
 	<name>CrazyBeans</name>
-	<version>1.5.6</version>
+	<version>1.5.7</version>
 	<description>Java library to read, modify or create Rational Rose petal files</description>
 	<properties>
 		<!-- for parent pom to work -->

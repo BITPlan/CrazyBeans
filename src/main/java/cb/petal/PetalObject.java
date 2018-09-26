@@ -22,6 +22,7 @@ import java.util.logging.Logger;
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public abstract class PetalObject implements PetalNode {
+  public static boolean debug=false;
   protected static Logger LOGGER = Logger.getLogger("cb.petal");
   static final long serialVersionUID = 7215267546012147332L;
 
@@ -301,6 +302,10 @@ public abstract class PetalObject implements PetalNode {
    */
   public String getPropertyAsString(String name) {
     PetalNode node = getProperty(name);
+    if (node == null) {
+      LOGGER.log(Level.FINER,"No such property: " + name + " for " + this.name);
+      return null;
+    }
     if (node instanceof StringLiteral) {
       StringLiteral literal = (StringLiteral) node;
 
@@ -360,11 +365,10 @@ public abstract class PetalObject implements PetalNode {
 
         return petalObject.getPropertyAsString(name);
       }
-    }
-
-    if (node == null) {
-      LOGGER.log(Level.FINER,"No such property: " + name + " for " + this.name);
-      return null;
+    } else {
+      if (debug)
+        LOGGER.log(Level.WARNING, String.format("getPropertyAs String not implemented for %s (%s)",name,node.getClass().getName()));
+      return node.toString();
     }
 
     return null;

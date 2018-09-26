@@ -6,3 +6,4 @@
 | 1.5.3   | 2016-11-29| improves Petal File reading by allowing non strict reading to ignore errors recreating .ser templates by running cb.util.Dump
 | 1.5.5   | 2018-09-06| fixes #7 adds Visibility convenience enumeration
 | 1.5.6   | 2018-09-16| fixes #8, #9 #10 
+| 1.5.7   | 2018-09-26| fixes #11 
