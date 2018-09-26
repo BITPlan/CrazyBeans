@@ -5,7 +5,6 @@
 (object Design "Logical View"
     is_unit    	TRUE
     is_loaded  	TRUE
-    file_name  	"Z:\\src\\java\\barat\\barat.mdl"
     quid       	"36C7397C0267"
     defaults   	(object defaults
 	rightMargin 	0.250000

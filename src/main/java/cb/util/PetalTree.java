@@ -43,6 +43,10 @@ public class PetalTree extends JTree {
   protected static final ImageIcon CLOSED_ICON = getIcon("CLOSED.GIF");
   protected static final ImageIcon LEAF_ICON = getIcon("LEAF.GIF");
 
+  /**
+   * construct me from the given file
+   * @param tree - the file to construct me from
+   */
   public PetalTree(PetalFile tree) {
     super(tree);
     getSelectionModel().setSelectionMode(
