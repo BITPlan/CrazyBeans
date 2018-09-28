@@ -13,16 +13,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Super class for all petal objects which have a list of
- * properties. Unfortunately, property names may occur multiply. This can
- * happen, e.g., if there are multiple notes attached to a class. Thus it
- * is not implemented with a HashMap as one might think.
+ * Super class for all petal objects which have a list of properties.
+ * Unfortunately, property names may occur multiply. This can happen, e.g., if
+ * there are multiple notes attached to a class. Thus it is not implemented with
+ * a HashMap as one might think.
  *
  * @version $Id: PetalObject.java,v 1.29 2005/06/06 11:50:17 moroff Exp $
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public abstract class PetalObject implements PetalNode {
-  public static boolean debug=false;
+  public static boolean debug = false;
   protected static Logger LOGGER = Logger.getLogger("cb.petal");
   static final long serialVersionUID = 7215267546012147332L;
 
@@ -83,8 +83,8 @@ public abstract class PetalObject implements PetalNode {
   }
 
   /**
-   * @return shallow copy of object, do not forget to assign a new quid
-   *         if you want to use it within the same model.
+   * @return shallow copy of object, do not forget to assign a new quid if you
+   *         want to use it within the same model.
    */
   @SuppressWarnings("unchecked")
   public java.lang.Object clone() {
@@ -124,7 +124,7 @@ public abstract class PetalObject implements PetalNode {
         return false;
       Iterator<PetalNode> j = values.iterator();
       for (Iterator<String> i = names.iterator(); i.hasNext();) {
-        String name =i.next();
+        String name = i.next();
         PetalNode value1 = (PetalNode) j.next();
         PetalNode value2 = obj.getProperty(name);
 
@@ -138,9 +138,9 @@ public abstract class PetalObject implements PetalNode {
   }
 
   /**
-   * Perform any initial actions after all properties have been set up.
-   * Called by PetalParser when all properties have been defined or when
-   * a new object created by the user is added to the model.
+   * Perform any initial actions after all properties have been set up. Called
+   * by PetalParser when all properties have been defined or when a new object
+   * created by the user is added to the model.
    */
   public void init() {
   }
@@ -178,8 +178,8 @@ public abstract class PetalObject implements PetalNode {
   }
 
   /**
-   * Override property at i, value's "parent" reference points to
-   * this object afterwards
+   * Override property at i, value's "parent" reference points to this object
+   * afterwards
    */
   public final void setProperty(int i, String name, PetalNode value) {
     if (value == null)
@@ -206,9 +206,9 @@ public abstract class PetalObject implements PetalNode {
   }
 
   /**
-   * This method is strict in that it does not use equals() to search
-   * the list of properties but ==, since values, in particular
-   * literals may occur more than once.
+   * This method is strict in that it does not use equals() to search the list
+   * of properties but ==, since values, in particular literals may occur more
+   * than once.
    */
   public final int indexOf(PetalNode value) {
     int j = 0;
@@ -281,6 +281,7 @@ public abstract class PetalObject implements PetalNode {
 
   /**
    * Override property if exists already or add it if not.
+   * 
    * @param name
    * @param value
    */
@@ -301,9 +302,17 @@ public abstract class PetalObject implements PetalNode {
    * @return given property, or null if it doesn't exist.
    */
   public String getPropertyAsString(String name) {
+    return getPropertyAsString(name, true);
+  }
+
+  /**
+   * @return given property, or null if it doesn't exist.
+   */
+  public String getPropertyAsString(String name, boolean withTuples) {
     PetalNode node = getProperty(name);
     if (node == null) {
-      LOGGER.log(Level.FINER,"No such property: " + name + " for " + this.name);
+      LOGGER.log(Level.FINER,
+          "No such property: " + name + " for " + this.name);
       return null;
     }
     if (node instanceof StringLiteral) {
@@ -323,51 +332,61 @@ public abstract class PetalObject implements PetalNode {
 
       return value.getStringValue();
     } else if (node instanceof Tuple) {
-      Tuple tuple = (Tuple) node;
+      if (!withTuples) {
+        return "!tuple!";
+      } else {
+        Tuple tuple = (Tuple) node;
+        java.lang.Object literal = tuple.getLiteralValue();
+        java.lang.Class literalClass = literal.getClass();
+        String literalKind = tuple.getName();
+        int literalValue = tuple.getValue();
+        Design design = getDesign();
+        Properties properties = (Properties) design.getProperty("properties");
+        PetalNodeList attributes = (PetalNodeList) properties
+            .getProperty("attributes");
+        PetalObject parent = (PetalObject) getParent();
+        String parentKind = parent.getName();
+        for (Iterator iter = attributes.getElements().iterator(); iter
+            .hasNext();) {
+          Attribute attribute = (Attribute) iter.next();
+          String attrName = attribute.getPropertyAsString("name");
 
-      java.lang.Object literal = tuple.getLiteralValue();
-      java.lang.Class literalClass = literal.getClass();
-      String literalKind = tuple.getName();
-      int literalValue = tuple.getValue();
-      Design design = getDesign();
-      Properties properties = (Properties) design.getProperty("properties");
-      PetalNodeList attributes = (PetalNodeList) properties.getProperty("attributes");
-      PetalObject parent = (PetalObject) getParent();
-      String parentKind = parent.getName();
-      for (Iterator iter = attributes.getElements().iterator(); iter.hasNext();) {
-        Attribute attribute = (Attribute) iter.next();
-        String attrName = attribute.getPropertyAsString("name");
+          if (attrName.endsWith(parentKind)) {
+            PetalNodeList list = (PetalNodeList) attribute.getValue();
 
-        if (attrName.endsWith(parentKind)) {
-          PetalNodeList list = (PetalNodeList) attribute.getValue();
+            for (Iterator iterator = list.getElements().iterator(); iterator
+                .hasNext();) {
+              Attribute attribute2 = (Attribute) iterator.next();
 
-          for (Iterator iterator = list.getElements().iterator(); iterator
-              .hasNext();) {
-            Attribute attribute2 = (Attribute) iterator.next();
+              if (attribute2.getPropertyAsString("name").equals(literalKind)) {
+                PetalNodeList list2 = (PetalNodeList) attribute2
+                    .getProperty("value");
 
-            if (attribute2.getPropertyAsString("name").equals(literalKind)) {
-              PetalNodeList list2 = (PetalNodeList) attribute2.getProperty("value");
+                for (Iterator iterator2 = list2.getElements()
+                    .iterator(); iterator2.hasNext();) {
+                  Attribute attribute3 = (Attribute) iterator2.next();
 
-              for (Iterator iterator2 = list2.getElements().iterator(); iterator2
-                  .hasNext();) {
-                Attribute attribute3 = (Attribute) iterator2.next();
-
-                if (attribute3.getPropertyAsInteger("value") == literalValue) {
-                  return attribute3.getPropertyAsString("name");
+                  if (attribute3
+                      .getPropertyAsInteger("value") == literalValue) {
+                    return attribute3.getPropertyAsString("name");
+                  }
                 }
               }
             }
           }
-        }
-      }
-      if (literal instanceof PetalObject) {
-        PetalObject petalObject = (PetalObject) literal;
 
-        return petalObject.getPropertyAsString(name);
+          if (literal instanceof PetalObject) {
+            PetalObject petalObject = (PetalObject) literal;
+
+            return petalObject.getPropertyAsString(name);
+          }
+        }
       }
     } else {
       if (debug)
-        LOGGER.log(Level.WARNING, String.format("getPropertyAs String not implemented for %s (%s)",name,node.getClass().getName()));
+        LOGGER.log(Level.WARNING,
+            String.format("getPropertyAs String not implemented for %s (%s)",
+                name, node.getClass().getName()));
       return node.toString();
     }
 
@@ -525,6 +544,7 @@ public abstract class PetalObject implements PetalNode {
 
   /**
    * get the properties with the given name
+   * 
    * @param name
    * @return all properties with key "name"
    */
@@ -532,7 +552,7 @@ public abstract class PetalObject implements PetalNode {
     ArrayList<PetalNode> list = new ArrayList<PetalNode>();
     Iterator<PetalNode> j = values.iterator();
     for (Iterator<String> i = names.iterator(); i.hasNext();) {
-      String s =  i.next();
+      String s = i.next();
       PetalNode o = j.next();
 
       if (s.equals(name))
@@ -553,7 +573,7 @@ public abstract class PetalObject implements PetalNode {
    * @return all property values
    */
   public ArrayList<PetalNode> getPropertyList() {
-    return  (ArrayList<PetalNode>) values.clone();
+    return (ArrayList<PetalNode>) values.clone();
   }
 
   /**
@@ -604,9 +624,8 @@ public abstract class PetalObject implements PetalNode {
 
   /**
    * Get fully qualified name for an object that must implement the Named
-   * interface
-   * and is contained by further Named objects.
-   * Typical nesting of an object is (Design .. (ClassCategory ... (Class ...)))
+   * interface and is contained by further Named objects. Typical nesting of an
+   * object is (Design .. (ClassCategory ... (Class ...)))
    *
    * @see Named
    * @see Class
