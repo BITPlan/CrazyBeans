@@ -170,7 +170,8 @@ public abstract class PetalObject implements PetalNode {
    */
   public final PetalFile getRoot() {
     PetalNode parent = this.parent;
-
+    if (parent==null)
+    	return null;
     while (!(parent instanceof PetalFile))
       parent = ((PetalObject) parent).parent;
 

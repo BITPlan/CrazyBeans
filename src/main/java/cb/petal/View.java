@@ -11,165 +11,183 @@ package cb.petal;
 import java.util.*;
 
 /**
- * Super class for all view objects used in the diagrams. They all contain a tag.
+ * Super class for all view objects used in the diagrams. They all contain a
+ * tag.
  *
  * @version $Id: View.java,v 1.10 2001/07/09 07:48:52 dahm Exp $
- * @author  <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
+ * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public abstract class View extends PetalObject implements Named, Tagged {
-  private int tag = -1;
+	private int tag = -1;
 
-  /**
-   * create a View
-   * @param parent
-   * @param name
-   * @param params
-   * @param tag
-   */
-  protected View(PetalNode parent, String name, Collection params, int tag) {
-    super(parent, name, params);
-    setTag(tag);
-  }
+	/**
+	 * create a View
+	 * 
+	 * @param parent
+	 * @param name
+	 * @param params
+	 * @param tag
+	 */
+	protected View(PetalNode parent, String name, Collection params, int tag) {
+		super(parent, name, params);
+		setTag(tag);
+	}
 
-  protected View(String name) {
-    super(name);
-  }
-  
-  public void setTag(int t) { 
-	  tag = t;
-	  getRoot().registerView(tag,this);
-  }
+	protected View(String name) {
+		super(name);
+	}
 
-  public int  getTag()      { return tag; }
+	public void setTag(int t) {
+		tag = t;
+		PetalFile root = getRoot();
+		if (root != null)
+			root.registerView(tag, this);
+	}
 
-  public String toString() { 
-    StringBuffer buf = new StringBuffer("(object " + getName());
+	public int getTag() {
+		return tag;
+	}
 
-    for(Iterator i = params.iterator(); i.hasNext(); )
-      buf.append(" \"" + i.next() + "\"");
+	public String toString() {
+		StringBuffer buf = new StringBuffer("(object " + getName());
 
-    if(tag > 0)
-      buf.append( " @" + tag);
+		for (Iterator i = params.iterator(); i.hasNext();)
+			buf.append(" \"" + i.next() + "\"");
 
-    buf.append("\n");
+		if (tag > 0)
+			buf.append(" @" + tag);
 
-    for(Iterator i = getNames().iterator(), j = getPropertyList().iterator(); i.hasNext(); ) {
-      buf.append(i.next() + "\t" + j.next());
-      
-      if(i.hasNext())
-        buf.append("\n");
-    }
+		buf.append("\n");
 
-    buf.append(")\n");
-    
-    return buf.toString();
-  }
+		for (Iterator i = getNames().iterator(), j = getPropertyList().iterator(); i.hasNext();) {
+			buf.append(i.next() + "\t" + j.next());
 
-  public void setNameParameter(String o) {
-    params.set(0, o);
-  }
+			if (i.hasNext())
+				buf.append("\n");
+		}
 
-  public String getNameParameter() {
-    return (String)params.get(0);
-  }
+		buf.append(")\n");
 
-  public Tag getClient() {
-    return (Tag)getProperty("client");
-  }
+		return buf.toString();
+	}
 
-  public void setClient(Tag o) {
-    defineProperty("client", o);
-  }
-  
-  /**
-   * get the client view
-   * @return the client View
-   */
-  public View getClientView() {
-	View clientView= getRoot().getView(getClient().getValue());
-	return clientView;
-  }
+	public void setNameParameter(String o) {
+		params.set(0, o);
+	}
 
-  public Tag getSupplier() {
-    return (Tag)getProperty("supplier");
-  }
+	public String getNameParameter() {
+		return (String) params.get(0);
+	}
 
-  public void setSupplier(Tag o) {
-    defineProperty("supplier", o);
-  }
-  
-  /**
-   * get the supplier view
-   * @return the supplier View
-   */
-  public View getSupplierView() {
-	View supplierView= getRoot().getView(getSupplier().getValue());
-	return supplierView;
-  }
+	public Tag getClient() {
+		return (Tag) getProperty("client");
+	}
 
+	public void setClient(Tag o) {
+		defineProperty("client", o);
+	}
 
-  public int getLineColor() {
-    return getPropertyAsInteger("line_color");
-  }
+	/**
+	 * get the client view
+	 * 
+	 * @return the client View
+	 */
+	public View getClientView() {
+		PetalFile root = getRoot();
+		View clientView = null;
+		if (root != null) {
+			Tag client = getClient();
+			if (client != null)
+				clientView = root.getView(client.getValue());
+		}
+		return clientView;
+	}
 
-  public void setLineColor(int o) {
-    defineProperty("line_color", o);
-  }
+	public Tag getSupplier() {
+		return (Tag) getProperty("supplier");
+	}
 
-  public int getLineStyle() {
-    return getPropertyAsInteger("line_style");
-  }
+	public void setSupplier(Tag o) {
+		defineProperty("supplier", o);
+	}
 
-  public void setLineStyle(int o) {
-    defineProperty("line_style", o);
-  }
+	/**
+	 * get the supplier view
+	 * 
+	 * @return the supplier View
+	 */
+	public View getSupplierView() {
+		PetalFile root = getRoot();
+		View supplierView = null;
+		if (root != null) {
+			Tag supplier = getSupplier();
+			if (supplier != null)
+				supplierView = root.getView(supplier.getValue());
+		}
+		return supplierView;
+	}
 
-  public String getIcon() {
-    return getPropertyAsString("icon");
-  }
+	public int getLineColor() {
+		return getPropertyAsInteger("line_color");
+	}
 
-  public void setIcon(String o) {
-    defineProperty("icon", o);
-  }
+	public void setLineColor(int o) {
+		defineProperty("line_color", o);
+	}
 
-  public String getIconStyle() {
-    return getPropertyAsString("icon_style");
-  }
+	public int getLineStyle() {
+		return getPropertyAsInteger("line_style");
+	}
 
-  public void setIconStyle(String o) {
-    defineProperty("icon_style", o);
-  }
+	public void setLineStyle(int o) {
+		defineProperty("line_style", o);
+	}
 
-  public int getFillColor() {
-    return getPropertyAsInteger("fill_color");
-  }
+	public String getIcon() {
+		return getPropertyAsString("icon");
+	}
 
-  public void setFillColor(int o) {
-    defineProperty("fill_color", o);
-  }
+	public void setIcon(String o) {
+		defineProperty("icon", o);
+	}
 
-  public int getWidth() {
-    return getPropertyAsInteger("width");
-  }
+	public String getIconStyle() {
+		return getPropertyAsString("icon_style");
+	}
 
-  public void setWidth(int o) {
-    defineProperty("width", o);
-  }
+	public void setIconStyle(String o) {
+		defineProperty("icon_style", o);
+	}
 
-  public int getHeight() {
-    return getPropertyAsInteger("height");
-  }
+	public int getFillColor() {
+		return getPropertyAsInteger("fill_color");
+	}
 
-  public void setHeight(int o) {
-    defineProperty("height", o);
-  }
+	public void setFillColor(int o) {
+		defineProperty("fill_color", o);
+	}
 
-  public Location getLocation() {
-    return (Location)getProperty("location");
-  }
+	public int getWidth() {
+		return getPropertyAsInteger("width");
+	}
 
-  public void setLocation(Location o) {
-    defineProperty("location", o);
-  }
+	public void setWidth(int o) {
+		defineProperty("width", o);
+	}
+
+	public int getHeight() {
+		return getPropertyAsInteger("height");
+	}
+
+	public void setHeight(int o) {
+		defineProperty("height", o);
+	}
+
+	public Location getLocation() {
+		return (Location) getProperty("location");
+	}
+
+	public void setLocation(Location o) {
+		defineProperty("location", o);
+	}
 }
-
