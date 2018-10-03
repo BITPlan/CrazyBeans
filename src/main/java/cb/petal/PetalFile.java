@@ -130,6 +130,30 @@ public class PetalFile implements PetalNode, TreeModel {
 	public final void registerQuidObject(String quid, QuidObject obj) {
 		quids.put(quid, obj);
 	}
+	
+	/**
+	 * register views by tag
+	 */
+	private Map<Integer,View> views=new HashMap<Integer,View>();
+	
+	/**
+	 * add the view to the map of views
+	 * @param tag
+	 * @param view
+	 */
+	public void registerView(int tag, View view) {
+	  views.put(tag,view);
+	}
+	
+	/**
+	 * get the view by the given Tag
+	 * @param tag
+	 * @return the view
+	 */
+	public View getView(int tag) {
+	  View view=views.get(tag);
+	  return view;
+	}
 
 	/**
 	 * Register class by its "quid" property.

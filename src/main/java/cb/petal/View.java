@@ -19,6 +19,13 @@ import java.util.*;
 public abstract class View extends PetalObject implements Named, Tagged {
   private int tag = -1;
 
+  /**
+   * create a View
+   * @param parent
+   * @param name
+   * @param params
+   * @param tag
+   */
   protected View(PetalNode parent, String name, Collection params, int tag) {
     super(parent, name, params);
     setTag(tag);
@@ -28,7 +35,10 @@ public abstract class View extends PetalObject implements Named, Tagged {
     super(name);
   }
   
-  public void setTag(int t) { tag = t; }
+  public void setTag(int t) { 
+	  tag = t;
+	  getRoot().registerView(tag,this);
+  }
 
   public int  getTag()      { return tag; }
 
@@ -70,6 +80,15 @@ public abstract class View extends PetalObject implements Named, Tagged {
   public void setClient(Tag o) {
     defineProperty("client", o);
   }
+  
+  /**
+   * get the client view
+   * @return the client View
+   */
+  public View getClientView() {
+	View clientView= getRoot().getView(getClient().getValue());
+	return clientView;
+  }
 
   public Tag getSupplier() {
     return (Tag)getProperty("supplier");
@@ -78,6 +97,16 @@ public abstract class View extends PetalObject implements Named, Tagged {
   public void setSupplier(Tag o) {
     defineProperty("supplier", o);
   }
+  
+  /**
+   * get the supplier view
+   * @return the supplier View
+   */
+  public View getSupplierView() {
+	View supplierView= getRoot().getView(getSupplier().getValue());
+	return supplierView;
+  }
+
 
   public int getLineColor() {
     return getPropertyAsInteger("line_color");

@@ -11,6 +11,7 @@ package cb.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.util.Date;
@@ -21,10 +22,13 @@ import org.junit.Test;
 import cb.parser.PetalParser;
 import cb.petal.AccessQualified;
 import cb.petal.Class;
+import cb.petal.ClassView;
 import cb.petal.DescendingVisitor;
+import cb.petal.InheritView;
 import cb.petal.LogicalCategory;
 import cb.petal.PetalFile;
 import cb.petal.PetalObject;
+import cb.petal.View;
 import cb.petal.Visibility;
 
 /**
@@ -119,5 +123,24 @@ public class TestParser {
     Date now=new Date();
     assertFalse(parser.filesNewerThen(now));
     
+  }
+  
+  @Test
+  /**
+   * test for https://github.com/BITPlan/CrazyBeans/issues/12
+   */
+  public void testTagLookup() {
+	File petalFile = new File("examples/Hospital98.mdl");
+	PetalObject.strict = true;
+	PetalFile petalTree = PetalParser.createParser(petalFile.getPath()).parse();
+	View v1=petalTree.getView(147);
+	assertEquals(147,v1.getTag());
+	assertTrue(v1 instanceof InheritView);
+	View sview = v1.getSupplierView();
+	View cview = v1.getClientView();
+	assertEquals(134,sview.getTag());
+	assertEquals(121,cview.getTag());
+	assertTrue(sview instanceof ClassView);
+	assertTrue(cview instanceof ClassView);
   }
 }
