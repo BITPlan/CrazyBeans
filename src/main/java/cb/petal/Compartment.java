@@ -7,7 +7,9 @@
  * and the license as outlined there applies
  */
 package cb.petal;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Represents Compartment object
@@ -82,5 +84,19 @@ public class Compartment extends PetalObject {
 
   public void accept(Visitor v) {
     v.visit(this);
+  }
+
+  /**
+   * get the compartment items of this compartment 
+   * @return the list of strings
+   */
+  public List<String> getCompartmentItems() {
+    List<String> citems=new ArrayList<String>();
+    PetalNodeList citemNodes = (PetalNodeList) getProperty("compartmentItems");
+    for (PetalNode citemNode:citemNodes.get()) {
+      StringLiteral citem=(StringLiteral) citemNode;
+      citems.add(citem.getValue());
+    }
+    return citems;
   }
 }

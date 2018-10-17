@@ -114,4 +114,4 @@ based on the githubytized version of https://github.com/matthewmeyer
 | 1.5.5   | 2018-09-06| fixes #7 adds Visibility convenience enumeration
 | 1.5.6   | 2018-09-16| fixes #8, #9 #10 
 | 1.5.7   | 2018-09-26| fixes #11 
-| 1.5.8   | 2018-10-03| fixes #12 - Tag lookup for Views, clientView, supplierView
+| 1.5.8   | 2018-10-17| fixes #12 - Tag lookup for Views, clientView, supplierView, fixes #13 compartment.getCompartmentItems()

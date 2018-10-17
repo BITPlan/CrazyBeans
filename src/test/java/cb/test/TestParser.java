@@ -23,10 +23,13 @@ import cb.parser.PetalParser;
 import cb.petal.AccessQualified;
 import cb.petal.Class;
 import cb.petal.ClassView;
+import cb.petal.Compartment;
 import cb.petal.DescendingVisitor;
 import cb.petal.InheritView;
 import cb.petal.LogicalCategory;
 import cb.petal.PetalFile;
+import cb.petal.PetalNode;
+import cb.petal.PetalNodeList;
 import cb.petal.PetalObject;
 import cb.petal.View;
 import cb.petal.Visibility;
@@ -110,37 +113,53 @@ public class TestParser {
             .getClassByQualifiedName("Logical View::com::bitplan::catC::ClassC")
             .getQuid());
   }
-  
+
   @Test
   public void testListFiles() {
     File petalFile = new File("examples/sgtest2018-09.mdl");
     PetalObject.strict = true;
-    PetalParser parser=PetalParser.createParser(petalFile.getPath());
-    PetalFile petalTree =parser.parse();
+    PetalParser parser = PetalParser.createParser(petalFile.getPath());
+    PetalFile petalTree = parser.parse();
     assertNotNull(petalTree);
     List<File> files = parser.getFiles();
-    assertEquals(3,files.size());
-    Date now=new Date();
+    assertEquals(3, files.size());
+    Date now = new Date();
     assertFalse(parser.filesNewerThen(now));
-    
+
   }
-  
+
   @Test
   /**
    * test for https://github.com/BITPlan/CrazyBeans/issues/12
    */
   public void testTagLookup() {
-	File petalFile = new File("examples/Hospital98.mdl");
-	PetalObject.strict = true;
-	PetalFile petalTree = PetalParser.createParser(petalFile.getPath()).parse();
-	View v1=petalTree.getView(147);
-	assertEquals(147,v1.getTag());
-	assertTrue(v1 instanceof InheritView);
-	View sview = v1.getSupplierView();
-	View cview = v1.getClientView();
-	assertEquals(134,sview.getTag());
-	assertEquals(121,cview.getTag());
-	assertTrue(sview instanceof ClassView);
-	assertTrue(cview instanceof ClassView);
+    File petalFile = new File("examples/Hospital98.mdl");
+    PetalObject.strict = true;
+    PetalFile petalTree = PetalParser.createParser(petalFile.getPath()).parse();
+    View v1 = petalTree.getView(147);
+    assertEquals(147, v1.getTag());
+    assertTrue(v1 instanceof InheritView);
+    View sview = v1.getSupplierView();
+    View cview = v1.getClientView();
+    assertEquals(134, sview.getTag());
+    assertEquals(121, cview.getTag());
+    assertTrue(sview instanceof ClassView);
+    assertTrue(cview instanceof ClassView);
+  }
+  
+  @Test
+  public void testCompartmentItems() {
+    File petalFile = new File("examples/ComponentDiagram98.mdl");
+    PetalObject.strict = true;
+    PetalFile petalTree = PetalParser.createParser(petalFile.getPath()).parse();
+    ClassView courseView=(ClassView) petalTree.getView(154);
+    assertEquals("Logical View::UniversityArtifacts::Course",courseView.getQualifiedNameParameter());
+    Compartment compartment = courseView.getCompartment();
+    assertEquals(7,compartment.getChildCount());
+    List<String> citems = compartment.getCompartmentItems();  
+    assertEquals(3,citems.size());
+    assertEquals("+ getName()",citems.get(0));
+    assertEquals("+ addProfessor()",citems.get(1));
+    assertEquals("- name",citems.get(2));
   }
 }
