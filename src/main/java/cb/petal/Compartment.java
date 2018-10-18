@@ -7,6 +7,7 @@
  * and the license as outlined there applies
  */
 package cb.petal;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
  * Represents Compartment object
  *
  * @version $Id: Compartment.java,v 1.7 2001/06/22 09:10:36 dahm Exp $
- * @author  <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
+ * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public class Compartment extends PetalObject {
   public Compartment(PetalNode parent, Collection params) {
@@ -27,7 +28,7 @@ public class Compartment extends PetalObject {
   }
 
   public Tag getParentView() {
-    return (Tag)getProperty("Parent_View");
+    return (Tag) getProperty("Parent_View");
   }
 
   public void setParentView(Tag o) {
@@ -35,7 +36,7 @@ public class Compartment extends PetalObject {
   }
 
   public Location getLocation() {
-    return (Location)getProperty("location");
+    return (Location) getProperty("location");
   }
 
   public void setLocation(Location o) {
@@ -87,15 +88,19 @@ public class Compartment extends PetalObject {
   }
 
   /**
-   * get the compartment items of this compartment 
-   * @return the list of strings
+   * get the compartment items of this compartment
+   * 
+   * @return the list of strings or null if there are no compartment items
    */
   public List<String> getCompartmentItems() {
-    List<String> citems=new ArrayList<String>();
+    List<String> citems = null;
     PetalNodeList citemNodes = (PetalNodeList) getProperty("compartmentItems");
-    for (PetalNode citemNode:citemNodes.get()) {
-      StringLiteral citem=(StringLiteral) citemNode;
-      citems.add(citem.getValue());
+    if (citemNodes != null) {
+      citems = new ArrayList<String>();
+      for (PetalNode citemNode : citemNodes.get()) {
+        StringLiteral citem = (StringLiteral) citemNode;
+        citems.add(citem.getValue());
+      }
     }
     return citems;
   }
