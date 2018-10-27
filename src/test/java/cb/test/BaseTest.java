@@ -40,39 +40,42 @@ public class BaseTest {
     String modelName;
     String srcRoot;
     public PathMap pathMap;
-    static Map<String,Example> examples=new HashMap<String,Example>();
+    static Map<String, Example> examples = new HashMap<String, Example>();
 
     /**
      * create an Example for the given Model name
+     * 
      * @param name
      */
-    public Example(String name, String ...pathEntries) {
-      init(name,name + ".mdl", name);
-      pathMap=new PathMap(pathEntries);
+    public Example(String name, String... pathEntries) {
+      init(name, name + ".mdl", name);
+      pathMap = new PathMap(pathEntries);
     }
 
     /**
      * create an Example for the given Modelname with the given source Root
+     * 
      * @param modelName
      * @param srcRoot
      */
-    public void init(String name,String modelName, String srcRoot) {
-      this.name=name;
+    public void init(String name, String modelName, String srcRoot) {
+      this.name = name;
       this.modelName = modelName;
       this.srcRoot = srcRoot;
       examples.put(name, this);
     }
-    
+
     /**
      * return the example with the given name
+     * 
      * @param name
      * @return
      */
     public static Example get(String name) {
-      Example result=examples.get(name);
+      Example result = examples.get(name);
       return result;
     }
-    
+
     /**
      * get the file path for me
      * 
@@ -82,7 +85,6 @@ public class BaseTest {
       String result = "examples" + File.separatorChar + modelName;
       return result;
     }
-
 
     /**
      * get a source Directory root in the given subDirectory of the standard
@@ -104,9 +106,10 @@ public class BaseTest {
    */
   protected Example[] exampleModels = { new Example("Barat"),
       new Example("empty"),
-      new Example("JDK-12_01","$FRAMEWORK_PATH","./javaframework"), 
+      new Example("JDK-12_01", "$FRAMEWORK_PATH", "./javaframework"),
       new Example("project"), new Example("ComponentDiagram98"),
-      new Example("RUP01"), new Example("uni"), new Example("Hospital98") };
+      new Example("RUP01"), new Example("uni"), new Example("Hospital98"),
+      new Example("AnswerinMachine") };
 
   /**
    * enable debugging

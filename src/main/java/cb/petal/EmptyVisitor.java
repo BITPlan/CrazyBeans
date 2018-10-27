@@ -132,6 +132,8 @@ public class EmptyVisitor implements Visitor {
 
   public void visit(TransView obj) { }
 
+  public void visit(SelfTransView obj) { }
+
   public void visit(ActionTime obj) { }
 
   public void visit(StateDiagram obj) { }

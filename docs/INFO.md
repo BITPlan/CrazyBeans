@@ -71,3 +71,8 @@ The original CrazyBeans framework is copyright (2001) Markus Dahm.
 This fork is Copyright(c) 2015 BITPlan GmbH (Owner: Wolfgang Fahl)
 
 based on the githubytized version of https://github.com/matthewmeyer
+
+## CREDITS
+The AnsweringMachine Example file is from
+https://github.com/adombroski/xslt-cookbook/blob/master/xsltckbk/XSLTCkBkCode_Edition_1/code-gen/AnswerinMachine.mdl
+

@@ -28,8 +28,6 @@ import cb.petal.DescendingVisitor;
 import cb.petal.InheritView;
 import cb.petal.LogicalCategory;
 import cb.petal.PetalFile;
-import cb.petal.PetalNode;
-import cb.petal.PetalNodeList;
 import cb.petal.PetalObject;
 import cb.petal.View;
 import cb.petal.Visibility;
@@ -161,5 +159,15 @@ public class TestParser {
     assertEquals("+ getName()",citems.get(0));
     assertEquals("+ addProfessor()",citems.get(1));
     assertEquals("- name",citems.get(2));
+  }
+  
+  @Test
+  public void testSelfTransViewSupport() {
+    File petalFile = new File("examples/AnswerinMachine.mdl");
+    PetalObject.strict = true;
+    PetalFile petalTree = PetalParser.createParser(petalFile.getPath()).parse();
+    View selfTransView = petalTree.getView(5);
+    assertNotNull(selfTransView);
+    System.out.println(selfTransView.getClass().getName());
   }
 }

@@ -84,6 +84,7 @@ public interface Visitor {
   public void visit(Event obj);
   public void visit(StateView obj);
   public void visit(TransView obj);
+  public void visit(SelfTransView obj);
   public void visit(ActionTime obj);
   public void visit(StateDiagram obj);
   public void visit(State obj);

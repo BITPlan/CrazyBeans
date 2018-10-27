@@ -153,6 +153,8 @@ public class DescendingVisitor implements Visitor {
 
   public void visit(TransView obj) { visitObject(obj); }
 
+  public void visit(SelfTransView obj) { visitObject(obj); }
+  
   public void visit(ActionTime obj) { visitObject(obj); }
 
   public void visit(StateDiagram obj) { visitObject(obj); }
