@@ -20,16 +20,20 @@ public class SelfTransView extends QuiduView {
   private static final long serialVersionUID = -6776083763275745763L;
 
   /**
-   * construct a simple View Object
+   * construct a SelfTransView object
+   * 
    * @param parent
-   * @param name
    * @param params
    * @param tag
    */
-  public SelfTransView(PetalNode parent, String name, Collection params, int tag) {
-    super(parent, name, params, tag);
+  public SelfTransView(PetalNode parent, Collection params, int tag) {
+    super(parent, "SelfTransView", params, tag);
   }
-  
+
+  public SelfTransView() {
+    super("SelfTransView");
+  }
+
   public void accept(Visitor v) {
     v.visit(this);
   }
