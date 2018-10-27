@@ -8,3 +8,4 @@
 | 1.5.6   | 2018-09-16| fixes #8, #9 #10 
 | 1.5.7   | 2018-09-26| fixes #11 
 | 1.5.8   | 2018-10-17| fixes #12 - Tag lookup for Views, clientView, supplierView, fixes #13 compartment.getCompartmentItems()
+| 1.5.9   | 2018-10-27| fixes #13 - Compartment Items, fixes #14 PathMap from ini / registry 

@@ -34,10 +34,11 @@ public class TestPetalTreeView extends BaseTest {
 				String exampleModelFilePath = exampleModel.getFilePath();
 				try {
 					PetalTreeView petalTreeView=new PetalTreeView();
-					petalTreeView.showTree(exampleModelFilePath);
+					petalTreeView.showTree(exampleModelFilePath,exampleModel.pathMap);
 					Thread.sleep(viewPause);
 				} catch (Exception e) {
-					LOGGER.log(Level.WARNING,exampleModelFilePath+":"+e.getMessage());
+					LOGGER.log(Level.WARNING,exampleModelFilePath+":"+e.getMessage(),e);
+					e.printStackTrace();
 				}
 				
 			}

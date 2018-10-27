@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import cb.parser.PathMap;
 import cb.util.Constants.TmpMode;
 import cb.util.PetalObjectFactory;
 
@@ -38,14 +39,16 @@ public class BaseTest {
     String name;
     String modelName;
     String srcRoot;
+    public PathMap pathMap;
     static Map<String,Example> examples=new HashMap<String,Example>();
 
     /**
      * create an Example for the given Model name
      * @param name
      */
-    public Example(String name) {
-      this(name,name + ".mdl", name);
+    public Example(String name, String ...pathEntries) {
+      init(name,name + ".mdl", name);
+      pathMap=new PathMap(pathEntries);
     }
 
     /**
@@ -53,7 +56,7 @@ public class BaseTest {
      * @param modelName
      * @param srcRoot
      */
-    public Example(String name,String modelName, String srcRoot) {
+    public void init(String name,String modelName, String srcRoot) {
       this.name=name;
       this.modelName = modelName;
       this.srcRoot = srcRoot;
@@ -101,7 +104,7 @@ public class BaseTest {
    */
   protected Example[] exampleModels = { new Example("Barat"),
       new Example("empty"),
-      new Example("JDK-12_01"), // FIXME throws unknown variable exception
+      new Example("JDK-12_01","$FRAMEWORK_PATH","./javaframework"), 
       new Example("project"), new Example("ComponentDiagram98"),
       new Example("RUP01"), new Example("uni"), new Example("Hospital98") };
 

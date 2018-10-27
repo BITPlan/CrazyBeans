@@ -5,8 +5,6 @@
  * This source is part of
  * https://github.com/BITPlan/CrazyBeans
  * and the license as outlined there applies
- *
- * @since Nov 18, 2004
  */
 package cb.petaltools;
 

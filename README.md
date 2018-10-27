@@ -2,7 +2,7 @@
 [Java library to read, modify or create Rational Rose petal files](http://www.bitplan.com/CrazyBeans) 
 
 [![Travis (.org)](https://img.shields.io/travis/BITPlan/CrazyBeans.svg)](https://travis-ci.org/BITPlan/CrazyBeans)
-[![Maven Central](https://img.shields.io/maven-central/v/com.bitplan/org.crazybeans.svg)](https://search.maven.org/artifact/com.bitplan/org.crazybeans/1.5.8/jar)
+[![Maven Central](https://img.shields.io/maven-central/v/com.bitplan/org.crazybeans.svg)](https://search.maven.org/artifact/com.bitplan/org.crazybeans/1.5.9/jar)
 [![GitHub issues](https://img.shields.io/github/issues/BITPlan/CrazyBeans.svg)](https://github.com/BITPlan/CrazyBeans/issues)
 [![GitHub issues](https://img.shields.io/github/issues-closed/BITPlan/CrazyBeans.svg)](https://github.com/BITPlan/CrazyBeans/issues/?q=is%3Aissue+is%3Aclosed)
 [![GitHub](https://img.shields.io/github/license/BITPlan/CrazyBeans.svg)](https://www.apache.org/licenses/LICENSE-2.0)
@@ -20,11 +20,11 @@ Maven dependency
 <dependency>
   <groupId>com.bitplan</groupId>
   <artifactId>org.crazybeans</artifactId>
-  <version>1.5.8</version>
+  <version>1.5.9</version>
 </dependency>
 ```
 
-[Current release at repo1.maven.org](http://repo1.maven.org/maven2/com/bitplan/org.crazybeans/1.5.8/)
+[Current release at repo1.maven.org](http://repo1.maven.org/maven2/com/bitplan/org.crazybeans/1.5.9/)
 
 ### How to build
 ```
@@ -115,3 +115,4 @@ based on the githubytized version of https://github.com/matthewmeyer
 | 1.5.6   | 2018-09-16| fixes #8, #9 #10 
 | 1.5.7   | 2018-09-26| fixes #11 
 | 1.5.8   | 2018-10-17| fixes #12 - Tag lookup for Views, clientView, supplierView, fixes #13 compartment.getCompartmentItems()
+| 1.5.9   | 2018-10-27| fixes #13 - Compartment Items, fixes #14 PathMap from ini / registry 

@@ -19,9 +19,9 @@ import org.junit.runners.Suite;
  *
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ TestTemplates.class, TestUniversityModel.class,
+@Suite.SuiteClasses({ TestTemplates.class, TestPathMap.class, TestUniversityModel.class,
     TestGenerator.class, TestPetalTreeView.class, TestPetalTool.class,
-    TestTaggedValues.class, TestParser.class })
+    TestTaggedValues.class, TestParser.class})
 public class TestSuite {
 
 }

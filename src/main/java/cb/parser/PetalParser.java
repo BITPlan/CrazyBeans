@@ -51,7 +51,7 @@ public class PetalParser {
 
   private PetalNode current_parent = null;
   private Stack<PetalNode> parent_stack = new Stack<PetalNode>();
-  private Map<String, String> pathMap = new HashMap<String, String>();
+  private PathMap pathMap;
 
   public List<File> getFiles() {
     return files;
@@ -86,15 +86,13 @@ public class PetalParser {
    * @param r
    * @param pathMap
    */
-  public PetalParser(Reader r, Map<String, String> pathMap) {
+  public PetalParser(Reader r, PathMap pathMap) {
     this.lexer = new Lexer(r);
     // if a pathMap was supplied use it
     if (pathMap != null) {
       this.pathMap = pathMap;
     } else {
-      // create default Path Map entries
-      this.pathMap.put("$CRS_HOME", "&");
-      this.pathMap.put("$CURDIR", "&");
+      this.pathMap=new PathMap();
     }
   }
 
@@ -221,7 +219,7 @@ public class PetalParser {
    * @return - the parser
    */
   public static PetalParser createParser(String file_name,
-      Map<String, String> pathMap) {
+     PathMap pathMap) {
     return createParser(new File(file_name), pathMap);
   }
 
@@ -233,7 +231,7 @@ public class PetalParser {
    * @return -the parser
    */
   public static PetalParser createParser(java.net.URL url,
-      Map<String, String> pathMap) {
+      PathMap pathMap) {
     try {
       return createParser(url.openStream(), pathMap);
     } catch (IOException e) {
@@ -261,7 +259,7 @@ public class PetalParser {
    * @return the parser
    */
   public static PetalParser createParser(File file,
-      Map<String, String> pathMap) {
+      PathMap pathMap) {
     try {
       PetalParser parser = new PetalParser(new FileReader(file), pathMap);
       parser.getFiles().add(file);
@@ -294,64 +292,19 @@ public class PetalParser {
     _current = dir;
   }
 
-  /**
-   * Resolve reference to external file, e.g.,
-   * "$CURDIR\\ConsolidatedView\\ConsolidatedView.cat"
-   *
-   * @return file handle or null if file can not be located
-   */
-  public File resolveReference(String path) {
-    if (_current == null) {
-      System.err.println("Could not resolve reference to " + path
-          + ", use parser.setCurrentDir()");
-      return null;
-    } else {
-      StringTokenizer st = new StringTokenizer(path, "\\/");
-      ArrayList<String> list = new ArrayList<String>();
-
-      while (st.hasMoreTokens()) {
-        list.add(st.nextToken());
-      }
-
-      StringBuffer new_path = new StringBuffer();
-
-      for (Iterator<String> i = list.iterator(); i.hasNext();) {
-        String str = (String) i.next();
-
-        if (str.startsWith("$")) {
-          String pathEntry = null;
-
-          if (pathMap != null) {
-            pathEntry = (String) pathMap.get(str);
-          }
-          if (pathEntry == null) {
-            throw new RuntimeException("Unknown variable " + str);
-          } else {
-            if ("&".equals(pathEntry)) {
-              str = _current.getPath();
-            } else {
-              str = pathEntry;
-            }
-          }
-        }
-
-        new_path.append(str);
-
-        if (i.hasNext()) {
-          new_path.append(File.separatorChar);
-        }
-      }
-
-      return new File(new_path.toString());
-    }
-  }
-
+  
   public static PetalParser createParser(Reader stream) {
     return createParser(stream, null);
   }
 
+  /**
+   * create a parser with the given path Map
+   * @param stream
+   * @param pathMap
+   * @return the parser
+   */
   public static PetalParser createParser(Reader stream,
-      Map<String, String> pathMap) {
+      PathMap pathMap) {
     return new PetalParser(stream, pathMap);
   }
 
@@ -366,7 +319,7 @@ public class PetalParser {
   }
 
   public static PetalParser createParser(InputStream stream,
-      Map<String, String> pathMap) {
+      PathMap pathMap) {
     return new PetalParser(new InputStreamReader(stream), pathMap);
   }
 
@@ -432,7 +385,13 @@ public class PetalParser {
      * Load any external .cat file and "paste" it in
      */
     if (cat != null) {
-      File file = resolveReference(cat);
+      File file=null;
+      if (pathMap==null) {
+        LOGGER.log(Level.WARNING,"Could not resolve reference to " + cat
+            + " pathMap is undefined - please create and set it");
+      } else {
+        file = pathMap.resolveReference(cat,_current);
+      }
       if (file != null) {
         if (file.exists()) {
           PetalParser p = PetalParser.createParser(file, pathMap);
@@ -595,7 +554,7 @@ public class PetalParser {
   /**
    * Utility method for main
    */
-  public static PetalFile parse(String[] args, Map pathMap) {
+  public static PetalFile parse(String[] args, PathMap pathMap) {
     PetalParser parser;
 
     if (args.length == 0)
@@ -627,9 +586,10 @@ public class PetalParser {
   }
 
   /**
+   * get the pathMap
    * @return Returns the pathMap.
    */
-  public Map getPathMap() {
+  public PathMap getPathMap() {
     return pathMap;
   }
 
@@ -637,7 +597,7 @@ public class PetalParser {
    * @param pathMap
    *          The pathMap to set.
    */
-  public void setPathMap(Map pathMap) {
+  public void setPathMap(PathMap pathMap) {
     this.pathMap = pathMap;
   }
 
