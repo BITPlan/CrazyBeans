@@ -11,6 +11,7 @@ package cb.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -23,6 +24,7 @@ import org.junit.Test;
 
 import cb.parser.PathMap;
 import cb.parser.PetalParser.ParseContext;
+import cb.petal.PetalObject;
 
 /**
  * test https://github.com/BITPlan/CrazyBeans/issues/14
@@ -113,6 +115,16 @@ public class TestPathMap extends BaseTest {
   public void testAvoidEndlessResolveVariableLoop() {
     PathMap pathMap = new PathMap("$PATH1", "$PATH2", "$PATH2", "$PATH1");
     ParseContext context = getContext();
+    PetalObject.strict = false;
     File path1 = pathMap.resolveReference("$PATH1", context);
+    assertEquals("$PATH2", path1.getPath());
+    PetalObject.strict = true;
+    try {
+      path1 = pathMap.resolveReference("$PATH1", context);
+      fail("There should be an exception for resolving $PATH1");
+    } catch (Exception e) {
+      assertTrue(e instanceof RuntimeException);
+      assertEquals("resolve Reference looped more than  10 times to resolve $PATH2 - giving up - you might want to check your path map in ?",e.getMessage());
+    }
   }
 }
