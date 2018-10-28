@@ -72,7 +72,7 @@ public class TestPathMap extends BaseTest {
     PathMap pathMap = new PathMap(regFile, Charset.forName("UTF-16"));
     assertTrue(pathMap.isRegistry());
     Map<String, String> pmap = pathMap.getPathMap();
-    assertEquals(17, pmap.size());
+    assertEquals(18, pmap.size());
     //debug=true;
     if (debug)
       for (Object keyObject : pmap.keySet()) {
@@ -88,5 +88,7 @@ public class TestPathMap extends BaseTest {
     assertEquals(frameworkPath, path1.getPath());
     File path2=pathMap.resolveReference("$FRAMEWORK_SUBPATH",currentDir);
     assertEquals(frameworkPath+"/subpath",path2.getPath());
+    String commentedPath=pmap.get("$COMMENTED_PATH");
+    assertEquals("somepath",commentedPath);
   }
 }

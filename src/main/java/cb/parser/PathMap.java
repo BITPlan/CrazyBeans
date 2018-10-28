@@ -154,9 +154,20 @@ public class PathMap {
       if (isQuoted(key)) {
         key = "$" + unQuote(key);
         value = unQuote(value);
+        value = unComment(value);
       }
       pathMap.put(key, value);
     }
+  }
+
+  /**
+   * remove comments from the given text
+   * @param text with optional }# comment
+   * @return the text without the comment
+   */
+  private String unComment(String text) {
+    text=text.replaceAll("\\}#.*","");
+    return text;
   }
 
   /**
