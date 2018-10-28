@@ -20,12 +20,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Stack;
-import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -53,6 +50,77 @@ public class PetalParser {
   private Stack<PetalNode> parent_stack = new Stack<PetalNode>();
   private PathMap pathMap;
 
+  public static class ParseContext {
+    private File _currentDir;
+    private File _currentFile;
+    private Lexer lexer;
+    
+    /**
+     * create mew with no lexer
+     */
+    public ParseContext() {
+      this(null);
+    }
+    
+    /**
+     * create me for a given lexer
+     * @param lexer
+     */
+    public ParseContext(Lexer lexer) {
+      this.lexer=lexer;
+    }
+
+    /**
+     * Set current, i.e., the directory where the source MDL file is located so
+     * that references to external .CAT files can be resolved.
+     */
+    public void setCurrentDir(File dir) {
+      if (!dir.isDirectory()) {
+        dir = dir.getParentFile();
+      }
+
+      _currentDir = dir;
+    }
+    
+    /**
+     * get the current Directory
+     * @return
+     */
+    public File getCurrentDir() {
+      return _currentDir;
+    }
+    
+    /**
+     * get the current File
+     * @return
+     */
+    public File getCurrentFile() {
+      return _currentFile;
+    }
+
+    /**
+     * set the CurrentFile
+     * @param file
+     */
+    public void setCurrentFile(File file) {
+      _currentFile=file;
+      this.setCurrentDir(file.getParentFile());
+    }
+
+    public String getContext() {
+      String msg="?";
+      if (getCurrentFile()!=null)
+        msg=getCurrentFile().getPath();
+      if (lexer!=null) {
+        msg+=String.format(" line %d",lexer.getLine());
+      }
+      return msg;
+    }
+  }
+  
+  private List<File> files=new ArrayList<File>();
+  private ParseContext context;
+  
   public List<File> getFiles() {
     return files;
   }
@@ -88,6 +156,7 @@ public class PetalParser {
    */
   public PetalParser(Reader r, PathMap pathMap) {
     this.lexer = new Lexer(r);
+    this.context=new ParseContext(lexer);
     // if a pathMap was supplied use it
     if (pathMap != null) {
       this.pathMap = pathMap;
@@ -131,11 +200,11 @@ public class PetalParser {
   }
 
   /**
-   * match the givne kind and match
+   * match the given kind and match
    * 
    * @param kind
    * @param match
-   * @return
+   * @return the token that matches
    */
   private Token match(int kind, String match) {
     Token t = lexer.getToken();
@@ -269,7 +338,7 @@ public class PetalParser {
       if (index > 0)
         parser.model_name = name.substring(0, index);
 
-      parser.setCurrentDir(file);
+      parser.context.setCurrentFile(file);
 
       return parser;
     } catch (IOException e) {
@@ -277,22 +346,13 @@ public class PetalParser {
     }
   }
 
-  private File _current;
-  private List<File> files=new ArrayList<File>();
+  
 
   /**
-   * Set current, i.e., the directory where the source MDL file is located so
-   * that references to external .CAT files can be resolved.
+   * create a parser for the given stream
+   * @param stream
+   * @return the parser
    */
-  public void setCurrentDir(File dir) {
-    if (!dir.isDirectory()) {
-      dir = dir.getParentFile();
-    }
-
-    _current = dir;
-  }
-
-  
   public static PetalParser createParser(Reader stream) {
     return createParser(stream, null);
   }
@@ -318,6 +378,12 @@ public class PetalParser {
     return createParser(stream, null);
   }
 
+  /**
+   * create a parser for the given stream
+   * @param stream
+   * @param pathMap
+   * @return the parser
+   */
   public static PetalParser createParser(InputStream stream,
       PathMap pathMap) {
     return new PetalParser(new InputStreamReader(stream), pathMap);
@@ -390,7 +456,7 @@ public class PetalParser {
         LOGGER.log(Level.WARNING,"Could not resolve reference to " + cat
             + " pathMap is undefined - please create and set it");
       } else {
-        file = pathMap.resolveReference(cat,_current);
+        file = pathMap.resolveReference(cat,context);
       }
       if (file != null) {
         if (file.exists()) {

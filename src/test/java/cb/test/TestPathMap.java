@@ -22,6 +22,7 @@ import java.util.Properties;
 import org.junit.Test;
 
 import cb.parser.PathMap;
+import cb.parser.PetalParser.ParseContext;
 
 /**
  * test https://github.com/BITPlan/CrazyBeans/issues/14
@@ -31,12 +32,24 @@ import cb.parser.PathMap;
  */
 public class TestPathMap extends BaseTest {
 
+  /**
+   * get a default parseContext
+   * 
+   * @return the parse context
+   */
+  public ParseContext getContext() {
+    ParseContext context = new ParseContext();
+    context.setCurrentDir(new File("."));
+    return context;
+  }
+
   @Test
   public void testDefaultPathMap() {
     PathMap pathMap = new PathMap();
-    File currentDir = new File(".");
-    File r = pathMap.resolveReference("$CURDIR", currentDir);
-    assertEquals(r.getAbsolutePath(), currentDir.getAbsolutePath());
+    ParseContext context = getContext();
+    File r = pathMap.resolveReference("$CURDIR", context);
+    assertEquals(r.getAbsolutePath(),
+        context.getCurrentDir().getAbsolutePath());
   }
 
   @Test
@@ -45,10 +58,10 @@ public class TestPathMap extends BaseTest {
     pmap.put("$PATH1", "path1");
     pmap.put("$PATH2", "./path2");
     PathMap pathMap = new PathMap(pmap);
-    File currentDir = new File(".");
-    File path1 = pathMap.resolveReference("$PATH1", currentDir);
+    ParseContext context = getContext();
+    File path1 = pathMap.resolveReference("$PATH1", context);
     assertEquals("path1", path1.getPath());
-    File path2 = pathMap.resolveReference("$PATH2", currentDir);
+    File path2 = pathMap.resolveReference("$PATH2", context);
     assertEquals("." + File.separator + "path2", path2.getPath());
   }
 
@@ -60,8 +73,8 @@ public class TestPathMap extends BaseTest {
     props.store(new FileOutputStream(propFile), "testPathMapFromIni");
     PathMap pathMap = new PathMap(propFile);
     assertFalse(pathMap.isRegistry());
-    File currentDir = new File(".");
-    File path1 = pathMap.resolveReference("$PATH1", currentDir);
+    ParseContext context = getContext();
+    File path1 = pathMap.resolveReference("$PATH1", context);
     assertEquals("path1", path1.getPath());
   }
 
@@ -73,22 +86,33 @@ public class TestPathMap extends BaseTest {
     assertTrue(pathMap.isRegistry());
     Map<String, String> pmap = pathMap.getPathMap();
     assertEquals(18, pmap.size());
-    //debug=true;
+    // debug=true;
     if (debug)
       for (Object keyObject : pmap.keySet()) {
         System.out
             .println(String.format("%s=%s", keyObject, pmap.get(keyObject)));
       }
-    String frameworkPath="C:\\Program Files (x86)\\Rational\\Rose\\framework\\frameworks";
-    String foundPath=pmap.get("$FRAMEWORK_PATH");
+    String frameworkPath = "C:\\Program Files (x86)\\Rational\\Rose\\framework\\frameworks";
+    String foundPath = pmap.get("$FRAMEWORK_PATH");
     assertEquals(frameworkPath.length(), foundPath.length());
     assertEquals(frameworkPath, foundPath);
-    File currentDir = new File(".");
-    File path1 = pathMap.resolveReference("$FRAMEWORK_PATH", currentDir);
+    ParseContext context = getContext();
+    File path1 = pathMap.resolveReference("$FRAMEWORK_PATH", context);
     assertEquals(frameworkPath, path1.getPath());
-    File path2=pathMap.resolveReference("$FRAMEWORK_SUBPATH",currentDir);
-    assertEquals(frameworkPath+"/subpath",path2.getPath());
-    String commentedPath=pmap.get("$COMMENTED_PATH");
-    assertEquals("somepath",commentedPath);
+    File path2 = pathMap.resolveReference("$FRAMEWORK_SUBPATH", context);
+    assertEquals(frameworkPath + "/subpath", path2.getPath());
+    String commentedPath = pmap.get("$COMMENTED_PATH");
+    assertEquals("somepath", commentedPath);
+  }
+
+  @Test
+  /**
+   * test that if a variable is unknown there will be no endless attempt to
+   * resolve it
+   */
+  public void testAvoidEndlessResolveVariableLoop() {
+    PathMap pathMap = new PathMap("$PATH1", "$PATH2", "$PATH2", "$PATH1");
+    ParseContext context = getContext();
+    File path1 = pathMap.resolveReference("$PATH1", context);
   }
 }

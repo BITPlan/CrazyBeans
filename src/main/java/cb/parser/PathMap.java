@@ -22,6 +22,9 @@ import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import cb.parser.PetalParser.ParseContext;
+import cb.petal.PetalObject;
+
 /**
  * pathMap handling
  * 
@@ -30,7 +33,9 @@ import java.util.logging.Logger;
  */
 public class PathMap {
   protected static Logger LOGGER = Logger.getLogger("cb.parser");
-
+  // Max recursion depth
+  public static int MAX_LOOPS=10;
+      
   // where the path map is kept
   Map<String, String> pathMap;
 
@@ -162,11 +167,13 @@ public class PathMap {
 
   /**
    * remove comments from the given text
-   * @param text with optional }# comment
+   * 
+   * @param text
+   *          with optional }# comment
    * @return the text without the comment
    */
   private String unComment(String text) {
-    text=text.replaceAll("\\}#.*","");
+    text = text.replaceAll("\\}#.*", "");
     return text;
   }
 
@@ -176,10 +183,27 @@ public class PathMap {
    *
    * @return file handle or null if file can not be located
    */
-  public File resolveReference(String path, File currentDir) {
-    if (currentDir == null) {
-      LOGGER.log(Level.WARNING, "Could not resolve reference to " + path
-          + ", use parser.setCurrentDir()");
+  public File resolveReference(String path, ParseContext context) {
+    Integer loopCounter = new Integer(0);
+    return resolveReference(path, context, loopCounter);
+  }
+
+  /**
+   * resolve reference and avoid endless recursion by counting
+   * 
+   * @param path
+   * @param context
+   * @param loopCounter
+   * @return the resolved reference
+   */
+  public File resolveReference(String path, ParseContext context,
+      Integer loopCounter) {
+    if (loopCounter>MAX_LOOPS) {
+      error(context,String.format("resolve Reference looped more than %3d times to resolve %s - giving up - you might want to check your path map", MAX_LOOPS,path));
+      return null;
+    }
+    if (context.getCurrentDir() == null) {
+      error(context,String.format("Could not resolve reference to %s",path));
       return null;
     } else {
       StringTokenizer st = new StringTokenizer(path, "\\/");
@@ -196,7 +220,7 @@ public class PathMap {
 
         // do we need to resolve the string?
         if (str.startsWith("$")) {
-          str=resolveVariables(str,currentDir);
+          str = resolveVariables(str, context, loopCounter);
         }
 
         new_path.append(str);
@@ -212,32 +236,56 @@ public class PathMap {
 
   /**
    * resolve the variables in the given string
-   * @param str - the string to resolve
-   * @param currentDir - the current directory
+   * 
+   * @param str
+   *          - the string to resolve
+   * @param context
+   *          - the current directory
+   * @param loopCounter
    * @return - the string with resolved Variables
    */
-  private String resolveVariables(String str, File currentDir) {
+  private String resolveVariables(String str, ParseContext context,
+      Integer loopCounter) {
     String pathEntry = null;
 
     if (pathMap != null) {
       pathEntry = (String) pathMap.get(str);
     }
     if (pathEntry == null) {
-      throw new RuntimeException("Unknown variable " + str);
+      error(context,String.format("Unknown variable %s",str));
     } else {
       if ("&".equals(pathEntry)) {
-        str = currentDir.getPath();
+        str = context.getCurrentDir().getPath();
       } else if (pathEntry.startsWith(".")) {
-        str = currentDir.getPath() + pathEntry.replaceFirst("\\./", "/");
+        str = context.getCurrentDir().getPath()
+            + pathEntry.replaceFirst("\\./", "/");
       } else {
         str = pathEntry;
       }
     }
     // did new variables show up during dereferencing>?
     if (str.contains("$")) {
-      str=this.resolveReference(str, currentDir).getPath();
+      File reference= this.resolveReference(str, context, ++loopCounter);
+      if (reference!=null)
+        str =reference.getPath();
     }
     return str;
+  }
+
+  /**
+   * handle the given error with the given message in the given context
+   * @param context
+   * @param msg
+   */
+  private void error(ParseContext context,String msg) {
+    msg = String.format("%s in %s", msg,
+        context.getContext());
+    if (PetalObject.strict) {
+      throw new RuntimeException(msg);
+    } else {
+      LOGGER.log(Level.WARNING, msg);
+    }
+    
   }
 
 }
