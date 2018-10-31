@@ -82,6 +82,7 @@ public interface Visitor {
   public void visit(Link obj);
   public void visit(Message obj);
   public void visit(Event obj);
+  public void visit(DestructionMarker destructionMarker);
   public void visit(StateView obj);
   public void visit(TransView obj);
   public void visit(SelfTransView obj);
@@ -138,4 +139,6 @@ public interface Visitor {
   public void visit(BooleanLiteral obj);
   public void visit(FloatLiteral obj);
   public void visit(IntegerLiteral obj);
+
+ 
 }

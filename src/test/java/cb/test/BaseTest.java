@@ -109,7 +109,8 @@ public class BaseTest {
       new Example("JDK-12_01", "$FRAMEWORK_PATH", "./javaframework"),
       new Example("project"), new Example("ComponentDiagram98"),
       new Example("RUP01"), new Example("uni"), new Example("Hospital98"),
-      new Example("AnswerinMachine") };
+      new Example("AnswerinMachine"),
+      new Example("sequanceDiagram")};
 
   /**
    * enable debugging

@@ -149,6 +149,8 @@ public class DescendingVisitor implements Visitor {
 
   public void visit(Event obj) { visitObject(obj); }
 
+  public void visit(DestructionMarker destructionMarker) { visitObject(destructionMarker); };
+  
   public void visit(StateView obj) { visitObject(obj); }
 
   public void visit(TransView obj) { visitObject(obj); }

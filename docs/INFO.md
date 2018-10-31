@@ -74,5 +74,9 @@ based on the githubytized version of https://github.com/matthewmeyer
 
 ## CREDITS
 The AnsweringMachine Example file is from
+
 https://github.com/adombroski/xslt-cookbook/blob/master/xsltckbk/XSLTCkBkCode_Edition_1/code-gen/AnswerinMachine.mdl
+
+The Sequence Diagram Example file is from
+https://www.cs.bgu.ac.il/~korenel/docs/Diagrams/sequanceDiagram.mdl
 

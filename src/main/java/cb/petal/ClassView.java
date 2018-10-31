@@ -44,6 +44,14 @@ public class ClassView extends QuiduView implements Qualified {
   public String getQualifiedNameParameter() {
     return (String)params.get(1);
   }
+  
+  public boolean getShowOperationSignature() {
+    return getPropertyAsBoolean("ShowOperationSignature");
+  }
+  
+  public void setShowOperationSignature(boolean o) {
+    defineProperty("ShowOperationSignature", o);
+  }
 
   public boolean getShowCompartmentStereotypes() {
     return getPropertyAsBoolean("ShowCompartmentStereotypes");

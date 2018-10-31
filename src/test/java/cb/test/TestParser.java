@@ -79,6 +79,19 @@ public class TestParser {
     }
   }
 
+  @Test
+  public void testShowOperationSignature() {
+    File petalFile = new File("examples/AF1010_P1.mdl");
+    PetalObject.strict = false;
+    PetalFile petalTree = PetalParser.createParser(petalFile.getPath()).parse();
+ 
+    ClassView classView = (ClassView) petalTree.getView(2);
+
+    assertEquals("Logical View::af1010::Main::Class",
+        classView.getQualifiedName());
+    assertTrue(classView.getShowOperationSignature());
+  }
+
   class ClassVisitor extends DescendingVisitor {
     int classCount = 0;
 
@@ -144,23 +157,24 @@ public class TestParser {
     assertTrue(sview instanceof ClassView);
     assertTrue(cview instanceof ClassView);
   }
-  
+
   @Test
   public void testCompartmentItems() {
     File petalFile = new File("examples/ComponentDiagram98.mdl");
     PetalObject.strict = true;
     PetalFile petalTree = PetalParser.createParser(petalFile.getPath()).parse();
-    ClassView courseView=(ClassView) petalTree.getView(154);
-    assertEquals("Logical View::UniversityArtifacts::Course",courseView.getQualifiedNameParameter());
+    ClassView courseView = (ClassView) petalTree.getView(154);
+    assertEquals("Logical View::UniversityArtifacts::Course",
+        courseView.getQualifiedNameParameter());
     Compartment compartment = courseView.getCompartment();
-    assertEquals(7,compartment.getChildCount());
-    List<String> citems = compartment.getCompartmentItems();  
-    assertEquals(3,citems.size());
-    assertEquals("+ getName()",citems.get(0));
-    assertEquals("+ addProfessor()",citems.get(1));
-    assertEquals("- name",citems.get(2));
+    assertEquals(7, compartment.getChildCount());
+    List<String> citems = compartment.getCompartmentItems();
+    assertEquals(3, citems.size());
+    assertEquals("+ getName()", citems.get(0));
+    assertEquals("+ addProfessor()", citems.get(1));
+    assertEquals("- name", citems.get(2));
   }
-  
+
   @Test
   public void testSelfTransViewSupport() {
     File petalFile = new File("examples/AnswerinMachine.mdl");

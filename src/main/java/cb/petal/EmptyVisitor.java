@@ -127,7 +127,9 @@ public class EmptyVisitor implements Visitor {
   public void visit(Message obj) { }
 
   public void visit(Event obj) { }
-
+  
+  public void visit(DestructionMarker destructionMarker) {}
+  
   public void visit(StateView obj) { }
 
   public void visit(TransView obj) { }
