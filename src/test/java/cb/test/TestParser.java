@@ -14,6 +14,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -27,8 +28,13 @@ import cb.petal.Compartment;
 import cb.petal.DescendingVisitor;
 import cb.petal.InheritView;
 import cb.petal.LogicalCategory;
+import cb.petal.Operation;
+import cb.petal.Parameter;
 import cb.petal.PetalFile;
+import cb.petal.PetalNode;
 import cb.petal.PetalObject;
+import cb.petal.QuidObject;
+import cb.petal.SemanticInfo;
 import cb.petal.View;
 import cb.petal.Visibility;
 
@@ -77,6 +83,15 @@ public class TestParser {
           expectedVisibilities[visibility.ordinal()],
           accessVisitor.visibilityCounter[visibility.ordinal()]);
     }
+    QuidObject op1Obj = petalTree.getQuidObject("485A74FD0148");
+    assertNotNull(op1Obj);
+    assertTrue(op1Obj instanceof Operation);
+    Operation op1 = (Operation) op1Obj;
+    ArrayList<PetalNode> params = op1.getParameters().get();
+    assertEquals(1,params.size());
+    Parameter param=(Parameter) params.get(0);
+    assertEquals("param1",param.getNameParameter());
+    assertEquals("string",param.getType());
   }
 
   @Test
@@ -84,7 +99,7 @@ public class TestParser {
     File petalFile = new File("examples/AF1010_P1.mdl");
     PetalObject.strict = false;
     PetalFile petalTree = PetalParser.createParser(petalFile.getPath()).parse();
- 
+
     ClassView classView = (ClassView) petalTree.getView(2);
 
     assertEquals("Logical View::af1010::Main::Class",
