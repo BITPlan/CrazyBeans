@@ -140,6 +140,8 @@ public class DescendingVisitor implements Visitor {
   public void visit(AttachView obj) { visitObject(obj); }
 
   public void visit(AssocAttachView obj) { visitObject(obj); }
+  
+  public void visit(AssocConstraintView obj) { visitObject(obj); }
 
   public void visit(Mechanism obj) { visitObject(obj); }
 

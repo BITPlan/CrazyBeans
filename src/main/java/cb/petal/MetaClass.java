@@ -16,6 +16,11 @@ import java.util.Collection;
  * @author  <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public class MetaClass extends Class {
+  /**
+   * construct me
+   * @param parent
+   * @param params
+   */
   public MetaClass(PetalNode parent, Collection params) {
     super(parent, "Metaclass", params);
   }

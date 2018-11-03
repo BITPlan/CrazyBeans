@@ -43,22 +43,22 @@ public abstract class Constants {
   public static String getNewLine() {
     return DOS_MODE ? DOS : UNIX;
   }
-  
+
   public enum TmpMode {
     tmp, TEMP, env, TempFile
   }
 
   /**
-   * mode how to find temporary directory may be
-   * tmp: just use /tmp
-   * TEMP: original version checking for isDOS and using C:\\TEMP\\ if in that environment
-   * env: get the tmp file from the environment variable
-   * TempFile: use javas tempfile facility to find an internal temporary directory to use
+   * mode how to find temporary directory may be tmp: just use /tmp TEMP:
+   * original version checking for isDOS and using C:\\TEMP\\ if in that
+   * environment env: get the tmp file from the environment variable TempFile:
+   * use javas tempfile facility to find an internal temporary directory to use
    */
   public static TmpMode tempMode = TmpMode.TEMP;
-  
+
   /**
    * get a temporary directory
+   * 
    * @return the temporary directory
    */
   public static String getTmp() {
@@ -67,6 +67,7 @@ public abstract class Constants {
 
   /**
    * get a temporary directory
+   * 
    * @return the path to the temporary directory
    */
   public static String getTmp(TmpMode tmpMode) {
@@ -76,19 +77,19 @@ public abstract class Constants {
       result = cb.util.Constants.isDOS() ? "C:\\TEMP" : "/tmp";
       break;
     case env:
-      result=System.getProperty("java.io.tmpdir"); 
+      result = System.getProperty("java.io.tmpdir");
       break;
     case TempFile:
       File tmpDetect;
       try {
         tmpDetect = File.createTempFile("crazybeans", ".txt");
-        result=tmpDetect.getParentFile().getAbsolutePath();
-        tmpDetect.delete(); 
+        result = tmpDetect.getParentFile().getAbsolutePath();
+        tmpDetect.delete();
       } catch (IOException e) {
         // simply use "/tmp/ then
       }
-      default:
-        // keep default
+    default:
+      // keep default
     }
     return result;
   }
@@ -128,8 +129,10 @@ public abstract class Constants {
     }
 
     String ret = buf.toString();
-
-    if (ret.equals("ClassCategory")) { // Find more specific class
+    switch (ret) {
+    case "Metaclass":
+      return "MetaClass";
+    case "ClassCategory": { // Find more specific class
       String obj = (String) params.get(0);
 
       if (obj.equals("Use Case View") || (parent instanceof UseCaseCategory))
@@ -139,8 +142,10 @@ public abstract class Constants {
         return "LogicalCategory";
       else
         return ret;
-    } else
+    }
+    default:
       return ret;
+    }
   }
 
   private static HashSet primitive = new HashSet(Arrays.asList(new String[] {

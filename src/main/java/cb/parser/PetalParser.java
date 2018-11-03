@@ -84,7 +84,7 @@ public class PetalParser {
     
     /**
      * get the current Directory
-     * @return
+     * @return the current Directory
      */
     public File getCurrentDir() {
       return _currentDir;
@@ -92,7 +92,7 @@ public class PetalParser {
     
     /**
      * get the current File
-     * @return
+     * @return the current file
      */
     public File getCurrentFile() {
       return _currentFile;

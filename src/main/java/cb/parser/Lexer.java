@@ -220,7 +220,7 @@ public class Lexer {
 
   /**
    * get the current line of the Lexer
-   * @return
+   * @return the current line of the lexer
    */
   public int getLine() {
     return _line;

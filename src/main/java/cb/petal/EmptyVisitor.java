@@ -119,6 +119,8 @@ public class EmptyVisitor implements Visitor {
   public void visit(AttachView obj) { }
 
   public void visit(AssocAttachView obj) { }
+  
+  public void visit(AssocConstraintView obj) { }
 
   public void visit(Mechanism obj) { }
 

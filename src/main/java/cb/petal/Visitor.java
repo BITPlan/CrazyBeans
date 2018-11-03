@@ -77,6 +77,7 @@ public interface Visitor {
   public void visit(InheritTreeView obj);
   public void visit(AttachView obj);
   public void visit(AssocAttachView obj);
+  public void visit(AssocConstraintView obj);
   public void visit(Mechanism obj);
   public void visit(cb.petal.Object obj);
   public void visit(Link obj);
@@ -139,6 +140,8 @@ public interface Visitor {
   public void visit(BooleanLiteral obj);
   public void visit(FloatLiteral obj);
   public void visit(IntegerLiteral obj);
+
+  
 
  
 }

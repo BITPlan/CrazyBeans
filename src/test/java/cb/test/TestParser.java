@@ -34,7 +34,6 @@ import cb.petal.PetalFile;
 import cb.petal.PetalNode;
 import cb.petal.PetalObject;
 import cb.petal.QuidObject;
-import cb.petal.SemanticInfo;
 import cb.petal.View;
 import cb.petal.Visibility;
 
