@@ -2,7 +2,7 @@
 [Java library to read, modify or create Rational Rose petal files](http://www.bitplan.com/CrazyBeans) 
 
 [![Travis (.org)](https://img.shields.io/travis/BITPlan/CrazyBeans.svg)](https://travis-ci.org/BITPlan/CrazyBeans)
-[![Maven Central](https://img.shields.io/maven-central/v/com.bitplan/org.crazybeans.svg)](https://search.maven.org/artifact/com.bitplan/org.crazybeans/1.5.12/jar)
+[![Maven Central](https://img.shields.io/maven-central/v/com.bitplan/org.crazybeans.svg)](https://search.maven.org/artifact/com.bitplan/org.crazybeans/1.6.0/jar)
 [![GitHub issues](https://img.shields.io/github/issues/BITPlan/CrazyBeans.svg)](https://github.com/BITPlan/CrazyBeans/issues)
 [![GitHub issues](https://img.shields.io/github/issues-closed/BITPlan/CrazyBeans.svg)](https://github.com/BITPlan/CrazyBeans/issues/?q=is%3Aissue+is%3Aclosed)
 [![GitHub](https://img.shields.io/github/license/BITPlan/CrazyBeans.svg)](https://www.apache.org/licenses/LICENSE-2.0)
@@ -20,11 +20,11 @@ Maven dependency
 <dependency>
   <groupId>com.bitplan</groupId>
   <artifactId>org.crazybeans</artifactId>
-  <version>1.5.12</version>
+  <version>1.6.0</version>
 </dependency>
 ```
 
-[Current release at repo1.maven.org](http://repo1.maven.org/maven2/com/bitplan/org.crazybeans/1.5.12/)
+[Current release at repo1.maven.org](http://repo1.maven.org/maven2/com/bitplan/org.crazybeans/1.6.0/)
 
 ### How to build
 ```
@@ -128,3 +128,4 @@ https://www.cs.bgu.ac.il/~korenel/docs/Diagrams/sequanceDiagram.mdl
 | 1.5.10  | 2018-10-28| fixes #15 - SelfTransView support, fixes #16 Detect endless loop, fixes #17 show context for path map errors, fixes #18 allow non strict handling of path map errors 
 | 1.5.11  | 2018-10-31| fixes #19 - DestructionMarker support, fixes #20 showOperationsSignature,fixes #6 - docu, license, readme
 | 1.5.12  | 2018-11-02| fixes #21 - AssocConstraintView support
+| 1.6.0   | 2018-11-03| fixes #22 - PathMap handling

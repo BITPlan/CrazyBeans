@@ -12,3 +12,4 @@
 | 1.5.10  | 2018-10-28| fixes #15 - SelfTransView support, fixes #16 Detect endless loop, fixes #17 show context for path map errors, fixes #18 allow non strict handling of path map errors 
 | 1.5.11  | 2018-10-31| fixes #19 - DestructionMarker support, fixes #20 showOperationsSignature,fixes #6 - docu, license, readme
 | 1.5.12  | 2018-11-02| fixes #21 - AssocConstraintView support
+| 1.6.0   | 2018-11-03| fixes #22 - PathMap handling

@@ -256,7 +256,7 @@ public class PathMap {
     } else {
       if ("&".equals(pathEntry)) {
         str = context.getCurrentDir().getPath();
-      } else if (pathEntry.startsWith(".")) {
+      } else if (pathEntry.startsWith(".") && !(pathEntry.startsWith(".."))) {
         str = context.getCurrentDir().getPath()
             + pathEntry.replaceFirst("\\./", "/");
       } else {
@@ -286,6 +286,32 @@ public class PathMap {
       LOGGER.log(Level.WARNING, msg);
     }
     
+  }
+
+  /**
+   * get the  path map entry for the given key
+   * @param key
+   * @return the value looked up
+   */
+  public String get(String key) {
+    String value=this.getPathMap().get(key);
+    return value;
+  }
+
+  /**
+   * return me as a string array
+   * @return a string array
+   */
+  public String[] asStringArray() {
+    Map<String, String> map = this.getPathMap();
+    String[] strings=new String[map.size()*2];
+    int i=0;
+    for (String key:map.keySet()) {
+      strings[i]=key;
+      strings[i+1]=map.get(key);
+      i+=2;
+    }
+    return strings;
   }
 
 }
