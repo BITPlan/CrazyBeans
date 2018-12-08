@@ -1,5 +1,5 @@
 ### CrazyBeans
-[Java library to read, modify or create Rational Rose petal files](http://www.bitplan.com/CrazyBeans) 
+[Java library to read, modify or create Rational Rose petal files](http://www.bitplan.com/CrazyBeans)
 
 [![Travis (.org)](https://img.shields.io/travis/BITPlan/CrazyBeans.svg)](https://travis-ci.org/BITPlan/CrazyBeans)
 [![Maven Central](https://img.shields.io/maven-central/v/com.bitplan/org.crazybeans.svg)](https://search.maven.org/artifact/com.bitplan/org.crazybeans/1.6.0/jar)
@@ -17,6 +17,7 @@
 
 Maven dependency
 ```xml
+<!-- Java library to read, modify or create Rational Rose petal files http://www.bitplan.com/CrazyBeans -->
 <dependency>
   <groupId>com.bitplan</groupId>
   <artifactId>org.crazybeans</artifactId>
