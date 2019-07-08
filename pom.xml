@@ -1,4 +1,4 @@
-<!-- Copyright (c) Markus Dahm 2001 (c) 2015-2018 BITPlan GmbH Project details 
+<!-- Copyright (c) Markus Dahm 2001 (c) 2015-2018 BITPlan GmbH Project details
 	and license at: https://github.com/BITPlan/CrazyBeans -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>com.bitplan.pom</groupId>
 		<artifactId>com.bitplan.pom</artifactId>
-		<version>0.0.17</version>
+		<version>0.0.33</version>
 		<relativePath>../com.bitplan.pom/pom.xml</relativePath>
 	</parent>
 	<groupId>com.bitplan</groupId>
