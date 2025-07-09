@@ -75,6 +75,7 @@ public class PathMap {
     // create default Path Map entries
     this.pathMap.put("$CRS_HOME", "&");
     this.pathMap.put("$CURDIR", "&");
+    this.pathMap.put("$HOME", System.getProperty("user.home"));
     // add given entries
     if (nameValues.length > 0) {
       if (nameValues.length % 2 != 0) {
