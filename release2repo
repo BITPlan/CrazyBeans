@@ -1,0 +1,10 @@
+#!/bin/bash
+#WF 2025-10-26
+# release me to the repo configure in mvnrelease
+#!/bin/bash
+groupid="com.bitplan"
+artifactid="org.crazybeans"
+version="1.7.1"
+jar="target/${artifactid}-${version}.jar"
+repo="release"
+mvnrelease "$groupid" "$version" "$artifactid" "$jar" "$repo"

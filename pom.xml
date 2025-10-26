@@ -49,4 +49,13 @@
 			<artifactId>args4j</artifactId>
 		</dependency>
 	</dependencies>
+	<build>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-ssh-external</artifactId>
+        <version>3.4.3</version>
+      </extension>
+    </extensions>
+  </build>
 </project>

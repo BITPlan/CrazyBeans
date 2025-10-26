@@ -1,0 +1,4 @@
+# WF 2025-10-26
+# call crazybeans with command line args
+# see https://github.com/BITPlan/CrazyBeans
+java -jar target/org.crazybeans-1.7.1-jar-with-dependencies.jar $@
