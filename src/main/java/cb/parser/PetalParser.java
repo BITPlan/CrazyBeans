@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2001 Markus Dahm
- * Copyright (C) 2015-2018 BITPlan GmbH http://www.bitplan.com
+ * Copyright (C) 2015-2025 BITPlan GmbH http://www.bitplan.com
  *
  * This source is part of
  * https://github.com/BITPlan/CrazyBeans
@@ -9,7 +9,7 @@
 package cb.parser;
 
 import java.io.File;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -330,7 +330,7 @@ public class PetalParser {
   public static PetalParser createParser(File file,
       PathMap pathMap) {
     try {
-      PetalParser parser = new PetalParser(new FileReader(file), pathMap);
+      PetalParser parser = new PetalParser(new InputStreamReader(new FileInputStream(file), "ISO-8859-1"), pathMap);
       parser.getFiles().add(file);
       String name = file.getName();
       int index = name.lastIndexOf('.');
