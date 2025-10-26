@@ -1,7 +1,6 @@
 ### CrazyBeans
 [Java library to read, modify or create Rational Rose petal files](http://www.bitplan.com/CrazyBeans)
 
-[![Travis (.org)](https://img.shields.io/travis/BITPlan/CrazyBeans.svg)](https://travis-ci.org/BITPlan/CrazyBeans)
 [![Maven Central](https://img.shields.io/maven-central/v/com.bitplan/org.crazybeans.svg)](https://search.maven.org/artifact/com.bitplan/org.crazybeans/1.6.0/jar)
 [![codecov](https://codecov.io/gh/BITPlan/CrazyBeans/branch/master/graph/badge.svg)](https://codecov.io/gh/BITPlan/CrazyBeans)
 [![GitHub issues](https://img.shields.io/github/issues/BITPlan/CrazyBeans.svg)](https://github.com/BITPlan/CrazyBeans/issues)
@@ -22,7 +21,7 @@ Maven dependency
 <dependency>
   <groupId>com.bitplan</groupId>
   <artifactId>org.crazybeans</artifactId>
-  <version>1.6.0</version>
+  <version>1.7.1</version>
 </dependency>
 ```
 
@@ -36,7 +35,8 @@ mvn install
 ```
 ## Installation
 ```
-mvn clean compile assembly:single
+./localinstall
+# mvn -U clean install  -D skipTests -D gpg.skip -D createRelease=true -D createAssembly=true
 ```
 to create a standalone jar
 
@@ -45,7 +45,7 @@ to create a standalone jar
 
 ## Usage
 ```
-java -jar target/crazybeans-0.0.1-jar-with-dependencies.jar --help
+java -jar target/org.crazybeans-1.7.1-jar-with-dependencies.jar --help
 Help
 
 cb.petal Version: 0.0.1
@@ -78,33 +78,33 @@ usage: java cb.petaltools.PetalTool
 
 ### Example - xmiExport to stdout
 ```
-java -jar target/crazybeans-0.0.1-jar-with-dependencies.jar -i examples/uni.mdl 
+./cb -i examples/uni.mdl 
 ```
 
 ### Example - rose petal file dump to stdout
 ```
-java -jar target/crazybeans-0.0.1-jar-with-dependencies.jar -i examples/uni.mdl --format rose
+./cb -i examples/uni.mdl --format rose
 ```
 
 ### Example - xmiExport to file (with pipe)
 ```
-cat examples/uni.mdl | java -jar target/crazybeans-0.0.1-jar-with-dependencies.jar  -i - -o examples/uni.xmi
+cat examples/uni.mdl | ./cb  -i - -o examples/uni.xmi
 ```
 
 ### Example - java code generation
 ```
-java -jar target/crazybeans-0.0.1-jar-with-dependencies.jar  -i examples/uni.mdl --format none -src /tmp/uni
+./cb  -i examples/uni.mdl --format none -src /tmp/uni
 ```
 
 ### Example - treeView
 ```
-java -jar target/crazybeans-0.0.1-jar-with-dependencies.jar -i examples/uni.mdl --format none -tv 
+./cb -i examples/uni.mdl --format none -tv 
 ```
 
 ## AUTHORS
 The original CrazyBeans framework is copyright (2001) Markus Dahm. 
 
-This fork is Copyright(c) 2015 BITPlan GmbH (Owner: Wolfgang Fahl)
+This fork is Copyright(c) 2015-2025 BITPlan GmbH (Owner: Wolfgang Fahl)
 
 based on the githubytized version of https://github.com/matthewmeyer
 
@@ -131,3 +131,4 @@ https://www.cs.bgu.ac.il/~korenel/docs/Diagrams/sequanceDiagram.mdl
 | 1.5.11  | 2018-10-31| fixes #19 - DestructionMarker support, fixes #20 showOperationsSignature,fixes #6 - docu, license, readme
 | 1.5.12  | 2018-11-02| fixes #21 - AssocConstraintView support
 | 1.6.0   | 2018-11-03| fixes #22 - PathMap handling
+| 1.7.1   | 2025-10-26| fixes #5  - encoding issue

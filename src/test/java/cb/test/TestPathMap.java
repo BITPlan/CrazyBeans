@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2001 Markus Dahm
- * Copyright (C) 2015-2018 BITPlan GmbH http://www.bitplan.com
+ * Copyright (C) 2015-2025 BITPlan GmbH http://www.bitplan.com
  *
  * This source is part of
  * https://github.com/BITPlan/CrazyBeans
@@ -87,7 +87,7 @@ public class TestPathMap extends BaseTest {
     PathMap pathMap = new PathMap(regFile, Charset.forName("UTF-16"));
     assertTrue(pathMap.isRegistry());
     Map<String, String> pmap = pathMap.getPathMap();
-    assertEquals(18, pmap.size());
+    assertEquals(19, pmap.size());
     // debug=true;
     if (debug)
       for (Object keyObject : pmap.keySet()) {
