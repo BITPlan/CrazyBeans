@@ -19,6 +19,8 @@
 	<properties>
 		<!-- for parent pom to work -->
 		<github.project>CrazyBeans</github.project>
+		<!-- Java baseline for the 1.8.0 release -->
+		<java.version>25</java.version>
 		<!-- for README generation -->
 		<documentation.wiki>http://www.bitplan.com/CrazyBeans</documentation.wiki>
 		<!-- versions of other libraries to be used -->
