@@ -2,7 +2,7 @@
 [Java library to read, modify or create Rational Rose petal files](http://www.bitplan.com/CrazyBeans)
 
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.bitplan/org.crazybeans.svg)](https://search.maven.org/artifact/com.bitplan/org.crazybeans/1.7.1/jar)
+[![Maven Central](https://img.shields.io/maven-central/v/com.bitplan/org.crazybeans.svg)](https://search.maven.org/artifact/com.bitplan/org.crazybeans/1.8.0/jar)
 
 [![GitHub issues](https://img.shields.io/github/issues/BITPlan/CrazyBeans.svg)](https://github.com/BITPlan/CrazyBeans/issues)
 [![GitHub issues](https://img.shields.io/github/issues-closed/BITPlan/CrazyBeans.svg)](https://github.com/BITPlan/CrazyBeans/issues/?q=is%3Aissue+is%3Aclosed)
@@ -22,11 +22,11 @@ Maven dependency
 <dependency>
   <groupId>com.bitplan</groupId>
   <artifactId>org.crazybeans</artifactId>
-  <version>1.7.1</version>
+  <version>1.8.0</version>
 </dependency>
 ```
 
-[Current release at repo1.maven.org](https://repo1.maven.org/maven2/com/bitplan/org.crazybeans/1.7.1/)
+[Current release at repo1.maven.org](https://repo1.maven.org/maven2/com/bitplan/org.crazybeans/1.8.0/)
 
 ### How to build
 ```
@@ -35,20 +35,22 @@ cd CrazyBeans
 mvn install
 ```
 ## Installation
+To create a standalone (fat) jar with all dependencies bundled, activate the
+`createAssembly` profile:
 ```
-mvn clean compile assembly:single
+mvn clean package -DcreateAssembly=true
 ```
-to create a standalone jar
+This produces `target/org.crazybeans-1.8.0-jar-with-dependencies.jar`.
 
 ## Original Documentation 
 * http://crazybeans.sourceforge.net/
 
 ## Usage
 ```
-java -jar target/crazybeans-0.0.1-jar-with-dependencies.jar --help
+java -jar target/org.crazybeans-1.8.0-jar-with-dependencies.jar --help
 Help
 
-cb.petal Version: 0.0.1
+cb.petal Version: 1.8.0
 
  github: https://github.com/BITPlan/CrazyBeans
 
@@ -78,27 +80,27 @@ usage: java cb.petaltools.PetalTool
 
 ### Example - xmiExport to stdout
 ```
-java -jar target/crazybeans-0.0.1-jar-with-dependencies.jar -i examples/uni.mdl 
+java -jar target/org.crazybeans-1.8.0-jar-with-dependencies.jar -i examples/uni.mdl 
 ```
 
 ### Example - rose petal file dump to stdout
 ```
-java -jar target/crazybeans-0.0.1-jar-with-dependencies.jar -i examples/uni.mdl --format rose
+java -jar target/org.crazybeans-1.8.0-jar-with-dependencies.jar -i examples/uni.mdl --format rose
 ```
 
 ### Example - xmiExport to file (with pipe)
 ```
-cat examples/uni.mdl | java -jar target/crazybeans-0.0.1-jar-with-dependencies.jar  -i - -o examples/uni.xmi
+cat examples/uni.mdl | java -jar target/org.crazybeans-1.8.0-jar-with-dependencies.jar  -i - -o examples/uni.xmi
 ```
 
 ### Example - java code generation
 ```
-java -jar target/crazybeans-0.0.1-jar-with-dependencies.jar  -i examples/uni.mdl --format none -src /tmp/uni
+java -jar target/org.crazybeans-1.8.0-jar-with-dependencies.jar  -i examples/uni.mdl --format none -src /tmp/uni
 ```
 
 ### Example - treeView
 ```
-java -jar target/crazybeans-0.0.1-jar-with-dependencies.jar -i examples/uni.mdl --format none -tv 
+java -jar target/org.crazybeans-1.8.0-jar-with-dependencies.jar -i examples/uni.mdl --format none -tv 
 ```
 
 ## AUTHORS
@@ -131,3 +133,5 @@ https://www.cs.bgu.ac.il/~korenel/docs/Diagrams/sequanceDiagram.mdl
 | 1.5.11  | 2018-10-31| fixes #19 - DestructionMarker support, fixes #20 showOperationsSignature,fixes #6 - docu, license, readme
 | 1.5.12  | 2018-11-02| fixes #21 - AssocConstraintView support
 | 1.6.0   | 2018-11-03| fixes #22 - PathMap handling
+| 1.7.1   | 2025-10-26| fixes encoding issue, modernizes build (Maven parent pom, GitHub Actions CI, removes Travis), adds cb and release2repo scripts
+| 1.8.0   | 2026-05-29| Java 25 support, CI matrix for Java 8/17/21/25, updates parent pom to 0.1.0, fixes README inconsistencies (badges, dependency version, fat-jar examples)
