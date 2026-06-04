@@ -1,3 +1,4 @@
+Moved to https://codeberg.org/BITPlan/CrazyBeans and archived
 ### CrazyBeans
 [Java library to read, modify or create Rational Rose petal files](http://www.bitplan.com/CrazyBeans)
 
